@@ -1,0 +1,32 @@
+Procedure	"HS_Trigger_EQS_Rental_Inquiry_Invoice_Entry_Display_Existing_Record_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		reference			'(L) Invoice Tables';
+out		boolean				OUT_Existing;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = column(\"EQS Rental Invoice Number\") of table('(L) Invoice Tables');
+get table HS_Rental_Payments_WORK_HIST;
+if err() <> OKAY then
+	clear table HS_Rental_Payments_WORK_HIST;
+end if;
+
+
+call EQS_Rental_Inquiry_Invoice_Entry_Set_Window_Fields,
+ 'Payment Amount' of table HS_Rental_Payments_WORK_HIST;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

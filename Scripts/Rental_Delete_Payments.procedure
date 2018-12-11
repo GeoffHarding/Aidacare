@@ -1,0 +1,84 @@
+Procedure	"Rental_Delete_Payments"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		'SOP Type'			IN_SOP_Type;
+in		'SOP Number'		IN_SOP_Number;
+in		boolean				IN_Delete_Payment_Records_Only;
+
+local	integer				nCount;
+local	'EFT Flag'			bEFTFlag;
+local	'Check Number'		sCheckNumber;
+local	'Checkbook ID'		sCheckbookID;
+
+
+{ Delete all payments }
+nCount = 0;
+bEFTFlag = false;
+
+range clear table SOP_Payment_WORK_HIST;
+clear table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table SOP_Payment_WORK_HIST = IN_SOP_Number;
+range start table SOP_Payment_WORK_HIST;
+fill table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table SOP_Payment_WORK_HIST = IN_SOP_Number;
+range end table SOP_Payment_WORK_HIST;
+
+get first table SOP_Payment_WORK_HIST;
+while err() = OKAY do
+	if not empty('Document Number' of table SOP_Payment_WORK_HIST) then
+		{Should have an RM_Keys_MSTR record which needs to be deleted.}
+		'RM Document Type-All' of table RM_Keys_MSTR = RM_DOC_CASH;
+		'Document Number' of table RM_Keys_MSTR = 'Document Number' of table SOP_Payment_WORK_HIST;
+		change table RM_Keys_MSTR;
+		if err() = OKAY then
+			remove table RM_Keys_MSTR;
+		else
+			release table RM_Keys_MSTR;
+		end if;
+	end if;
+	
+	nCount = nCount + 1;
+	bEFTFlag = 'EFT Flag' of table SOP_Payment_WORK_HIST;
+	sCheckNumber = 'Check Number' of table SOP_Payment_WORK_HIST;
+	sCheckbookID = 'Checkbook ID' of table SOP_Payment_WORK_HIST;
+	
+	get next table SOP_Payment_WORK_HIST;
+end while;
+
+{EFT Process}
+if bEFTFlag then
+	if not empty(sCheckbookID) then
+		'Checkbook ID' of table cmCheckbookEFT = sCheckbookID;
+		get table cmCheckbookEFT;
+		if err() = OKAY then
+			call ResetEFTNextNumberRM of form cmCheckbookEFT, table cmCheckbookEFT, sCheckNumber, true, nCount;
+		end if;	
+	end if;
+end if;
+
+remove range table SOP_Payment_WORK_HIST;
+
+if IN_Delete_Payment_Records_Only then
+	abort script;
+end if;
+
+
+{ Delete rental payments record }
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = IN_SOP_Number;
+change table HS_Rental_Payments_WORK_HIST;
+if err() = OKAY then
+	remove table HS_Rental_Payments_WORK_HIST;
+else
+	release table HS_Rental_Payments_WORK_HIST;
+end if;
+	"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,37 @@
+Procedure	"HS_Trigger_SOP_Entry_Action_Button_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local	integer			nAction;
+local	string			sMsg;
+
+
+
+default form to SOP_Entry;
+default window to SOP_Entry;
+
+
+nAction = integer(itemdata('Action Button', 'Action Button'));
+
+
+if nAction = ACTION_DELETE of form SOP_Entry or nAction = ACTION_VOID of form SOP_Entry then
+	{Check if SOP Document has any PayWay Payments}
+	if Does_SOP_Document_Have_PayWay_Payments('SOP Type', 'SOP Number') then
+		sMsg = getmsg(22032);   {You cannot %1 a document with PayWay payments associated with it.}
+		if nAction = ACTION_DELETE of form SOP_Entry then
+			substitute sMsg, getmsg(22033);   {delete}
+		else
+			substitute sMsg, getmsg(22034);   {void}
+		end if;
+		warning sMsg;
+		reject script;
+	end if;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

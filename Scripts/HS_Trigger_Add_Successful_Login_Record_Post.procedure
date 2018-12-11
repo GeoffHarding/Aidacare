@@ -1,0 +1,13 @@
+Procedure	"HS_Trigger_Add_Successful_Login_Record_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"call Enable_Disable_Features;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

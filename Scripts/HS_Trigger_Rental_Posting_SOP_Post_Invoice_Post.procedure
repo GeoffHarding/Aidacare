@@ -1,0 +1,77 @@
+Procedure	"HS_Trigger_Rental_Posting_SOP_Post_Invoice_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	anonymous table		EQS_Rental_Posting_Journal_Report_TEMP;
+inout	anonymous table		EQS_Rental_Posting_SOP_Journal_Report_TEMP;
+inout	anonymous table 	EQS_Rental_Invoice_Header_History_TEMP;
+inout	'GL_PostingInfo'	INOUT_GL_Posting_Settings;
+in		string				IN_Invoice_Number;
+in		string				IN_Batch_Number;
+in		integer				IN_Calling_Form; {1 = Invoice Entry, 2 = Batch Entry}
+in 		boolean				IN_EditList;
+in		string				IN_Rental_Journal_Dest;
+in		string				IN_SOP_Journal_Dest;
+in		text				IN_Named_Printer;
+out		integer				OUT_Error_Occurred;
+
+local	'DestID'			asDestinationID;
+local	integer				nStatus;
+local	long				lExeStatus;
+local	long				lSQLConnection;
+local	text				tSQLCode[10];
+local	long				lClearStatus;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+call with name \"CB_RM_After_Post_SOP_Batch\" in dictionary 1058,
+	BATCH_SOURCE_SOP_ENTRY_REALTIME,	{sBatchSource}
+	IN_Batch_Number,					{sBatchNumber}
+	TRX_WINDOW,							{nWindowType}
+	SY_BA_POSTING,						{nActivityType}
+	asDestinationID,					{asDestinationID}
+	nStatus;							{nStatus}
+
+
+{ Remove the extra records created }
+if 'HS Rental Invoice Posting Credit' of globals then
+	lExeStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+	
+	if empty(lExeStatus) then
+		clear tSQLCode[1];
+		tSQLCode[1] = tSQLCode[1] + \"USE \" + Company_Get_Pathname('Company ID' of globals) + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DELETE FROM CB990007\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"WHERE CB_Sales_Type = 3\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"	AND CB_Sales_Number = \" + SQL_FormatStrings(IN_Invoice_Number) + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"	AND RcpType = 2\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"UPDATE CB990007\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET CB_Trans_Amount = CB_Trans_Amount * -1,\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"	CUSTNMBR = \" + SQL_FormatStrings(Rental_Get_Customer(IN_Invoice_Number)) + \",\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"	DOCNUMBR = CB_Sales_Number\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"WHERE CB_Sales_Type = 3\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"	AND CB_Sales_Number = \" + SQL_FormatStrings(IN_Invoice_Number) + char(13);
+		lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+		call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+		
+		lClearStatus = SQL_Clear(lSQLConnection);
+	end if;
+end if;
+
+
+'HS Rental Invoice Posting Credit' of globals = false;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,370 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Insert_Button_Change_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"{--------------------------------------------------------------------------------
+	Replace GP Code
+---------------------------------------------------------------------------------}
+local	integer		l_new;
+local	long		lMessage;
+local	integer		l_Type;
+local 	reference	MCDef;
+local	integer				l_error;
+local	integer				l_period;
+local	boolean				l_period_closed;
+local	integer				l_year;
+local	integer				lPaymentType;
+
+
+{ @@@HS@@@ }
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+{ @@@HS@@@ }
+
+assign 	MCDef as reference to 'MC Def Structure';
+set lPaymentType to GetPaymentType(); 
+
+{ If ALS is registered and turned on and the cash and deposit indexes are valid,
+  temporarily lock their account fields so that they won't be considered required }
+if checkedfield('Security Options' of globals, DS_ACCT) 
+	and 'Company Account Security' of globals then
+
+	if not empty('Cash Index') and not empty('Deposits Index') then
+		lock '(L) Cash Account', '(L) Deposits Account';
+	end if;
+end if;
+
+{check for required fields}
+if not required(window SOP_Payment_Entry) then
+
+	call Warning_Dialog, 2351, \"\", \"\", \"\";
+
+	{ If the Account fields had been locked, unlock them }
+	if checkedfield('Security Options' of globals, DS_ACCT) 
+		and 'Company Account Security' of globals then
+
+		if not empty('Cash Index') and not empty('Deposits Index') then
+			unlock '(L) Cash Account', '(L) Deposits Account';
+		end if;
+	end if;
+
+	abort script;
+end if;
+
+{ If the Account fields had been locked, unlock them }
+if checkedfield('Security Options' of globals, DS_ACCT) 
+	and 'Company Account Security' of globals then
+
+	if not empty('Cash Index') and not empty('Deposits Index') then
+		unlock '(L) Cash Account', '(L) Deposits Account';
+	end if;
+end if;
+
+if IsDeposit(lPaymentType) then  
+
+	if 'Module Registered'[GL] of globals then
+		call Calculate_GL_Period,
+		SALES,
+		TRX_SOURCE_SOP_ENTRY,
+		'GL Posting Date' of window SOP_Payment_Entry,
+		l_period,
+		l_period_closed,
+		l_year,
+		l_error;
+	end if;
+	
+	if l_error = 2 then
+		{GL posting date period not set up.}
+		call Warning_Dialog, 20240, \"\", \"\", \"\";		
+		abort script;
+	end if;
+	
+	if l_period_closed  then
+		{GL posting date period closed.}
+		call Warning_Dialog, 553, \"\", \"\", \"\";
+		abort script;
+	end if;
+end if;
+
+if IsCheck(lPaymentType) and SOPTypeToInt('SOP Type') = SOP_RETURN then   
+	set l_Type to CMCTRL_TRANSACTION;
+else
+	set l_Type to CMCTRL_RECEIPT;
+end if;
+
+if not(IsCreditCard(lPaymentType)) then      
+	case ValidateCkbkWithCurrency(	'Checkbook ID' of window SOP_Payment_Entry,
+									'Currency ID' of window SOP_Payment_Entry,
+									l_Type,
+									true) of form CM_CheckbookObj
+
+		in [MUSTEQUALCKBKORFUNC]
+			lMessage = 36585;
+		in [MUSTEQUALCKBK]
+			lMessage = 36586;
+		in[MUSTEQUALCKBKFUNCEURO]
+			lMessage = 317;
+		in[MUSTEQUALCKBKFUNCDENOM]
+			lMessage = 357;		
+	end case;
+
+	if not empty(lMessage) then
+		call Warning_Dialog, lMessage, \"\", \"\", \"\";
+		focus 'Insert>> Button I';
+		abort script;
+	end if;
+else{Must be credit Card}
+	set 'Card Name' of file SY_Credit_Card_MSTR to 'Card Name';
+	get file SY_Credit_Card_MSTR;
+	if err() <> OKAY then
+		restart field;
+		if ask(getmsg(2278), getmsg(ADD), getmsg(CANCEL), \"\") = ASKBUTTON1 then
+			run script 'Zoom Buttons'[3];
+		end if;
+		abort script;
+	else
+		if not 'CB Receivable' of file SY_Credit_Card_MSTR then
+			call Warning_Dialog, 2573, \"\", \"\", \"\";
+			restart field;			
+			abort script;
+		else			{if it is bank card set the checkbook id}
+			if 'Receivable Group Box' of file SY_Credit_Card_MSTR = 0 then
+			{test the validity of the checkbook}
+			   	if 'Originating Amount Received' of window SOP_Payment_Entry <> 0 then  
+							
+					case ValidateCkbkWithCurrency(	'Checkbook Number 1' of table SY_Credit_Card_MSTR,
+													GetCurrencyID('Caller ID') of form SOP_Entry,
+													CMCTRL_RECEIPT,
+													true) of form CM_CheckbookObj
+						in [MISSING]
+							call Warning_Dialog, 35503, \"\", \"\", \"\";
+							restart field;
+							abort script;
+							
+						in [INACTIVE]
+							call Warning_Dialog, 35502, \"\", \"\", \"\";
+							restart field;
+							abort script;
+														
+						in [MUSTREGMC]
+							lMessage = 36526;
+						in [MUSTEQUALCKBKORFUNC]
+							lMessage = 36585;
+						in[MUSTEQUALCKBKFUNCEURO]
+							lMessage = 317;
+						in[MUSTEQUALCKBKFUNCDENOM]
+							lMessage = 357;		
+							
+					end case;
+					
+					if not empty(lMessage) then
+						call Warning_Dialog, lMessage, \"\", \"\", \"\";
+						focus 'Insert>> Button I';
+						restart field;
+						abort script;
+					end if;
+				end if;
+			end if;			
+		end if;
+	end if;
+end if;
+
+clear file SOP_Payment_WORK_HIST;
+{ @@@HS@@@ }
+if 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	set 'SOP Type' of file SOP_Payment_WORK_HIST to integer(itemdata('SOP Type', 'SOP Type'));
+else
+	set 'SOP Type' of file SOP_Payment_WORK_HIST to SOPTypeToInt('SOP Type');
+end if;
+{ @@@HS@@@ }
+set 'SOP Number' of file SOP_Payment_WORK_HIST to 'SOP Number';
+if empty('Line Item Sequence') then
+	{new Payment}
+	set 'Sequence Number' of file SOP_Payment_WORK_HIST to '(L) Next Sequence Number';
+{ @@@HS@@@ }
+	'Line Item Sequence' = '(L) Next Sequence Number';
+{ @@@HS@@@ }
+	increment '(L) Next Sequence Number' by SEQUENCE_NUMBER;
+	
+	set l_new to 1;
+else
+	if (not 'Changed') then 
+		{They did not change the payment.}
+		call Clear_Window of form SOP_Payment_Entry;
+		
+		abort script;
+	end if;
+	
+	if (not empty('TRX Source' of window Payments_Scroll)) then
+		{Can't edit posted deposits.}
+		call Warning_Dialog, 33110, \"\", \"\", \"\";
+		abort script;
+	end if;
+	
+	{editing an existing payment}
+	set 'Sequence Number' of file SOP_Payment_WORK_HIST to 'Line Item Sequence';
+	change file SOP_Payment_WORK_HIST;
+	if IsCreditCard('Payment Type' of file SOP_Payment_WORK_HIST) and 
+		IsPayment('Payment Type' of file SOP_Payment_WORK_HIST) and
+		not IsPayment('Payment Type' of window SOP_Payment_Entry) and
+		('Amount Remaining' of file SOP_Payment_WORK_HIST <> 'Amount Paid' of file SOP_Payment_WORK_HIST) then
+			set 'Amount Paid' of file SOP_Payment_WORK_HIST to 
+				'Amount Paid' of file SOP_Payment_WORK_HIST - 'Amount Remaining' of file SOP_Payment_WORK_HIST;
+			clear 'Amount Remaining' of file SOP_Payment_WORK_HIST;
+			set 'Originating Amount Paid' of file SOP_Payment_WORK_HIST to 
+				'Originating Amount Paid' of file SOP_Payment_WORK_HIST - 'Originating Amount Remaining' of file SOP_Payment_WORK_HIST;
+			clear 'Originating Amount Remaining' of file SOP_Payment_WORK_HIST;
+			set 'Deposit Status' of file SOP_Payment_WORK_HIST to 1;
+			save file SOP_Payment_WORK_HIST;
+			if err() = OKAY then
+				increment 'Originating Deposit Received' by ('Originating Amount Paid');
+				call MC_Calc_Func_Amt,field(MCDef), 'Originating Deposit Received', 'Deposit Received';
+				decrement 'Originating Payment Received' by ('Originating Amount Remaining' of file SOP_Payment_WORK_HIST);
+				call MC_Calc_Func_Amt,field(MCDef), 'Originating Payment Received', 'Payment Received';
+				clear 'Amount Paid' of file SOP_Payment_WORK_HIST;
+				clear 'Originating Amount Paid' of file SOP_Payment_WORK_HIST;
+			end if;
+			set 'Sequence Number' of file SOP_Payment_WORK_HIST to '(L) Next Sequence Number';
+			increment '(L) Next Sequence Number' by SEQUENCE_NUMBER;
+			clear 'Deposit Status' of file SOP_Payment_WORK_HIST;
+			set l_new to 1;			
+	else
+		set l_new to 0;	
+	end if;
+	
+end if;
+
+if SOPTypeToInt('SOP Type') = SOP_RETURN then    
+	clear 'RM Document Type-All' of file SOP_Payment_WORK_HIST;
+else
+	set 'RM Document Type-All' of file SOP_Payment_WORK_HIST to RM_DOC_CASH;
+end if;
+
+set 'Cash Index' of file SOP_Payment_WORK_HIST to 'Cash Index';
+set 'Deposits Index' of file SOP_Payment_WORK_HIST to 'Deposits Index';
+set 'Payment Type' of file SOP_Payment_WORK_HIST to lPaymentType;
+set 'EFT Flag' of file SOP_Payment_WORK_HIST to 'EFT Flag';
+
+if SOPTypeToInt('SOP Type') = SOP_RETURN then
+	set 'Document Number' of file SOP_Payment_WORK_HIST to '(L) Return Document Number';
+else
+	set 'Document Number' of file SOP_Payment_WORK_HIST to 'Document Number';
+end if;
+set 'Document Date' of file SOP_Payment_WORK_HIST to 'Document Date';
+set 'GL Posting Date' of file SOP_Payment_WORK_HIST to 'GL Posting Date';
+if IsCreditCard(lPaymentType) then
+	set 'Expiration Date' of file SOP_Payment_WORK_HIST to 'Expiration Date';
+else
+	clear 'Expiration Date' of file SOP_Payment_WORK_HIST;
+end if;
+set 'Authorization Code' of file SOP_Payment_WORK_HIST to 'Authorization Code';
+set 'Amount Remaining' of file SOP_Payment_WORK_HIST to 'Amount Paid' -
+	('Amount Paid' of file SOP_Payment_WORK_HIST - 'Amount Remaining' of file SOP_Payment_WORK_HIST);	
+set 'Originating Amount Remaining' of file SOP_Payment_WORK_HIST to 'Originating Amount Paid' -
+	('Originating Amount Paid' of file SOP_Payment_WORK_HIST - 
+	'Originating Amount Remaining' of file SOP_Payment_WORK_HIST);	
+set 'Originating Amount Paid' of file SOP_Payment_WORK_HIST to 'Originating Amount Paid';
+set 'Amount Paid' of file SOP_Payment_WORK_HIST to 'Amount Paid';
+if empty('Amount Remaining' of file SOP_Payment_WORK_HIST) then
+	set 'Deposit Status' of file SOP_Payment_WORK_HIST to 1;	
+end if;
+
+
+if IsCash(lPaymentType) then 
+	{cash}
+	set 'Checkbook ID' of file SOP_Payment_WORK_HIST to 'Checkbook ID';
+	clear 'Check Number' of file SOP_Payment_WORK_HIST;
+elseif IsCheck(lPaymentType) then 
+	{check}
+	set 'Checkbook ID' of file SOP_Payment_WORK_HIST to 'Checkbook ID';
+	set 'Check Number' of file SOP_Payment_WORK_HIST to 'Check Number';
+elseif IsCreditCard(lPaymentType) then 
+	{credit card}
+	set 'Card Name' of file SOP_Payment_WORK_HIST to 'Card Name';
+	set 'Receipt Number Credit Card' of file SOP_Payment_WORK_HIST to '(L) CreditCardNumber';
+end if;
+set 'Currency ID' of file SOP_Payment_WORK_HIST to 'Currency ID';
+set 'Currency Index' of file SOP_Payment_WORK_HIST to 'Currency Index';
+
+save file SOP_Payment_WORK_HIST;
+if err() = OKAY then
+	{Update the scrolling window total.}
+	increment '(L) O Total Distributed' by ('Originating Amount Paid' - '(L) Old O Amount Paid');
+	call MC_Calc_Func_Amt,field(MCDef),'(L) O Total Distributed','(L) Total Distributed';
+	
+	if IsDeposit(lPaymentType) then
+		increment 'Originating Deposit Received' by ('Originating Amount Paid' - '(L) Old O Amount Paid');
+		call MC_Calc_Func_Amt,field(MCDef), 'Originating Deposit Received', 'Deposit Received';
+	else
+		increment 'Originating Payment Received' by ('Originating Amount Paid' - '(L) Old O Amount Paid');
+		call MC_Calc_Func_Amt,field(MCDef), 'Originating Payment Received', 'Payment Received';
+	end if;
+	
+	if l_new = 1 then
+		{Used the default number.}
+		clear 'Document Number';
+		clear '(L) Default Document Number';
+	end if;
+else
+	check error;
+end if;
+
+
+{Update the distributions. GPSS Script}
+{ @@@HS@@@ }
+if 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	call SOP_Dist_Update_Payment, 
+		integer(itemdata('SOP Type', 'SOP Type')),
+		'SOP Number', 
+		'Payment Type' of file SOP_Payment_WORK_HIST, 
+		'Card Name' of file SOP_Payment_WORK_HIST, 
+		'Checkbook ID' of file SOP_Payment_WORK_HIST, 
+		('Originating Amount Paid' of file SOP_Payment_WORK_HIST - '(L) Old O Amount Paid'),
+		'MC Def Structure',			{GPSS}
+		file RM_Customer_MSTR, 
+		file SOP_Distribution_WORK_HIST;
+else
+	call SOP_Dist_Update_Payment, 
+		SOPTypeToInt('SOP Type'),
+		'SOP Number', 
+		'Payment Type' of file SOP_Payment_WORK_HIST, 
+		'Card Name' of file SOP_Payment_WORK_HIST, 
+		'Checkbook ID' of file SOP_Payment_WORK_HIST, 
+		('Originating Amount Paid' of file SOP_Payment_WORK_HIST - '(L) Old O Amount Paid'),
+		'MC Def Structure',			{GPSS}
+		file RM_Customer_MSTR, 
+		file SOP_Distribution_WORK_HIST;
+end if;
+
+if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
+	run script '(L) PayWay PrePaid Make PrePayment';
+end if;
+{ @@@HS@@@ }
+
+
+{Mark changes on the window.}
+set '(L) Invisible Changes' to 1;
+
+{Clear the window. }
+call Clear_Window of form SOP_Payment_Entry;
+
+{Focus to the top like restart window. - GPSS}
+if 'View Mode' = FUNCTIONAL then
+	focus 'Amount Received';
+else
+	focus 'Originating Amount Received';
+end if;
+
+
+
+{ @@@HS@@@ }
+reject script;
+{ @@@HS@@@ }
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

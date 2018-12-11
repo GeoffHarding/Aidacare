@@ -1,0 +1,40 @@
+Procedure	"HS_Trigger_EQS_Rental_Invoice_Entry_Display_Existing_Record_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	anonymous table		EQS_Rental_Invoice_Header_WORK;
+out		boolean				OUT_Existing;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+{ Do not fetch values during the Save }
+if 'HS Rental Invoice Entry Save Record' of globals then
+	abort script;
+end if;
+
+
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+get table HS_Rental_Payments_WORK_HIST;
+if err() <> OKAY then
+	clear table HS_Rental_Payments_WORK_HIST;
+end if;
+
+
+call EQS_Rental_Invoice_Entry_Set_Window_Fields,
+ 'Payment Amount' of table HS_Rental_Payments_WORK_HIST,
+ 'COD Amount' of table HS_Rental_Payments_WORK_HIST,
+ 'Payment Amount' of table HS_Rental_Payments_WORK_HIST;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

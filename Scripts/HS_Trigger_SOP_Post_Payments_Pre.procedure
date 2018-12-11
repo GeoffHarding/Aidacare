@@ -1,0 +1,31 @@
+Procedure	"HS_Trigger_SOP_Post_Payments_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		integer				IN_RM_Type;
+in		'Document Number'	IN_RM_Document;
+in		'TRX Source'		IN_TRX_Source;
+inout	file				RM_Customer_MSTR;		{positioned}
+inout	file				SOP_HDR_WORK;			{positioned}
+inout	file				SOP_Payment_WORK_HIST;
+in 		boolean				fInvoiceHasReturns;
+in		integer				IN_IS_MC_Trx;
+inout	MC_Def_Structure	INOUT_MC_Def_Structure;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Posting Credit' of globals then
+	abort script;
+end if;
+
+'Module Registered'[RM] of globals = false;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

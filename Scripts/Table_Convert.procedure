@@ -1,0 +1,338 @@
+Procedure	"Table_Convert"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in			string					IN_Table_Name;
+in			integer					IN_Company_ID;
+
+local		anonymous table			tTable;
+local		boolean					bFlag;
+local		string					sDB;
+local		integer					nProductID;
+local		string					sPath;
+local		string					sTablePhysicalName;
+local		integer					nTableExists;
+local		long					lExeStatus;
+local		long					lSQLConnection;
+local		text					tSQLCode[10];
+local		long					lClearStatus;
+local		integer					nTableCreated;
+local		long					lGPSErrorNo;
+local		long					lSQLErrorNo;
+local		string					sSQLErrorString;
+local		string					sODBCErrorString;
+local		string					sErrorMessage;
+
+
+pragma (disable warning LiteralStringUsed);
+
+{ Initialize }
+bFlag = Table_SetCreateMode(false);
+
+if empty(IN_Company_ID) then
+	sDB = GetSystemDatabaseName();
+else
+	'Company ID' of table SY_Company_MSTR = IN_Company_ID;
+	get table SY_Company_MSTR by number 1;
+	if err() <> OKAY then
+		abort script;
+	end if;
+	
+	sDB = 'Intercompany ID' of table SY_Company_MSTR;
+end if;
+
+
+open table tTable with name IN_Table_Name as DB_TYPE_SQL, sDB + SLASH + SQL_DEFAULT_OWNER + SLASH;
+
+nProductID = Runtime_GetCurrentProductID();
+sPath = Company_Get_Pathname(IN_Company_ID);
+sTablePhysicalName = physicalname(table tTable);
+nTableExists = 1;
+
+
+lExeStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+if lExeStatus <> OKAY then
+	abort script;
+end if;
+
+
+{ Test whether table exists }
+if empty(lExeStatus) then
+	clear tSQLCode[1];
+	tSQLCode[1] = tSQLCode[1] + \"USE \" + sPath + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   SELECT 1\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"ELSE\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   SELECT 0\" + char(13);
+	
+	lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+	call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+	
+	if empty(lExeStatus) then
+		lExeStatus = SQL_FetchNext(lSQLConnection);
+		if lExeStatus <> 31 then
+			lExeStatus = SQL_GetData(lSQLConnection, 1, nTableExists);
+		end if;
+		lClearStatus = SQL_Clear(lSQLConnection);
+		lExeStatus = lClearStatus;
+	end if;
+end if;
+
+
+if nTableExists = 1 then
+	{ Rename table to original }
+	if empty(lExeStatus) then
+		clear tSQLCode[1];
+		tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'orig\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   DROP TABLE orig\" + sTablePhysicalName + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   SELECT * INTO orig\" + sTablePhysicalName + \" FROM \" + sTablePhysicalName + char(13);
+		
+		lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+		call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+		
+		if empty(lExeStatus) then
+			lClearStatus = SQL_Clear(lSQLConnection);
+			lExeStatus = lClearStatus;
+		end if;
+	end if;
+end if;
+
+
+{ Drop original table }
+if empty(lExeStatus) then
+	clear tSQLCode[1];
+	tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   DROP TABLE \" + sTablePhysicalName + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"DECLARE @execute_statement VARCHAR(255)\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"DECLARE Sproc_Cursor CURSOR FOR\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   SELECT 'DROP PROCEDURE ' + name\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   FROM sysobjects\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   WHERE type = 'P' AND name LIKE 'zDP_\" + sTablePhysicalName + \"%'\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"OPEN Sproc_Cursor\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"FETCH NEXT FROM Sproc_Cursor INTO @execute_statement\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"WHILE @@FETCH_STATUS <> -1\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   BEGIN\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   EXECUTE (@execute_statement)\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   \" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   FETCH NEXT FROM Sproc_Cursor INTO @execute_statement\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   END\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"CLOSE Sproc_Cursor\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"DEALLOCATE Sproc_Cursor\" + char(13);
+	
+	lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+	call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+	
+	if empty(lExeStatus) then
+		lClearStatus = SQL_Clear(lSQLConnection);
+		lExeStatus = lClearStatus;
+	end if;
+end if;
+
+
+{ Recreate new table }
+if empty(lExeStatus) then
+	close table tTable;
+	
+	bFlag = Table_SetCreateMode(true);     { Turns on create ability }
+	open table tTable with name IN_Table_Name as DB_TYPE_SQL, sDB + SLASH + SQL_DEFAULT_OWNER + SLASH;
+	get first table tTable;
+	bFlag = Table_SetCreateMode(false);
+end if;
+
+
+{ Test whether table got created }
+if empty(lExeStatus) then
+	clear nTableCreated;
+	
+	clear tSQLCode[1];
+	tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   SELECT 1\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"ELSE\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"   SELECT 0\" + char(13);
+	
+	lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+	call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+	
+	if empty(lExeStatus) then
+		lExeStatus = SQL_FetchNext(lSQLConnection);
+		if lExeStatus <> 31 then
+			lExeStatus = SQL_GetData(lSQLConnection, 1, nTableCreated);
+		end if;
+		lClearStatus = SQL_Clear(lSQLConnection);
+		lExeStatus = lClearStatus;
+	end if;
+	
+	if nTableCreated = 0 then
+		lExeStatus = -1;
+	end if;
+end if;
+
+
+{ Bind Defaults }
+if empty(lExeStatus) then
+	call Table_Bind_Defaults, sTablePhysicalName, sPath;
+end if;
+
+
+if nTableExists = 1 then
+	{ Restore data from orig table to new table }
+	if empty(lExeStatus) then
+		clear tSQLCode[1];
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @statement1 VARCHAR(8000)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @statement2 VARCHAR(8000)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @tablefields VARCHAR(8000)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @tabledefaultfields VARCHAR(8000)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @tabledefaultvalues VARCHAR(8000)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @firstcolumn BINARY\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @name VARCHAR(255)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @xtype TINYINT\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE @gotfields TINYINT\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DECLARE Column_Cursor CURSOR FOR\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   SELECT name, xtype FROM syscolumns\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      WHERE id = OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U')\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      ORDER BY colorder\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @tablefields = ''\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @tabledefaultfields = ''\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @tabledefaultvalues = ''\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @statement1 = ''\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @statement2 = ''\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @firstcolumn = 1\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"SET @gotfields = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"OPEN Column_Cursor\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"FETCH NEXT FROM Column_Cursor INTO @name, @xtype\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"WHILE @@FETCH_STATUS = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   IF @name <> 'DEX_ROW_ID'\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      IF EXISTS(SELECT name FROM syscolumns WHERE id = OBJECT_ID(N'orig\" + sTablePhysicalName + \"', N'U') and name = @name)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         IF @firstcolumn = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            SET @tablefields = @tablefields + ','\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         ELSE\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            SET @firstcolumn = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         SET @tablefields = @tablefields + @name\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         SET @gotfields = 1\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      ELSE\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         IF @xtype = 35\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            IF @firstcolumn = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"               BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"			    SET @tabledefaultfields = @tabledefaultfields + ','\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"			    SET @tabledefaultvalues = @tabledefaultvalues + ','\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"               END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            ELSE\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"               SET @firstcolumn = 0\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            SET @tabledefaultfields = @tabledefaultfields + @name\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            SET @tabledefaultvalues = @tabledefaultvalues + CHAR(39) + CHAR(39)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            SET @gotfields = 1\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"            END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"         END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   FETCH NEXT FROM Column_Cursor INTO @name, @xtype\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"CLOSE Column_Cursor\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"DEALLOCATE Column_Cursor\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'orig\" + sTablePhysicalName + \"', N'U') IS NOT NULL AND OBJECT_ID(N'\" + sTablePhysicalName + \"', N'U') IS NOT NULL\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   IF @gotfields = 1\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      BEGIN\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      SET @statement1 = 'INSERT INTO \" + sTablePhysicalName + \" (' + @tablefields + @tabledefaultfields + ')'\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      SET @statement2 = '   SELECT ' + @tablefields + @tabledefaultvalues + ' FROM orig\" + sTablePhysicalName + \"'\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      EXECUTE (@statement1 + @statement2)\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"      END\" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   END\" + char(13);
+		
+		lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+		call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+		
+		if empty(lExeStatus) then
+			lClearStatus = SQL_Clear(lSQLConnection);
+			lExeStatus = lClearStatus;
+		end if;
+	end if;
+	
+	
+	{ Populate extra fields in table }
+	if empty(lExeStatus) then
+		clear tSQLCode[1];
+		call Table_Convert_Fields, IN_Table_Name, sTablePhysicalName, tSQLCode;
+		
+		if not empty(tSQLCode[1]) then
+			lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+			call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+			
+			if empty(lExeStatus) then
+				lClearStatus = SQL_Clear(lSQLConnection);
+				lExeStatus = lClearStatus;
+			end if;
+		end if;
+	end if;
+	
+	
+	{ Drop orig table }
+	if empty(lExeStatus) then
+		clear tSQLCode[1];
+		tSQLCode[1] = tSQLCode[1] + \"IF OBJECT_ID(N'orig\" + sTablePhysicalName + \"', N'U') IS NOT NULL \" + char(13);
+		tSQLCode[1] = tSQLCode[1] + \"   DROP TABLE orig\" + sTablePhysicalName + char(13);
+		
+		lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+		call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+		
+		if empty(lExeStatus) then
+			lClearStatus = SQL_Clear(lSQLConnection);
+			lExeStatus = lClearStatus;
+		end if;
+	end if;
+end if;
+
+
+{ Grant security }
+if empty(lExeStatus) then
+	GrantAccess(sTablePhysicalName, false, \"DYNGRP\", sDB) of form 'SQL Maintenance';
+	GrantAccess(sTablePhysicalName, true, \"DYNGRP\", sDB) of form 'SQL Maintenance';
+end if;
+
+
+{ Check errors }
+if lClearStatus <> 0 then
+	warning \"An error occurred clearing the pass-through SQL connection.\";
+elseif lExeStatus > 0 then
+	warning \"An error occurred executing the pass-through SQL connection.\";
+	lExeStatus = SQL_GetError(lSQLConnection, lGPSErrorNo, lSQLErrorNo, sSQLErrorString, sODBCErrorString);
+	if empty(lExeStatus) then
+		sErrorMessage = \"GPS Error: \" + str(lGPSErrorNo) + char(13);
+		sErrorMessage = sErrorMessage + \"SQL Error: \" + str(lSQLErrorNo) + \" \" + sSQLErrorString + char(13);
+		sErrorMessage = sErrorMessage + \"ODBC Error: \" + sODBCErrorString + char(13);
+		warning sErrorMessage;
+	end if;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

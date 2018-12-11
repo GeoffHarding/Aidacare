@@ -1,0 +1,95 @@
+Table	"HS_PayWay_Customer_MSTR"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"PayWay Customer Master"
+	FourByteHeader	"true"
+	PhysicalName	"HSPayWayCustomers"
+	Restriction	""
+	Series	"Sales"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"Allow Customer Reference Changes"		
+		{
+			Encrypt	"false"
+			Field	"Allow Customer Reference Changes"
+			Position	"2"
+		}
+		TableField	"Customer Number"		
+		{
+			Encrypt	"false"
+			Field	"Customer Number"
+			Position	"0"
+		}
+		TableField	"HS PayWay Customer Reference Number"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Customer Reference Number"
+			Position	"1"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_PayWay_Customer_MSTR_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"Customer Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+		Key	"HS_PayWay_Customer_MSTR_Key2"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"1"
+			Primary	"false"
+			Segments
+			{
+				KeySegment	"HS PayWay Customer Reference Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

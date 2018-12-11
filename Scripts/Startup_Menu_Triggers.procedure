@@ -1,0 +1,32 @@
+Procedure	"Startup_Menu_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if Trigger_RegisterProcedure(script OpenCommandForms, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_OpenCommandForms) <> SY_NOERR then
+	warning \"Failed registering 'OpenCommandForms' procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script CloseCommandForms, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_CloseCommandForms) <> SY_NOERR then
+	warning \"Failed registering 'CloseCommandForms' procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script CreateDefaultMenuStructure, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_CreateMenus) <> SY_NOERR then
+	warning \"Failed registering 'CreateDefaultMenuStructure' procedure post trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

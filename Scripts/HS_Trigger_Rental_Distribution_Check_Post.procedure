@@ -1,0 +1,95 @@
+Procedure	"HS_Trigger_Rental_Distribution_Check_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		boolean				IN_Mult_Errors;
+in		boolean				IN_Track_Disc_Avail;
+in		integer				IN_Rent_To_Type; {1 = Rent to customer, 2 = Rent to job}
+in		dollar				IN_Disc_Avail;
+in		dollar				IN_Cash;
+in		dollar				IN_Commission;
+in		dollar				IN_Deposit;
+in		dollar				IN_Freight;
+in		dollar				IN_Markdown;
+in		dollar				IN_Misc;
+in		dollar				IN_Sales;
+in		dollar				IN_Disc_Taken;
+in		dollar				IN_Tax;
+in		dollar				IN_Trade;
+in		dollar				IN_Dr;
+in		dollar				IN_Cr;
+in		dollar				IN_Amounts[22];
+inout	integer				INOUT_Error;
+inout	string				INOUT_Error_MSG;
+inout	'SOP HDR Errors 1'	INOUT_HDR_Errors_1;
+inout	'SOP HDR Errors 2'	INOUT_HDR_Errors_2;
+
+local	currency			cPaymentAmount;
+local	currency			cCODAmount;
+local	currency			cPaymentDistributed;
+local	integer				nCreditMultiplier;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+{ Second time through - so leave as is }
+if IN_Cash <> 0 then
+	abort script;
+end if;
+
+
+{ Get the Payment Amount if any }
+call EQS_Rental_Invoice_Entry_Get_Window_Fields, cPaymentAmount, cCODAmount, cPaymentDistributed;
+if empty(cPaymentAmount) then
+	abort script;
+end if;
+
+
+if IN_Sales >= 0 then
+	nCreditMultiplier = 1;
+else
+	nCreditMultiplier = -1;
+end if;
+
+
+{ Try again but with the payment amount included }
+clear INOUT_Error;
+clear INOUT_Error_MSG;
+clear INOUT_HDR_Errors_1;
+clear INOUT_HDR_Errors_2;
+
+
+call with name \"Rental_Distribution_Check\" in dictionary PRODID_EQUIPMENT_MANAGEMENT,
+ IN_Mult_Errors,
+ IN_Track_Disc_Avail,
+ IN_Rent_To_Type,
+ IN_Disc_Avail,
+ (cPaymentAmount * nCreditMultiplier),
+ IN_Commission,
+ IN_Deposit,
+ IN_Freight,
+ IN_Markdown,
+ IN_Misc,
+ IN_Sales,
+ IN_Disc_Taken,
+ IN_Tax,
+ IN_Trade,
+ IN_Dr,
+ IN_Cr,
+ IN_Amounts,
+ INOUT_Error,
+ INOUT_Error_MSG,
+ INOUT_HDR_Errors_1,
+ INOUT_HDR_Errors_2;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

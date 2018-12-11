@@ -1,0 +1,1043 @@
+Form	"HS_Misc_Code_Viewer"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+		Constant	"~SHORTCUT~"		
+		{
+			Value	"0"
+		}
+	}
+	Datatypes
+	{
+		Datatype	"Array"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"Array String"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"0"
+			StorageLength	"2"
+		}
+		Datatype	"Code Text"		
+		{
+			Control	"Text"
+			KeyableLength	"0"
+		}
+		Datatype	"Max Array"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+	}
+	EventPost	""
+	EventPre	""
+	Fields
+	{
+		Field	"Array"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Array"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Array String"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Array String"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Code"		
+		{
+			ArraySize	"10"
+			Datatype	"TX32000"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Code Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Code Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Compiler Errors"		
+		{
+			ArraySize	"0"
+			Datatype	"TX32000"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Max Array"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Max Array"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+	}
+	Windows
+	{
+		Window	"Code_Viewer"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"false"
+			DisplayName	"Code Viewer"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	""
+			EventPrint	""
+			Fields
+			{
+				WindowControl	"(L) Array"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Array"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"509"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"false"
+					Tag	"29"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"14"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Array String"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Array String"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"348"
+					PositionTop	"414"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayCentered"
+					ResizeVert	"StayBottom"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"52"
+					TabStop	"false"
+					Tag	"16"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"13"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Code Text"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"15"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"true"
+					SizeHeight	"399"
+					SizeWidth	"724"
+					TabStop	"true"
+					Tag	"33"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					WordWrap	"false"
+					ZOrder	"16"
+				}
+				WindowControl	"(L) Code[10]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[10]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"680"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"27"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"9"
+				}
+				WindowControl	"(L) Code[1]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[1]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"509"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"6"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"0"
+				}
+				WindowControl	"(L) Code[2]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[2]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"528"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"17"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"1"
+				}
+				WindowControl	"(L) Code[3]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[3]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"547"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"18"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"2"
+				}
+				WindowControl	"(L) Code[4]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[4]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"566"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"19"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"3"
+				}
+				WindowControl	"(L) Code[5]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[5]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"585"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"20"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"4"
+				}
+				WindowControl	"(L) Code[6]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[6]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"604"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"21"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"5"
+				}
+				WindowControl	"(L) Code[7]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[7]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"623"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"22"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"6"
+				}
+				WindowControl	"(L) Code[8]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[8]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"642"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"23"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"7"
+				}
+				WindowControl	"(L) Code[9]"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Code[9]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"661"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"Grow"
+					SavedOnRestart	"false"
+					ScrollBars	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"24"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					WordWrap	"false"
+					ZOrder	"8"
+				}
+				WindowControl	"(L) Compiler Errors"				
+				{
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Text"
+					DisableLookup	"false"
+					EditMode	"Editable"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Compiler Errors"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"433"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayBottom"
+					SavedOnRestart	"false"
+					ScrollBars	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"57"
+					SizeWidth	"724"
+					TabStop	"true"
+					Tag	"3"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					WordWrap	"false"
+					ZOrder	"10"
+				}
+				WindowControl	"(L) Max Array"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Max Array"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"528"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"false"
+					Tag	"30"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+				WindowControl	"Next Button - Window Area"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Code_Viewer Next Button - Window Area_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Next Button - Window Area"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"399"
+					PositionTop	"414"
+					ResizeHoriz	"StayCentered"
+					ResizeVert	"StayBottom"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"true"
+					Tag	"15"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"12"
+					Zoom	"false"
+				}
+				WindowControl	"Previous Button - Window Area"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Code_Viewer Previous Button - Window Area_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Previous Button - Window Area"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"331"
+					PositionTop	"414"
+					ResizeHoriz	"StayCentered"
+					ResizeVert	"StayBottom"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"true"
+					Tag	"14"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"11"
+					Zoom	"false"
+				}
+			}
+			LastTag	"33"
+			Position	"1"
+			PositionLeft	"1"
+			PositionTop	"1"
+			Resizable	"True-Per Field"
+			SizeHeight	"501"
+			SizeWidth	"742"
+			WindowType	"Primary"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"Code_Viewer Next Button - Window Area_CHG"		
+		{
+			Documentation	""
+			Script	"if '(L) Array' < '(L) Max Array' then
+	increment '(L) Array';
+	'(L) Array String' = str('(L) Array');
+	'(L) Code Text' = '(L) Code'['(L) Array'];
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Code_Viewer Previous Button - Window Area_CHG"		
+		{
+			Documentation	""
+			Script	"if '(L) Array' > 1 then
+	decrement '(L) Array';
+	'(L) Array String' = str('(L) Array');
+	'(L) Code Text' = '(L) Code'['(L) Array'];
+end if;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+		Procedure	"OPEN_CODE_VIEWER"		
+		{
+			Documentation	""
+			Script	"in		text		IN_Code;
+in		string		IN_Compiler_Errors;
+
+
+if isopen(form HS_Misc_Code_Viewer) then
+	open form HS_Misc_Code_Viewer;
+	abort script;
+end if;
+
+
+default window to Code_Viewer;
+
+case upper(Defaults_Read(HS_VIEW_EXECUTE_CODE))
+	in [TRUE_STRING]
+	in [ERRORS]
+		if empty(IN_Compiler_Errors) or IN_Compiler_Errors = CH_0 then
+			abort script;
+		end if;
+	else
+		abort script;
+end case;
+
+
+open form HS_Misc_Code_Viewer;
+if isopen(form HS_Misc_Code_Viewer) then
+	'(L) Code'[1] = IN_Code;
+	'(L) Code Text' = '(L) Code'[1];
+	'(L) Compiler Errors' = IN_Compiler_Errors;
+	'(L) Max Array' = 1;
+	hide 'Previous Button - Window Area';
+	hide 'Next Button - Window Area';
+	hide '(L) Array String';
+end if;
+"
+			UserProperties	""
+		}
+		Procedure	"OPEN_SQL_VIEWER"		
+		{
+			Documentation	""
+			Script	"in				text			IN_SQL_Code[10];
+in				long			IN_Compiler_Errors;
+optional in		long			IN_SQL_Connection;
+
+local			integer			lLoop;
+local			long			lSQLConnection;
+local			long			lStatus;
+local			long 			lGPSErrorNumber;
+local			long 			lSQLErrorNumber;
+local			string			sSQLErrorString;
+local			string			sODBCErrorString;
+local			string			sCompilerErrors;
+
+
+if isopen(form HS_Misc_Code_Viewer) then
+	open form HS_Misc_Code_Viewer;
+	abort script;
+end if;
+
+
+default window to Code_Viewer;
+
+case upper(Defaults_Read(HS_VIEW_EXECUTE_CODE))
+	in [TRUE_STRING]
+	in [ERRORS]
+		if empty(IN_Compiler_Errors) then
+			abort script;
+		end if;
+	else
+		abort script;
+end case;
+
+
+open form HS_Misc_Code_Viewer;
+if isopen(form HS_Misc_Code_Viewer) then
+	for lLoop = 1 to 10 do
+		'(L) Code'[lLoop] = IN_SQL_Code[lLoop];
+		if not empty(IN_SQL_Code[lLoop]) then
+			'(L) Max Array' = lLoop;
+		end if;
+	end for;
+	'(L) Code Text' = '(L) Code'[1];
+	
+	if not missing(IN_SQL_Connection) then
+		lSQLConnection = IN_SQL_Connection;
+	else
+		lSQLConnection = 'SQLFrontHandle' of globals;
+	end if;
+	
+	lStatus = SQL_GetError(lSQLConnection, lGPSErrorNumber, lSQLErrorNumber, sSQLErrorString, sODBCErrorString);
+	sCompilerErrors = getmsg(22100);   {SQL Server returned the following error number:  %1.  %2.}
+	substitute sCompilerErrors, str(lSQLErrorNumber), sSQLErrorString;
+	'(L) Compiler Errors' = sCompilerErrors;
+	
+	if '(L) Max Array' > 1 then
+		'(L) Array' = 1;
+		'(L) Array String' = str('(L) Array');
+	else
+		hide 'Previous Button - Window Area';
+		hide 'Next Button - Window Area';
+		hide '(L) Array String';
+	end if;
+end if;
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+	}
+}

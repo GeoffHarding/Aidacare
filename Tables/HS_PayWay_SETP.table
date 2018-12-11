@@ -1,0 +1,97 @@
+Table	"HS_PayWay_SETP"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"HS PayWay Setup"
+	FourByteHeader	"true"
+	PhysicalName	"HSPayWaySetup"
+	Restriction	""
+	Series	"Financial"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"Card Name"		
+		{
+			Encrypt	"false"
+			Field	"Card Name"
+			Position	"6"
+		}
+		TableField	"Dummy Record"		
+		{
+			Encrypt	"false"
+			Field	"Dummy Record"
+			Position	"0"
+		}
+		TableField	"PayWay Credentials File"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Credentials File"
+			Position	"4"
+		}
+		TableField	"PayWay Log Directory"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Log Directory"
+			Position	"5"
+		}
+		TableField	"PayWay Merchant"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Merchant"
+			Position	"3"
+		}
+		TableField	"PayWay Password"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Password"
+			Position	"2"
+		}
+		TableField	"PayWay Remove Payment Password"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Remove Payment Password"
+			Position	"7"
+		}
+		TableField	"PayWay User Name"		
+		{
+			Encrypt	"false"
+			Field	"PayWay User Name"
+			Position	"1"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_PayWay_SETP_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"Dummy Record"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

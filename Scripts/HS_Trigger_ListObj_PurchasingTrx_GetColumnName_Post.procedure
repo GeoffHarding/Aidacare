@@ -1,0 +1,35 @@
+Procedure	"HS_Trigger_ListObj_PurchasingTrx_GetColumnName_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		ColFieldID			nFieldID;
+in		ColArrayIndex		nColIndex;
+out		string				sColName;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not isopen(form syTrxList) then
+	abort script;
+end if;
+
+if 'ListObjState:ListID' of window TrxList of form syTrxList <> LISTID_POPTRX then
+	abort script;
+end if;
+
+
+case nFieldID
+	in [Resource_GetID(DYNAMICS, DT_FIELD, technicalname('User Defined 1' of table PurchasingTrxTemp))]
+		sColName = getmsg(22004);   {Buyer ID}
+	in [Resource_GetID(DYNAMICS, DT_FIELD, technicalname('User Defined 2' of table PurchasingTrxTemp))]
+		sColName = getmsg(22005);   {Created By}
+end case;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

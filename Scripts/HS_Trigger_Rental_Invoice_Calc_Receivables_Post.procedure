@@ -1,0 +1,45 @@
+Procedure	"HS_Trigger_Rental_Invoice_Calc_Receivables_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string			IN_Invoice_Number;
+inout	currency		OUT_Receivables_Total;
+inout	currency		OUT_Receivables_Saved;
+
+local	string			sInvoiceNumber;
+local	currency		cPaymentAmount;
+local	currency		cCODAmount;
+local	currency		cPaymentDistributed;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+{ Check we have the Invoice window open and on the correct Invoice Number }
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"EQS Rental Invoice Number\", sInvoiceNumber;
+
+if sInvoiceNumber <> IN_Invoice_Number then
+	abort script;
+end if;
+
+
+call EQS_Rental_Invoice_Entry_Get_Window_Fields, cPaymentAmount, cCODAmount, cPaymentDistributed;
+
+
+if Rental_Is_Invoice_Credit(sInvoiceNumber) then
+	OUT_Receivables_Total = OUT_Receivables_Total + cPaymentAmount;
+else
+	OUT_Receivables_Total = OUT_Receivables_Total - cPaymentAmount;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

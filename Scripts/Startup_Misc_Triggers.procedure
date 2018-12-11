@@ -1,0 +1,27 @@
+Procedure	"Startup_Misc_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if Trigger_RegisterProcedure(script 'Add_Successful_Login_Record', TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_Add_Successful_Login_Record_Post) <> SY_NOERR then
+	warning \"Failed registering 'Add_Successful_Login_Record' procedure post trigger.\";
+end if;
+
+if Trigger_RegisterForm(form 'About Box', \"Aidacare Feature Setup\", CH_F,
+ script HS_Trigger_About_Box_Feature_Setup) <> SY_NOERR then
+	warning \"Failed registering 'Aidacare Customizations Feature Setup' of form 'About Box' menu trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

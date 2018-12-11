@@ -1,0 +1,68 @@
+Procedure	"HS_Trigger_CreateMenus"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in				integer				LoadMode;
+optional in		boolean				ShowProgress;
+
+local			CmdSequence			nSequence;
+local			integer				nStatus;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+{ Don't add menus again if they have already been added to the menu tables }
+if LoadMode = MENULOAD_TOTABLE then
+	if MenusExistForProduct(Runtime_GetCurrentProductID()) of form syMenuObj then
+		abort script;
+	end if;
+end if;
+
+
+clear nSequence;
+nSequence = FindCommandInMenu(
+	DYNAMICS,
+	resourceid(form Command_Sales),
+	resourceid(command CL_Sales_Setup of form Command_Sales),
+	DYNAMICS,
+	resourceid(form Command_Sales),
+	resourceid(command SOP_Setup_Email of form Command_Sales),
+	LoadMode,
+	\"\");
+
+{ PayWay Setup }
+nSequence = nSequence + 1;
+nStatus = AddCommandToMenu(
+	DYNAMICS,
+	resourceid(form Command_Sales),
+	resourceid(command CL_Sales_Setup of form Command_Sales),
+	nSequence,
+	CMD_BUILTINCMD_DICTID,
+	CMD_BUILTINCMD_FORMID,
+	resourceid(command cmdSeparator),
+	true,
+	LoadMode);
+
+nSequence = nSequence + 1;
+nStatus = AddCommandToMenu(
+	DYNAMICS,
+	resourceid(form Command_Sales),
+	resourceid(command CL_Sales_Setup of form Command_Sales),
+	nSequence,
+	Runtime_GetCurrentProductID(),
+	resourceid(form HS_Command_Form),
+	resourceid(command HS_PayWay_Setup of form HS_Command_Form),
+	true,
+	LoadMode);
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

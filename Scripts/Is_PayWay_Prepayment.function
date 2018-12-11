@@ -1,0 +1,32 @@
+Function	"Is_PayWay_Prepayment"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_PayWay_Prepayment;
+in		integer			IN_SOP_Type;
+in		string			IN_SOP_Number;
+in		long			IN_Sequence_Number;
+out		string			OUT_Prepayment_Order_Number;
+
+
+range clear table HS_PayWay_Payments_WORK_HIST;
+'SOP Type' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Number;
+'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = IN_Sequence_Number;
+range start table HS_PayWay_Payments_WORK_HIST by number 2;
+'SOP Type' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Number;
+'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = IN_Sequence_Number;
+range end table HS_PayWay_Payments_WORK_HIST by number 2;
+
+get first table HS_PayWay_Payments_WORK_HIST by number 2;
+if err() = OKAY then
+	OUT_PayWay_Prepayment = true;
+	OUT_Prepayment_Order_Number = 'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST;
+else
+	OUT_PayWay_Prepayment = false;
+	clear OUT_Prepayment_Order_Number;
+end if;
+"
+	UserProperties	""
+}

@@ -1,0 +1,42 @@
+Procedure	"HS_Trigger_Rental_Update_Invoice_Header_Totals_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string			IN_Invoice_Number;
+out		boolean			OUT_Record_Saved;
+
+local 	boolean			bCredit;
+
+
+pragma (disable warning UnusedVariable);
+
+bCredit = Rental_Is_Invoice_Credit(IN_Invoice_Number);
+
+
+{ If Invoice changed from credit to not or visa-versa then delete all previous records and clear Amount Received }
+if 'HS Rental Invoice Is Credit' of globals <> bCredit then
+	if 'HS Rental Invoice Is Credit' of globals then
+		call Rental_Delete_Payments,
+		 SOP_TYPE_RENTAL_CREDIT,
+		 IN_Invoice_Number,
+		 false;
+	else
+		call Rental_Delete_Payments,
+		 SOP_TYPE_RENTAL_INVOICE,
+		 IN_Invoice_Number,
+		 false;
+	end if;
+	
+	call EQS_Rental_Invoice_Entry_Set_Window_Fields,
+	 0,
+	 0,
+	 0;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

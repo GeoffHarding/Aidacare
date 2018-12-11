@@ -1,0 +1,29 @@
+Procedure	"Startup"
+{
+	Core	"System"
+	Documentation	""
+	Script	"{ Create triggers }
+call Startup_Misc_Triggers;
+
+call Startup_Menu_Triggers;
+
+call Startup_Service_Triggers;
+
+call Startup_National_Account_Triggers;
+
+call Startup_PayWay_Triggers;
+
+call Startup_Rental_Triggers;
+
+call Startup_SOP_Payment_Triggers;
+
+call Startup_List_Triggers;
+
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

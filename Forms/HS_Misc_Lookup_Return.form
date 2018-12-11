@@ -1,0 +1,175 @@
+Form	"HS_Misc_Lookup_Return"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+		Constant	"~SHORTCUT~"		
+		{
+			Value	"0"
+		}
+	}
+	Datatypes
+	{
+	}
+	EventPost	""
+	EventPre	""
+	Fields
+	{
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+	}
+	Windows
+	{
+		Window	"Hidden"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"false"
+			BackGround	"true"
+			CloseBox	"false"
+			ControlArea	"false"
+			DisplayName	"~internal~"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	""
+			EventPrint	""
+			Fields
+			{
+				WindowControl	"HS Return Long"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"LongInteger"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Hidden HS Return Long_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS Return Long"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"93"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"5"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"1"
+					Zoom	"false"
+				}
+				WindowControl	"HS Return String"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Hidden HS Return String_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS Return String"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"93"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"4"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"0"
+					Zoom	"false"
+				}
+			}
+			LastTag	"5"
+			Position	"1"
+			PositionLeft	"1"
+			PositionTop	"1"
+			Resizable	"true"
+			SizeHeight	"140"
+			SizeWidth	"324"
+			WindowType	"Internal"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"Hidden HS Return Long_CHG"		
+		{
+			Documentation	""
+			Script	"return 'HS Return Long';
+close form HS_Misc_Lookup_Return;
+"
+			UserProperties	""
+		}
+		EventScript	"Hidden HS Return String_CHG"		
+		{
+			Documentation	""
+			Script	"return 'HS Return String';
+close form HS_Misc_Lookup_Return;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+	}
+}

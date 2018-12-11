@@ -1,0 +1,44 @@
+Procedure	"HS_Trigger_EQS_Rental_Invoice_Entry_Save_Record_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	anonymous table		EQS_Rental_Invoice_Header_WORK;
+inout	boolean				OUT_Saved;
+
+local	currency			cPaymentAmount;
+local	currency			cCODAmount;
+local	currency			cPaymentDistributed;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+'HS Rental Invoice Entry Save Record' of globals = false;
+
+if not OUT_Saved then
+	abort script;
+end if;
+
+
+call EQS_Rental_Invoice_Entry_Get_Window_Fields,
+ cPaymentAmount,
+ cCODAmount,
+ cPaymentDistributed;
+
+
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+change table HS_Rental_Payments_WORK_HIST;
+'Payment Amount' of table HS_Rental_Payments_WORK_HIST = cPaymentAmount;
+'COD Amount' of table HS_Rental_Payments_WORK_HIST = cCODAmount;
+save table HS_Rental_Payments_WORK_HIST;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,8 @@
+ExternalLibrary	"ACIcons"
+{
+	LibraryID	""
+	MajorVersion	"0"
+	MinorVersion	"0"
+	Path	"ACIcons.dll"
+	Type	"ResourceLibrary"
+}

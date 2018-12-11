@@ -1,0 +1,37 @@
+Procedure	"HS_Trigger_RM_NationalAccounts_Maintenance_ChildScroll_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+default form to RM_NationalAccounts_Maintenance;
+
+if empty('Customer Number' of window ChildScroll) then
+	abort script;
+end if;
+
+get table RM_NationalAccounts_TEMP;
+if err() <> OKAY then
+	abort script;
+end if;
+
+
+if 'action' of table RM_NationalAccounts_TEMP = ADOPT_CUSTOMER then
+	if ask(\"You have attached this Debtor to a National Account. Do you wish to update its Bill To Address to that of the Parent?\", \"Yes\", \"No\", \"\") = ASKBUTTON1 then
+		change table RM_NationalAccounts_TEMP;
+		'action' of table RM_NationalAccounts_TEMP = 10;
+		save table RM_NationalAccounts_TEMP;
+	end if;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,34 @@
+Procedure	"HS_Trigger_Rental_Posting_SOP_Create_Tables_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		table					SOP_SETP;
+in		string					IN_Invoice_Number;
+in		string					IN_Batch_Number;
+out		string					OUT_SOP_Number;
+out		currency				OUT_Document_Total;
+out		boolean					OUT_Invoice_Has_Returns;
+out		integer					OUT_Error_Occurred;
+
+local	'DestID'				asDestinationID;
+local	integer					nStatus;
+
+
+pragma (disable warning UnusedVariable);
+
+
+call with name \"CB_RM_Before_Post_SOP_Batch\" in dictionary 1058,
+	BATCH_SOURCE_SOP_ENTRY_REALTIME,	{sBatchSource}
+	IN_Batch_Number,					{sBatchNumber}
+	TRX_WINDOW,							{nWindowType}
+	SY_BA_POSTING,						{nActivityType}
+	asDestinationID,					{asDestinationID}
+	nStatus;							{nStatus}
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

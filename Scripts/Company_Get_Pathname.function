@@ -1,0 +1,33 @@
+Function	"Company_Get_Pathname"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns string OUT_Path;
+in			integer			IN_Company_ID;
+
+local		integer			nFileSeries;
+local		string			sPath;
+
+
+if empty(IN_Company_ID) then
+	nFileSeries = TABLESERIES_SYSTEM;
+else
+	nFileSeries = TABLESERIES_COMPANY;
+end if;
+
+
+'Company ID' of table SY_Pathnames = IN_Company_ID;
+'DictID' of table SY_Pathnames = DYNAMICS;
+'File Series' of table SY_Pathnames = nFileSeries;
+'Logical File ID' of table SY_Pathnames = 0;
+get table SY_Pathnames;
+if err() <> OKAY then
+	clear table SY_Pathnames;
+end if;
+
+
+sPath = 'Data Pathname' of table SY_Pathnames;
+OUT_Path = substring(sPath, 1, pos(sPath, CH_SLASH, 1) - 1);
+"
+	UserProperties	""
+}

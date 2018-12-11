@@ -1,0 +1,20 @@
+Procedure	"EQS_Rental_Invoice_Entry_Set_Window_Fields"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		currency		IN_Payment_Amount;
+in		currency		IN_COD_Amount;
+in		currency		IN_Payment_Distributed;
+
+
+{ Triggered from Aidacare.Extras.dll to set the modified window fields }
+
+pragma (disable warning UnusedVariable);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

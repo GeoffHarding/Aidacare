@@ -1,0 +1,35 @@
+Function	"HS_Trigger_CM_BankTrxObj_AutoPost_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns integer Status;
+inout	CMDoc		CMDoc;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Is Credit' of globals then
+	abort script;
+end if;
+
+
+if 'CMDoc:Receipt Type' = CM_CHECK then
+	'CMDoc:CMDocType' = CM_CHECKDOC;
+	'CMDoc:CMDocNumber' = 'HS CM CMDocNumber' of globals;
+	'CMDoc:Sales Transaction' = CMCTRL_TRANSACTION;
+	'CMDoc:Checkbook Amount' = 'HS CM Checkbook Amount' of globals;
+else
+	'CMDoc:Originating Amount' = 'HS CM Originating Amount' of globals;
+	'CMDoc:CMDocAmount' = 'HS CM CMDocAmount' of globals;
+	'CMDoc:CMDocNumber' = 'HS CM CMDocNumber' of globals;
+	'CMDoc:Sales Transaction' = CMCTRL_RECEIPT;
+	if not empty ('CMDoc:Checkbook Amount') then
+		'CMDoc:Checkbook Amount' = 'CMDoc:Checkbook Amount' * -1;		
+	end if;	
+end if;
+
+'CMDoc:Description' = 'HS CM Description' of globals;
+"
+	UserProperties	""
+}

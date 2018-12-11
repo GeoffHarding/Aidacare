@@ -1,0 +1,67 @@
+Table	"HS_Rental_Payments_WORK_HIST"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"Rental Payments Work Hist"
+	FourByteHeader	"true"
+	PhysicalName	"HSRentalPayments"
+	Restriction	""
+	Series	"Sales"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"COD Amount"		
+		{
+			Encrypt	"false"
+			Field	"COD Amount"
+			Position	"2"
+		}
+		TableField	"EQS Rental Invoice Number"		
+		{
+			Encrypt	"false"
+			Field	"EQS Rental Invoice Number"
+			Position	"0"
+		}
+		TableField	"Payment Amount"		
+		{
+			Encrypt	"false"
+			Field	"Payment Amount"
+			Position	"1"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_Rental_Payments_WORK_HIST_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"EQS Rental Invoice Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

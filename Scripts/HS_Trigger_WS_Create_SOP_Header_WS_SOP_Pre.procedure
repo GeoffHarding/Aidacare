@@ -1,0 +1,29 @@
+Procedure	"HS_Trigger_WS_Create_SOP_Header_WS_SOP_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in				string					in_call_id;
+in				'Customer Number'		in_customer;
+in				'Address Code'			in_address_id;
+in				boolean					mark_as_primary;
+in				'Product Indicator'		in_product_indicator;
+in				'SOP Type'				in_sop_type;
+in				'Document ID'			in_doc_id;
+optional out	'SOP Number'			out_sop_number;
+optional out	'Document ID'			out_doc_id;
+optional in		'Currency ID'			in_currency_ID;
+optional in		'Salesperson ID'		in_salesperson;
+optional in		string					in_PurchaseOrder;
+
+
+pragma (disable warning UnusedVariable);
+
+'HS SOP Type' of globals = in_sop_type;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

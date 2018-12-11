@@ -1,0 +1,41 @@
+Function	"Is_SOP_Payments_Open_From_Rental"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Open;
+
+local		string			sInvoiceNo;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+OUT_Open = false;
+
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+{ Check if SOP Payment Entry window is open and displaying for current invoice }
+if not isopen(window SOP_Payment_Entry of form SOP_Payment_Entry) then
+	abort script;
+end if;
+
+if integer(itemdata('SOP Type', 'SOP Type')) <> SOP_TYPE_RENTAL_INVOICE and
+ integer(itemdata('SOP Type', 'SOP Type')) <> SOP_TYPE_RENTAL_CREDIT then
+	abort script;
+end if;
+
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"EQS Rental Invoice Number\", sInvoiceNo;
+if 'SOP Number' <> sInvoiceNo then
+	abort script;
+end if;
+
+
+OUT_Open = true;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	UserProperties	""
+}

@@ -1,0 +1,13 @@
+Procedure	"HS_Trigger_CloseCommandForms"
+{
+	Core	"System"
+	Documentation	""
+	Script	"close form HS_Command_Form;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,22 @@
+Function	"Is_PayWay_Card"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_PayWay_Card;
+in		string			IN_Card_Name;
+
+
+'Dummy Record' of table HS_PayWay_SETP = false;
+get table HS_PayWay_SETP;
+if err() <> OKAY then
+	clear table HS_PayWay_SETP;
+end if;
+
+if IN_Card_Name = 'Card Name' of table HS_PayWay_SETP then
+	OUT_PayWay_Card = true;
+else
+	OUT_PayWay_Card = false;
+end if;
+"
+	UserProperties	""
+}

@@ -1,0 +1,76 @@
+Procedure	"Navigation_List_Create_Extra_Columns_POP_TRX"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		boolean			IN_Install;
+
+local	long			lExeStatus;
+local	long			lSQLConnection;
+local	text			tSQLCode[10];
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+lExeStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+if not empty(lExeStatus) then
+	abort script;
+end if;
+
+
+if IN_Install then
+	clear tSQLCode[1];
+	tSQLCode[1] = tSQLCode[1] + \"USE \" + GetSystemDatabaseName() + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"INSERT INTO SY07226\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	(ListDictID, ListID, ViewID, USERID, ColSequence, ColFieldID, ColArrayIndex, ColFormatFldDictID, ColFormatFldFieldID, ColVisible, ColWidth, ColSortSequence, ColSortOrder, FilterTokenID)\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"SELECT\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	ListDictID, ListID, ViewID, USERID, 30, 967, ColArrayIndex, ColFormatFldDictID, ColFormatFldFieldID, 0, 150, ColSortSequence, ColSortOrder, FilterTokenID\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"FROM SY07226\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"WHERE\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	ListDictID = 0\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND ListID = 303\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND ColSequence = 1\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND NOT EXISTS (SELECT 1 FROM SY07226 WHERE ListDictID = 0 AND ListID = 303 AND ViewID = ViewID AND USERID = USERID AND ColSequence = 30)\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"INSERT INTO SY07226\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	(ListDictID, ListID, ViewID, USERID, ColSequence, ColFieldID, ColArrayIndex, ColFormatFldDictID, ColFormatFldFieldID, ColVisible, ColWidth, ColSortSequence, ColSortOrder, FilterTokenID)\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"SELECT\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	ListDictID, ListID, ViewID, USERID, 31, 968, ColArrayIndex, ColFormatFldDictID, ColFormatFldFieldID, 0, 150, ColSortSequence, ColSortOrder, FilterTokenID\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"FROM SY07226\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"WHERE\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	ListDictID = 0\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND ListID = 303\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND ColSequence = 1\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND NOT EXISTS (SELECT 1 FROM SY07226 WHERE ListDictID = 0 AND ListID = 303 AND ViewID = ViewID AND USERID = USERID AND ColSequence = 31)\" + char(13);
+	
+	lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+	call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+	
+	lExeStatus = SQL_Clear(lSQLConnection);
+else
+	clear tSQLCode[1];
+	tSQLCode[1] = tSQLCode[1] + \"USE \" + GetSystemDatabaseName() + char(13);
+	tSQLCode[1] = tSQLCode[1] + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"DELETE FROM SY07226\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"WHERE\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	ListDictID = 0\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND ListID = 303\" + char(13);
+	tSQLCode[1] = tSQLCode[1] + \"	AND (ColSequence = 30 OR ColSequence = 31)\" + char(13);
+	
+	lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+	call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+	
+	lExeStatus = SQL_Clear(lSQLConnection);
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

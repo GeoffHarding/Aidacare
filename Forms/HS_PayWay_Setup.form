@@ -1,0 +1,1099 @@
+Form	"HS_PayWay_Setup"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+	}
+	Datatypes
+	{
+		Datatype	"Original HS Check Box"		
+		{
+			Control	"CheckBox"
+			StaticType	"Text"
+			~StaticItems
+			{
+			}
+		}
+		Datatype	"Version"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"50"
+			StorageLength	"52"
+		}
+	}
+	EventPost	""
+	EventPre	""
+	Fields
+	{
+		Field	"Original HS Check Box"		
+		{
+			ArraySize	"30"
+			Datatype	"(L) Original HS Check Box"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Version"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Version"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+		FormTable	"HS_PayWay_SETP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"1"
+			Table	"HS_PayWay_SETP"
+		}
+		FormTable	"SY_Credit_Card_MSTR"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"2"
+			Table	"SY_Credit_Card_MSTR"
+		}
+	}
+	Windows
+	{
+		Window	"PayWay_Setup"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"true"
+			DisplayName	"PayWay Setup"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	"PayWay_Setup_WIN_POST"
+			EventPre	"PayWay_Setup_WIN_PRE"
+			EventPrint	""
+			Fields
+			{
+				WindowPrompt	"102"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"User Name"
+					Visible	"true"
+					ZOrder	"12"
+					Zoom	"false"
+				}
+				WindowPrompt	"103"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Password"
+					Visible	"true"
+					ZOrder	"13"
+					Zoom	"false"
+				}
+				WindowPrompt	"104"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Merchant ID"
+					Visible	"true"
+					ZOrder	"14"
+					Zoom	"false"
+				}
+				WindowPrompt	"105"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"110"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Credentials File"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+				WindowPrompt	"106"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Log Directory"
+					Visible	"true"
+					ZOrder	"16"
+					Zoom	"false"
+				}
+				WindowPrompt	"118"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"167"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Card Name"
+					Visible	"true"
+					ZOrder	"20"
+					Zoom	"true"
+				}
+				WindowPrompt	"122"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Remove Payment Password"
+					Visible	"true"
+					ZOrder	"22"
+					Zoom	"false"
+				}
+				WindowLine	"41"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"24"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"0"
+					SizeWidth	"800"
+					ZOrder	"11"
+				}
+				WindowLine	"5"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"73"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"0"
+				}
+				WindowLine	"6"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"148"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"1"
+				}
+				WindowControl	"Cancel Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"true"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup Cancel Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Cancel Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"75"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"3"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"10"
+					Zoom	"false"
+				}
+				WindowControl	"Card Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Setup Card Name_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Card Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"117"
+					LinkedPrompt	"118"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"167"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"116"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"7"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 1"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup Lookup Button 1_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 1"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"773"
+					PositionTop	"110"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"114"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"17"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 2"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup Lookup Button 2_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 2"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"773"
+					PositionTop	"129"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"115"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"18"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 3"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup Lookup Button 3_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 3"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"297"
+					PositionTop	"167"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"117"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"19"
+					Zoom	"false"
+				}
+				WindowControl	"OK Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"true"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup OK Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"OK Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"0"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"1"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"9"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Credentials File"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Setup PayWay Credentials File_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Credentials File"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"114"
+					LinkedPrompt	"105"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"110"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"613"
+					TabStop	"true"
+					Tag	"111"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"5"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Log Directory"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Setup PayWay Log Directory_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Log Directory"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"115"
+					LinkedPrompt	"106"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"613"
+					TabStop	"true"
+					Tag	"112"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"6"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Merchant"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Merchant"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"104"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"110"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"4"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Password"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Password"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"103"
+					Password	"true"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"109"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"3"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Remove Payment Password"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Remove Payment Password"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"122"
+					Password	"true"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"123"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"8"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay User Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay User Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"102"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"108"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"2"
+					Zoom	"false"
+				}
+				WindowControl	"Zoom Buttons[1]"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Setup Zoom Buttons[1]_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Zoom Buttons[1]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"167"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					TabStop	"false"
+					Tag	"121"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"21"
+					Zoom	"true"
+				}
+			}
+			LastTag	"123"
+			Position	"1"
+			PositionLeft	"203"
+			PositionTop	"152"
+			Resizable	"false"
+			SizeHeight	"216"
+			SizeWidth	"800"
+			WindowType	"Primary"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"PayWay_Setup Cancel Button_CHG"		
+		{
+			Documentation	""
+			Script	"clear changes window PayWay_Setup;
+close form HS_PayWay_Setup;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup Card Name_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('Card Name') then
+	abort script;
+end if;
+
+
+'Card Name' of table SY_Credit_Card_MSTR = 'Card Name';
+get table SY_Credit_Card_MSTR;
+if err() <> OKAY then
+	restart field;
+	if ask(getmsg(2278), getmsg(ADD), getmsg(CANCEL), \"\") = ASKBUTTON1 then
+		run script 'Zoom Buttons'[1];
+	end if;
+	abort script;
+else
+	if not 'CB Receivable' of table SY_Credit_Card_MSTR then
+		call Warning_Dialog, 2573, \"\", \"\", \"\";
+		restart field;	
+		abort script;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup Lookup Button 1_CHG"		
+		{
+			Documentation	""
+			Script	"local		string		sPath;
+
+
+pragma (disable warning LiteralStringUsed);
+
+getfile(getmsg(22012), 1, sPath, \"Credentials File (*.q0)|*.q0|\");   {Select a credentials file.}
+'PayWay Credentials File' = Path_MakeNative(sPath);
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup Lookup Button 2_CHG"		
+		{
+			Documentation	""
+			Script	"local	string		sPath;
+
+
+if Path_SelectPathname(sPath) then
+	'PayWay Log Directory' = Path_MakeNative(sPath);
+	run script 'PayWay Log Directory';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup Lookup Button 3_CHG"		
+		{
+			Documentation	""
+			Script	"open form Credit_Card_Lookup return to 'Card Name';
+if isopen(form Credit_Card_Lookup) then
+	if not empty('Card Name') then
+		'Card Name' of window Credit_Card_Lookup of form Credit_Card_Lookup = 'Card Name';
+		run script 'Card Name' of window Credit_Card_Lookup of form Credit_Card_Lookup;
+	end if;
+	run script 'Redisplay Button' of window Credit_Card_Lookup of form Credit_Card_Lookup;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup OK Button_CHG"		
+		{
+			Documentation	""
+			Script	"if not required(window PayWay_Setup) then
+	call Warning_Dialog,2351,\"\",\"\",\"\";
+	abort script;
+end if;
+
+
+'Dummy Record' of table HS_PayWay_SETP = false;
+change table HS_PayWay_SETP;
+copy from window PayWay_Setup to table HS_PayWay_SETP;
+save table HS_PayWay_SETP;
+
+clear changes window PayWay_Setup;
+close form HS_PayWay_Setup;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup PayWay Credentials File_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay Credentials File') then
+	abort script;
+end if;
+
+
+if not File_Probe(Path_MakeGeneric('PayWay Credentials File')) then
+	warning getmsg(22010);   {Please enter a valid file.}
+	restart field;
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup PayWay Log Directory_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay Log Directory') then
+	abort script;
+end if;
+
+
+if substring('PayWay Log Directory', length('PayWay Log Directory'), 1) = CH_BACKSLASH then
+	'PayWay Log Directory' = substring('PayWay Log Directory', 1, length('PayWay Log Directory') - 1);
+end if;
+
+
+if not Path_DoesExist('PayWay Log Directory') then
+	warning getmsg(22011);   {Please enter a valid path.}
+	restart field;
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup Zoom Buttons[1]_CHG"		
+		{
+			Documentation	""
+			Script	"open form SY_Credit_Card;
+if isopen(form SY_Credit_Card) then
+	if not empty('Card Name') then
+		'(L) Card Name' of window SY_Credit_Card of form SY_Credit_Card = 'Card Name';
+		run script '(L) Card Name' of window SY_Credit_Card of form SY_Credit_Card;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup_WIN_POST"		
+		{
+			Documentation	""
+			Script	"local	integer		nAsk;
+
+
+if changed(window PayWay_Setup) then
+	nAsk = ask(getmsg(1000){Do you want to save changes?}, getmsg(2){&Save}, getmsg(4){&Discard}, getmsg(1){&Cancel});
+	if nAsk = ASKBUTTON3 then
+		abort close;
+		abort script;
+	end if;
+	if nAsk = ASKBUTTON1 then
+		run script 'OK Button';
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Setup_WIN_PRE"		
+		{
+			Documentation	""
+			Script	"'Dummy Record' of table HS_PayWay_SETP = false;
+get table HS_PayWay_SETP;
+if err() <> OKAY then
+	clear table HS_PayWay_SETP;
+end if;
+
+copy from table HS_PayWay_SETP to window PayWay_Setup;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+	}
+}

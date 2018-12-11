@@ -1,0 +1,41 @@
+Procedure	"Table_Convert_Fields"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in			string				IN_Table_Name;
+in			string				IN_Table_Physical_Name;
+inout		text				IO_SQLCode[10];
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+clear IO_SQLCode[1];
+
+case IN_Table_Name
+	in [technicalname(table HS_PayWay_Payments_WORK_HIST)]
+		IO_SQLCode[1] = IO_SQLCode[1] + \"UPDATE HSPayWayPayments\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"SET HSPayWayPayments.SEQNUMBR = SequenceNumbers.SEQNUMBR\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"FROM HSPayWayPayments\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"INNER JOIN (SELECT HS_PayWay_Order_Number, MIN(ISNULL(SOP10103.SEQNUMBR, 0)) AS SEQNUMBR FROM HSPayWayPayments\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	LEFT OUTER JOIN SOP10103\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"		ON (SOP10103.SOPTYPE = HSPayWayPayments.SOPTYPE AND SOP10103.SOPNUMBE = HSPayWayPayments.SOPNUMBE AND\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"			((HSPayWayPayments.HS_PayWay_Payment_Refund != 4 AND SOP10103.DOCNUMBR = HSPayWayPayments.HS_PayWay_Order_Number) OR\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"				(HSPayWayPayments.HS_PayWay_Payment_Refund = 4 AND SOP10103.DOCNUMBR = 'PAYWAY REFUND')))\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	GROUP BY HS_PayWay_Order_Number) AS SequenceNumbers\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	ON (SequenceNumbers.HS_PayWay_Order_Number = HSPayWayPayments.HS_PayWay_Order_Number)\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"WHERE HSPayWayPayments.SEQNUMBR = 0\" + char(13);
+	
+	else
+		
+end case;
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

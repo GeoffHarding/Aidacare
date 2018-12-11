@@ -1,0 +1,33 @@
+Function	"Is_PayWay_Reference_Unique"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Unique;
+in		string			IN_Reference_Number;
+in		string			IN_Customer_Number;
+in		string			IN_Address_Code;
+
+
+OUT_Unique = true;
+
+{ Check Customer records }
+'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR = IN_Reference_Number;
+get table HS_PayWay_Customer_MSTR by number 2;
+if err() = OKAY then
+	if IN_Customer_Number <> 'Customer Number' of table HS_PayWay_Customer_MSTR or not empty(IN_Address_Code) then
+		OUT_Unique = false;
+	end if;
+end if;
+
+
+{ Check Customer Address records }
+'HS PayWay Customer Reference Number' of table HS_PayWay_Address_MSTR = IN_Reference_Number;
+get table HS_PayWay_Address_MSTR by number 2;
+if err() = OKAY then
+	if IN_Customer_Number <> 'Customer Number' of table HS_PayWay_Address_MSTR or IN_Address_Code <> 'Address Code' of table HS_PayWay_Address_MSTR then
+		OUT_Unique = false;
+	end if;
+end if;
+"
+	UserProperties	""
+}

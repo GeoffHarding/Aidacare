@@ -1,0 +1,51 @@
+Procedure	"HS_Trigger_SOP_Dist_Check_Invoice_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		boolean				IN_Mult_Errors;
+in		boolean				IN_Track_Disc_Avail;
+in		dollar				IN_O_Disc_Avail;
+in		dollar				IN_O_Cash;
+in		dollar				IN_O_Commission;
+in		dollar				IN_O_Deposit;
+in		dollar				IN_O_Freight;
+in		dollar				IN_O_Markdown;
+in		dollar				IN_O_Misc;
+in		dollar				IN_O_Sales;
+in		dollar				IN_O_Disc_Taken;
+in		dollar				IN_O_Tax;
+in		dollar				IN_O_Trade;
+in		dollar				IN_O_Amounts[SOP_DIST_MAXTYPE];
+in		boolean				I_fMergeTradeDisc;
+inout	integer				INOUT_Error;
+inout	string				INOUT_Error_MSG;
+inout	'SOP HDR Errors 1'	INOUT_HDR_Errors_1;
+inout	'SOP HDR Errors 2'	INOUT_HDR_Errors_2;
+in 		boolean				IN_InvoiceWithReturns;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Posting Credit' of globals then
+	abort script;
+end if;
+
+
+if INOUT_Error = 1 then
+	if (IN_O_Amounts[SOP_DIST_CASH] = IN_O_Cash * -1) then
+		if checkedfield(INOUT_HDR_Errors_1, 18) then
+			uncheck field INOUT_HDR_Errors_1, 18;
+			clear INOUT_Error;
+			clear INOUT_Error_MSG;
+		end if;
+	end if;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

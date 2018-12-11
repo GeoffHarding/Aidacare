@@ -1,0 +1,7 @@
+ExternalIcon	"PayWay"
+{
+	AlternateImage	"PayWay"
+	AlternateImageType	"GenericPicture"
+	ExternalLibrary	"ACIcons"
+	Resource	"#1"
+}

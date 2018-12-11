@@ -1,0 +1,61 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_OPEN_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+case SOPTypeToInt('SOP Type')
+	in [SOP_TYPE_RENTAL_INVOICE]
+		add item getmsg(2852), SOP_PAYMENTTYPE_CASHPAYMENT to 'Payment Type';		
+		add item getmsg(2853), SOP_PAYMENTTYPE_CHECKPAYMENT to 'Payment Type';		
+		add item getmsg(2854), SOP_PAYMENTTYPE_CREDITCARDPAYMENT to 'Payment Type';
+	in [SOP_ORDER, SOP_BACK_ORDER]
+		{Remove Credit Card Payments from Order/Back Orders}
+		delete item 4 from 'Payment Type';	
+end case;
+
+'Payment Type' = 1;
+run script 'Payment Type';
+
+
+if SOPTypeToInt('SOP Type') = SOP_RETURN or SOPTypeToInt('SOP Type') = SOP_TYPE_RENTAL_CREDIT then
+	enable '(L) Return Document Number';
+	disable 'Document Number';
+	show '(L) Return Document Number';
+	hide 'Document Number';
+else
+	disable '(L) Return Document Number';
+	enable 'Document Number';
+	hide '(L) Return Document Number';
+	show 'Document Number';
+end if;
+
+
+pragma (disable warning LiteralStringUsed);
+
+if Check_Alternate_Form_Security(Runtime_GetCurrentProductID(), resourceid(form SOP_Payment_Entry)) then
+	'HS SOP Type Credit To Return' of globals = false;
+
+	case SOPTypeToInt('SOP Type', 'SOP Type')
+		in [SOP_TYPE_RENTAL_INVOICE, SOP_TYPE_RENTAL_CREDIT]
+			call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"Primary Shipto Address Code\", 'Address Code';
+		else
+			if isopen(window SOP_Entry of form SOP_Entry) then
+				'Address Code' = 'Primary Shipto Address Code' of window SOP_Entry of form SOP_Entry;
+			end if;
+	end case;
+
+	'HS SOP Type Credit To Return' of globals = true;
+end if;
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

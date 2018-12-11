@@ -1,0 +1,122 @@
+Procedure	"Startup_SOP_Payment_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if Trigger_RegisterFocus(anonymous (form SOP_Payment_Entry), TRIGGER_FOCUS_PRE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Form_Pre_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_PRE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering form SOP_Payment_Entry pre focus post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous (window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_POST, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Window_Post_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_WINDOW_POST_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering window SOP_Payment_Entry of form SOP_Payment_Entry post focus post trigger.\";
+end if;
+
+if Trigger_RegisterFunction(function IntToSOPType, TRIGGER_AFTER_ORIGINAL,
+ function HS_Trigger_IntToSOPType_Post, 'HS Trigger Tag'[TAG_INTTOSOPTYPE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering IntToSOPType function post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script OPEN of form SOP_Payment_Entry, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_OPEN_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_OPEN_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering OPEN of form SOP_Payment_Entry procedure post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Card Name' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Card_Name_Change_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Card Name' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script Clear_Window of form SOP_Payment_Entry, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Clear_Window_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering Clear_Window of form SOP_Payment_Entry procedure post trigger.\";
+end if;
+
+if Trigger_RegisterFunction(function SOPTypeToInt, TRIGGER_AFTER_ORIGINAL,
+ function HS_Trigger_SOPTypeToInt_Post, 'HS Trigger Tag'[TAG_SOPTYPETOINT_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering SOPTypeToInt function post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous (form SOP_Payment_Entry), TRIGGER_FOCUS_POST, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Form_Post_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_POST_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering form SOP_Payment_Entry post focus post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('(L) Set Window' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Set_Window_Change_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering '(L) Set Window' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('(L) Set Window' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Set_Window_Change_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering '(L) Set Window' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Display Existing Record' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Display_Existing_Record_Change_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Display Existing Record' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Display Existing Record' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Display_Existing_Record_Change_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Display Existing Record' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Insert>> Button I' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Insert_Button_Change_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_INSERT_BUTTON_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Insert>> Button I' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('(L) Remove Button' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Remove_Button_Change_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering '(L) Remove Button' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script SOP_Post_Verify_Payments, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Post_Verify_Payments_Post, 'HS Trigger Tag'[TAG_SOP_POST_VERIFY_PAYMENTS_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering SOP_Post_Verify_Payments procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script SOP_Dist_Check_Invoice, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Dist_Check_Invoice_Post, 'HS Trigger Tag'[TAG_SOP_DIST_CHECK_INVOICE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering SOP_Dist_Check_Invoice procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script CM_Post_SOP, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_CM_Post_SOP_Pre, 'HS Trigger Tag'[TAG_CM_POST_SOP_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering CM_Post_SOP procedure pre trigger.\";
+end if;
+
+if Trigger_RegisterFunction(function AutoPost of form CM_BankTrxObj, TRIGGER_BEFORE_ORIGINAL,
+ function HS_Trigger_CM_BankTrxObj_AutoPost_Pre, 'HS Trigger Tag'[TAG_CM_BANKTRXOBJ_AUTOPOST_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering AutoPost of form CM_BankTrxObj function pre trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script SOP_Post_Payments, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Post_Payments_Pre, 'HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering SOP_Post_Payments procedure pre trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script SOP_Post_Payments, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Post_Payments_Post, 'HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering SOP_Post_Payments procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script SOP_Post_Create_RM_Sales_Doc, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Post_Create_RM_Sales_Doc_Post, 'HS Trigger Tag'[TAG_SOP_POST_CREATE_RM_SALES_DOC_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering SOP_Post_Create_RM_Sales_Doc procedure post trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

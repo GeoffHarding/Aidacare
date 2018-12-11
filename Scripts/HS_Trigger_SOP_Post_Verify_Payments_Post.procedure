@@ -1,0 +1,44 @@
+Procedure	"HS_Trigger_SOP_Post_Verify_Payments_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		boolean				IN_Verify;
+in		boolean				IN_Edit_List;
+in		boolean				IN_Print_Report;
+inout	integer				INOUT_TRX_Error;
+inout	date				INOUT_Last_Payment_Date;
+inout	file				RM_Keys_MSTR;
+inout	file				SOP_HDR_WORK;			{positioned}
+inout	file				SOP_Payment_WORK_HIST;
+inout	file				SOP_Report_TEMP;
+in		'MC Def Structure'	IN_MC_Def;				
+in		boolean				IN_Print_MC_Reports;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Posting Credit' of globals then
+	abort script;
+end if;
+
+
+if INOUT_TRX_Error = 1 then
+	if checkedfield('SOP HDR Errors 1' of table SOP_HDR_WORK, 6) then
+		uncheck field 'SOP HDR Errors 1' of file SOP_HDR_WORK, 6;
+		clear INOUT_TRX_Error;
+	end if;
+	
+	if checkedfield('SOP HDR Errors 2' of table SOP_HDR_WORK, 27) then
+		uncheck field 'SOP HDR Errors 2' of file SOP_HDR_WORK, 27;
+		clear INOUT_TRX_Error;
+	end if;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

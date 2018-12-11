@@ -1,0 +1,16 @@
+Function	"HS_Trigger_IntToSOPType_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns integer 'SOP Type';
+in	integer		nSOPType;
+
+
+if nSOPType = SOP_TYPE_RENTAL_INVOICE then
+	'SOP Type' = 7;
+elseif nSOPType = SOP_TYPE_RENTAL_CREDIT then
+	'SOP Type' = 8;
+end if;
+"
+	UserProperties	""
+}

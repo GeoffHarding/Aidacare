@@ -1,0 +1,59 @@
+Procedure	"Misc_Get_Window_Value"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in			integer				IN_Prod_ID;
+in			string				IN_Form_Name;
+in			string				IN_Window_Name;
+in			string				IN_Field_Name;
+out			anonymous field		OUT_Return_Value;
+
+local		string				sFullFieldName;
+local		integer				nPos;
+local		string				sFieldStart;
+local		string				sFieldEnd;
+local		text				tCode;
+local		integer				nErrorCount;
+local 		string				sCompileMessage;
+
+
+pragma(disable warning LiteralStringUsed);
+
+
+if substring(IN_Field_Name, 1, 1) = CH_SINGLEQUOTE then
+	sFullFieldName = IN_Field_Name;
+else
+	nPos = pos(IN_Field_Name, char(91), 1);
+	if not empty(nPos) then
+		sFieldStart = substring(IN_Field_Name, 1, (nPos - 1));
+		sFieldEnd = substring(IN_Field_Name, nPos, (length(IN_Field_Name) - nPos + 1));
+		sFullFieldName = CH_SINGLEQUOTE + sFieldStart + CH_SINGLEQUOTE + sFieldEnd;
+	else
+		sFullFieldName = CH_SINGLEQUOTE + IN_Field_Name + CH_SINGLEQUOTE;
+	end if;
+end if;
+
+
+clear tCode;
+tCode = tCode + \"out		anonymous			OUT_Return_Value;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"if isopen(form \" + CH_SINGLEQUOTE + IN_Form_Name + CH_SINGLEQUOTE + \") then\" + char(13);
+tCode = tCode + \"	OUT_Return_Value = \" + sFullFieldName + \" of window \" + CH_SINGLEQUOTE + IN_Window_Name + CH_SINGLEQUOTE + \" of form \" + CH_SINGLEQUOTE + IN_Form_Name + CH_SINGLEQUOTE + \";\" + char(13);
+tCode = tCode + \"else\" + char(13);
+tCode = tCode + \"	clear OUT_Return_Value;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+
+nErrorCount = execute(IN_Prod_ID, tCode, sCompileMessage, OUT_Return_Value);
+call OPEN_CODE_VIEWER of form HS_Misc_Code_Viewer, tCode, sCompileMessage;
+
+
+pragma(enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}
