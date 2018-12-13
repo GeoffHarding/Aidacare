@@ -1,0 +1,43 @@
+Procedure	"HS_Trigger_SOP_Post_Create_RM_Sales_Doc_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		integer				IN_RM_Type;
+in		'Document Number'	IN_RM_Document;
+in		'TRX Source'		IN_TRX_Source;
+inout	dollar				INOUT_Avail_Taken;
+inout	dollar				INOUT_O_Avail_Taken;
+inout	file				RM_OPEN;
+inout	table				RM_Customer_MSTR;		{positioned}
+inout	table				RM_Module_SETP;			{positioned}
+inout	file				SOP_HDR_WORK;			{positioned}
+in		integer				IN_IS_MC_Trx;
+in		date				IN_LastPaymentDate;
+in 		boolean				fInvoiceHasReturns;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Posting Credit' of globals then
+	abort script;
+end if;
+
+
+'RM Document Type-All' of table RM_OPEN = IN_RM_Type;
+'Document Number' of table RM_OPEN = IN_RM_Document;
+change table RM_OPEN;
+if err() <> OKAY then
+	abort script;
+end if;
+
+'Current Trx Amount' of table RM_OPEN = 'Original Trx Amount' of table RM_OPEN - 'Cash Amount' of table RM_OPEN;
+save table RM_OPEN;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

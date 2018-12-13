@@ -1,0 +1,60 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Payment_Type_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		boolean			bAllowChanges;
+
+
+if not Check_Alternate_Form_Security(Runtime_GetCurrentProductID(), resourceid(form SOP_Payment_Entry)) then
+	abort script;
+end if;
+
+
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+hide '(L) PayWay Payment Button';
+hide '(L) PayWay Refund Button';
+hide 'HS PayWay Customer Reference Number';
+hide '(L) PayWay PrePaid CB';
+hide '(L) PayWay PrePaid Order Number';
+
+if not IsCreditCard(integer(itemdata('Payment Type', 'Payment Type'))) of form SOP_Payment_Entry then
+	abort script;
+end if;
+
+if IsPayment(integer(itemdata('Payment Type', 'Payment Type'))) and (SOPTypeToInt('SOP Type') = SOP_ORDER or SOPTypeToInt('SOP Type') = SOP_BACK_ORDER) then
+	abort script;
+end if;
+
+if not Is_PayWay_Customer('Customer Number', 'Address Code', 'HS PayWay Customer Reference Number', bAllowChanges) then
+	abort script;
+end if;
+
+show 'HS PayWay Customer Reference Number';
+show '(L) PayWay PrePaid CB';
+clear '(L) PayWay PrePaid CB';
+run script '(L) PayWay PrePaid CB';
+
+if bAllowChanges then
+	unlock 'HS PayWay Customer Reference Number';
+else
+	lock 'HS PayWay Customer Reference Number';
+end if;
+
+
+case SOPTypeToInt('SOP Type')
+	in [SOP_TYPE_RENTAL_CREDIT, SOP_RETURN]
+		show '(L) PayWay Refund Button';
+	else
+		show '(L) PayWay Payment Button';
+end case;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

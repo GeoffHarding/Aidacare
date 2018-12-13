@@ -1,0 +1,34 @@
+Procedure	"HS_Trigger_Rental_Posting_SOP_Post_Invoice_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	anonymous table		EQS_Rental_Posting_Journal_Report_TEMP;
+inout	anonymous table		EQS_Rental_Posting_SOP_Journal_Report_TEMP;
+inout	anonymous table 		EQS_Rental_Invoice_Header_History_TEMP;
+inout	'GL_PostingInfo'	INOUT_GL_Posting_Settings;
+in		string		IN_Invoice_Number;
+in		string		IN_Batch_Number;
+in		integer		IN_Calling_Form; {1 = Invoice Entry, 2 = Batch Entry}
+in 		boolean		IN_EditList;
+in		string		IN_Rental_Journal_Dest;
+in		string		IN_SOP_Journal_Dest;
+in		text		IN_Named_Printer;
+out		integer		OUT_Error_Occurred;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if Rental_Is_Invoice_Credit(IN_Invoice_Number) then
+	'HS Rental Invoice Posting Credit' of globals = true;
+else
+	'HS Rental Invoice Posting Credit' of globals = false;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

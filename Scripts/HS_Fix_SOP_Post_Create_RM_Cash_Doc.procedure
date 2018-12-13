@@ -1,0 +1,315 @@
+Procedure	"HS_Fix_SOP_Post_Create_RM_Cash_Doc"
+{
+	Core	"System"
+	Documentation	""
+	Script	"{----------------------------------------------------------------------------
+SOP_Post_Create_RM_Cash_Doc
+
+This script creates an RM cash document in the RM_OPEN file. 
+
+----------------------------------------------------------------------------}
+in		integer				IN_RM_Type;
+in		'Document Number'	IN_RM_Document;
+in		'TRX Source'		IN_TRX_Source;
+inout	dollar				INOUT_Total_Apply_Amount;
+inout	dollar				INOUT_O_Total_Apply_Amount;
+inout	file				RM_Applied_OPEN;
+inout	file				RM_Customer_MSTR;			{positioned}
+inout	file				RM_Keys_MSTR;
+inout	file				RM_OPEN;
+inout	file				SOP_HDR_HIST;				{positioned}
+inout	file				SOP_Payment_WORK_HIST;
+in		integer				IN_IS_MC_Trx;
+in		boolean				fInvoiceHasReturns;
+
+
+local boolean 	l_discounts_already_applied, fInvoiceReturn, fInvoiceReturnWithNegDocAmt;
+local dollar 	l_apply_amount;
+local dollar	l_o_apply_amt;	
+
+if not 'Module Registered'[RM] of globals then
+	abort script;
+end if;
+
+{if invoice has return lines and the document amount is negative, create a return document}
+if fInvoiceHasReturns then
+	
+	fInvoiceReturn = true;		
+	
+	if 'Document Amount' of table SOP_HDR_HIST < 0 then	
+		fInvoiceReturnWithNegDocAmt = true;
+	else
+		fInvoiceReturnWithNegDocAmt = false;
+	end if;
+	
+else
+	fInvoiceReturn = false;
+	fInvoiceReturnWithNegDocAmt = false;
+end if;	
+
+if INOUT_Total_Apply_Amount > 0.0 then 
+	{Discounts already handled in a previous document.}
+	set l_discounts_already_applied to true;
+else 
+	set l_discounts_already_applied to false;
+end if;
+
+repeat
+	{Update the keys record.}
+	clear file RM_Keys_MSTR;
+	set 'Document Number' of file RM_Keys_MSTR to 'Document Number' of file SOP_Payment_WORK_HIST;
+	set 'RM Document Type-All' of file RM_Keys_MSTR to RM_DOC_CASH;
+	change file RM_Keys_MSTR;
+	
+	set 'Customer Number' of file RM_Keys_MSTR to 'Customer Number' of file SOP_HDR_HIST;
+	set 'Batch Source' of file RM_Keys_MSTR to BATCH_SOURCE_SOP_ENTRY;
+	set 'Document Status' of file RM_Keys_MSTR to OPEN;
+	set 'TRX Source' of file RM_Keys_MSTR to IN_TRX_Source;
+	set IsNegQtySOPInvoice of table RM_Keys_MSTR to fInvoiceReturn;
+	'Check Number' of table RM_Keys_MSTR = 'Check Number' of table SOP_Payment_WORK_HIST;
+	'Document Date' of table RM_Keys_MSTR = 'Document Date' of table SOP_Payment_WORK_HIST;
+
+	save file RM_Keys_MSTR;
+until err() <> RECORDCHANGED;
+
+{Create the open record.}
+clear file RM_OPEN;
+set 'Document Number' of file RM_OPEN to 'Document Number' of file SOP_Payment_WORK_HIST;
+set 'RM Document Type-All' of file RM_OPEN to RM_DOC_CASH;
+change file RM_OPEN by RM_OPEN_Key4;
+
+set 'TRX Source' of file RM_OPEN to IN_TRX_Source;
+set 'Aging Bucket' of file RM_OPEN to 1;
+set 'Batch Source' of file RM_OPEN to BATCH_SOURCE_SOP_ENTRY;
+set 'Batch Number' of file RM_OPEN to 'Batch Number' of file SOP_HDR_HIST;
+
+if IsCreditCard('Payment Type' of file SOP_Payment_WORK_HIST) of form SOP_Payment_Entry then
+	set 'Check Number' of file RM_OPEN to 'Receipt Number Credit Card' of table SOP_Payment_WORK_HIST;
+else
+	set 'Check Number' of file RM_OPEN to 'Check Number' of file SOP_Payment_WORK_HIST;
+end if;
+
+set 'Customer Number' of file RM_OPEN to 'Customer Number' of file SOP_HDR_HIST;
+set 'Document Date' of file RM_OPEN to 'Document Date' of file SOP_HDR_HIST;   
+set 'GL Posting Date' of table RM_OPEN to 'GL Posting Date' of table SOP_HDR_HIST;
+set 'Tax Date' of table RM_OPEN to 'Tax Date' of table SOP_HDR_HIST;
+'Address Code' of table RM_OPEN = 'Primary Billto Address Code' of table SOP_HDR_HIST;
+
+if ( SOP_Is_MC_Enabled() ) then
+	set 'Currency ID' of file RM_OPEN to 'Currency ID' of file SOP_HDR_HIST;
+elseif 'Module Registered'[MCUR] of globals then
+	set 'Currency ID' of file RM_OPEN to 'Functional Currency' of globals;
+end if;
+
+set 'Misc Schedule ID' of file RM_OPEN to 'Checkbook ID' of file SOP_Payment_WORK_HIST;
+set 'Freight Schedule ID' of file RM_OPEN to 'Card Name' of table SOP_Payment_WORK_HIST;	{01/16/96 BR change}
+set 'Original Trx Amount' of file RM_OPEN to 'Amount Paid' of file SOP_Payment_WORK_HIST;
+
+if 'Balance Type' of file RM_Customer_MSTR = RM_BALANCE_FORWARD then
+	{Balance forward customers do not apply.}
+	clear INOUT_Total_Apply_Amount;
+	clear INOUT_O_Total_Apply_Amount;			{GPSS}
+	
+else
+	if ((INOUT_Total_Apply_Amount + 'Amount Paid' of file SOP_Payment_WORK_HIST) <= 
+		('Document Amount' of file SOP_HDR_HIST - 'Discount Taken Amount' of file SOP_HDR_HIST)) or 
+		fInvoiceReturnWithNegDocAmt then
+		
+		{This document does not pay the invoice off.}
+		set l_apply_amount to 'Amount Paid' of file SOP_Payment_WORK_HIST;
+	else
+		{This document pays off the invoice.}
+		set l_apply_amount to ('Document Amount' of file SOP_HDR_HIST - 
+			'Discount Taken Amount' of file SOP_HDR_HIST - INOUT_Total_Apply_Amount);
+	end if;
+	
+	if ((INOUT_O_Total_Apply_Amount + 'Originating Amount Paid' of file SOP_Payment_WORK_HIST) <= 
+		('Originating Document Amount' of file SOP_HDR_HIST - 'Originating Discount Taken Amount' of file SOP_HDR_HIST)) or
+		fInvoiceReturnWithNegDocAmt then
+		
+		{This document does not pay the invoice off.}
+		set l_o_apply_amt to 'Originating Amount Paid' of file SOP_Payment_WORK_HIST;
+	else
+		{This document pays off the invoice.}
+		set l_o_apply_amt to ('Originating Document Amount' of file SOP_HDR_HIST - 
+			'Originating Discount Taken Amount' of file SOP_HDR_HIST - INOUT_O_Total_Apply_Amount);
+	end if;
+end if;
+
+if not fInvoiceReturnWithNegDocAmt then
+	set 'Current Trx Amount' of file RM_OPEN to 'Amount Paid' of file SOP_Payment_WORK_HIST - l_apply_amount;
+else
+	{invoice should be treated as a return and should equal the amount paid}
+	set 'Current Trx Amount' of file RM_OPEN to 'Amount Paid' of file SOP_Payment_WORK_HIST;
+end if;
+
+set 'Document Date' of file RM_OPEN to 'Document Date' of file SOP_Payment_WORK_HIST;
+
+if 'Current Trx Amount' of file RM_OPEN <= 0.0 then 
+	{receipt entirely applied.}
+	set 'Date Invoice Paid Off' of file RM_OPEN to 'Document Date' of file SOP_Payment_WORK_HIST;
+else
+	clear 'Date Invoice Paid Off' of file RM_OPEN;
+end if;
+
+if ('Balance Type' of file RM_Customer_MSTR = RM_OPEN_ITEM) and not fInvoiceReturnWithNegDocAmt then
+	{Create the Apply record.}
+	clear file RM_Applied_OPEN;
+	set 'Apply From Document Number' of file RM_Applied_OPEN to
+		'Document Number' of file SOP_Payment_WORK_HIST;		
+	set 'Apply From Document Type' of file RM_Applied_OPEN to RM_DOC_CASH;
+	set 'Apply To Document Type' of file RM_Applied_OPEN to	IN_RM_Type;
+	set 'Apply To Document Number' of file RM_Applied_OPEN to IN_RM_Document;
+	change file RM_Applied_OPEN by RM_Applied_OPEN_Key2;
+	
+	'Corporate Customer Number' of table RM_OPEN = 'Corporate Customer Number' of table RM_Customer_MSTR;
+	set 'Customer Number' of file RM_Applied_OPEN to 'Customer Number' of file SOP_HDR_HIST;
+	set 'Posted' of file RM_Applied_OPEN to true;
+	set 'TRX Source' of file RM_Applied_OPEN to IN_TRX_Source;
+	set 'Apply To Amount' of file RM_Applied_OPEN to l_apply_amount;
+	set 'Date' of file RM_Applied_OPEN to 'Document Date' of file SOP_Payment_WORK_HIST;
+	set 'GL Posting Date' of table RM_Applied_OPEN to 'GL Posting Date' of table SOP_HDR_HIST;
+	set 'Apply From Document Date' of file RM_Applied_OPEN to 'Document Date' of file SOP_Payment_WORK_HIST;
+	set 'Apply From GL Posting Date' of file RM_Applied_OPEN to 'GL Posting Date' of table SOP_HDR_HIST;
+	set 'Apply To Document Date' of file RM_Applied_OPEN to 'Document Date' of file SOP_HDR_HIST;
+	set 'Apply To GL Posting Date' of file RM_Applied_OPEN to 'GL Posting Date' of table SOP_HDR_HIST;
+
+	
+	if (SOP_Is_MC_Enabled()) then
+		set 'Currency ID' of file RM_Applied_OPEN to 'Currency ID' of file SOP_HDR_HIST;
+		set 'Currency Index' of file RM_Applied_OPEN to 'Currency Index' of file SOP_HDR_HIST;
+		set 'Apply From Currency ID' of file RM_Applied_OPEN to 'Currency ID' of file SOP_Payment_WORK_HIST;
+				
+		if (IN_IS_MC_Trx = MC_TRX) then
+			set 'Originating Apply To Amount' of file RM_Applied_OPEN to l_o_apply_amt; 
+				
+			{-- Use values from SOP_HDR_HIST, MC_RM_Transactions is not initialized yet --}		{PR15542}			
+			set 'Apply From Exchange Rate' of table RM_Applied_OPEN to 'Exchange Rate' of file SOP_HDR_HIST;
+			set 'Apply From Rate Calc Method' of table RM_Applied_OPEN to 'Rate Calculation Method' of file SOP_HDR_HIST;
+			set 'Apply From Denomination Exchange Rate' of table RM_Applied_OPEN to 'Denomination Exchange Rate' of file SOP_HDR_HIST;
+			set 'Apply From MC Transaction State' of table RM_Applied_OPEN to 'MC Transaction State' of file SOP_HDR_HIST;
+			set 'Apply To Exchange Rate' of table RM_Applied_OPEN to 'Exchange Rate' of file SOP_HDR_HIST;
+			set 'Apply To Rate Calc Method' of table RM_Applied_OPEN to 'Rate Calculation Method' of file SOP_HDR_HIST;
+			set 'Apply To Denomination Exchange Rate' of table RM_Applied_OPEN to 'Denomination Exchange Rate' of file SOP_HDR_HIST;
+			set 'Apply To MC Transaction State' of table RM_Applied_OPEN to 'MC Transaction State' of file SOP_HDR_HIST;
+			set 'Time' of table RM_Applied_OPEN to Time of file SOP_HDR_HIST;
+		end if;
+	end if;
+
+	if not l_discounts_already_applied then
+		set 'Discount Taken Amount' of file RM_Applied_OPEN to 'Discount Taken Amount' of file SOP_HDR_HIST;
+		set 'Discount Available Taken' of file RM_Applied_OPEN to 'Discount Available Taken' of file SOP_HDR_HIST;
+		
+		if ( IN_IS_MC_Trx = MC_TRX ) then
+			set 'Originating Discount Taken Amount' of file RM_Applied_OPEN to 
+				'Originating Discount Taken Amount' of file SOP_HDR_HIST;
+			set 'Originating Discount Available Taken' of file RM_Applied_OPEN to 
+				'Originating Discount Available Taken' of file SOP_HDR_HIST;
+		end if;
+		
+		{update discount fields on open record}
+		set	'Discount Available Taken' of file RM_OPEN to 'Discount Available Taken' of file SOP_HDR_HIST;
+		set 'Discount Taken Amount' of file RM_OPEN to 'Discount Taken Amount' of file SOP_HDR_HIST;
+	end if;
+	
+	'Actual Apply To Amount' of table RM_Applied_OPEN = l_o_apply_amt;
+	'Actual Discount Available Taken' of table RM_Applied_OPEN = 'Originating Discount Available Taken' of file RM_Applied_OPEN;
+	'Actual Discount Taken Amount' of table RM_Applied_OPEN = 'Originating Discount Taken Amount' of file RM_Applied_OPEN;
+	
+	'Apply From Apply Amount' of table RM_Applied_OPEN = 'Apply To Amount' of table RM_Applied_OPEN;
+	'Apply From Discount Taken Amount' of table RM_Applied_OPEN = 'Discount Taken Amount' of table RM_Applied_OPEN;
+	'Apply From Discount Available Taken' of table RM_Applied_OPEN = 'Discount Available Taken' of table RM_Applied_OPEN;
+	'Apply From Write Off Amount' of table RM_Applied_OPEN = 'Write Off Amount' of table RM_Applied_OPEN;
+		
+	if 'Currency ID' of file RM_Applied_OPEN = 'Functional Currency' of globals then		
+		'Originating Apply To Amount' of table RM_Applied_OPEN = 'Apply To Amount' of table RM_Applied_OPEN;
+		'Originating Discount Taken Amount' of table RM_Applied_OPEN = 'Discount Taken Amount' of table RM_Applied_OPEN;
+		'Originating Discount Available Taken' of table RM_Applied_OPEN = 'Discount Available Taken' of table RM_Applied_OPEN;
+		'Originating Write Off Amount' of table RM_Applied_OPEN = 'Write Off Amount' of table RM_Applied_OPEN;
+	end if;
+	
+	save file RM_Applied_OPEN;
+	check error;
+else
+	{balance forward customer}
+	clear INOUT_Total_Apply_Amount;
+	clear INOUT_O_Total_Apply_Amount;
+end if;
+
+set 'Post Date' of file RM_OPEN to sysdate();
+set 'Post User ID' of file RM_OPEN to 'User ID' of globals;
+
+if IsCash('Payment Type' of file SOP_Payment_WORK_HIST) of form SOP_Payment_Entry then	{DGR SOP00004}
+	set 'Cash Receipt Type' of file RM_OPEN to 1;	
+elseif IsCheck('Payment Type' of file SOP_Payment_WORK_HIST) of form SOP_Payment_Entry then	{DGR SOP00004}
+	set 'Cash Receipt Type' of file RM_OPEN to 0;	
+	'Check Number' of table RM_OPEN = 'Check Number' of table SOP_Payment_WORK_HIST;
+elseif IsCreditCard('Payment Type' of file SOP_Payment_WORK_HIST) of form SOP_Payment_Entry then	{DGR SOP00004}
+	set 'Cash Receipt Type' of file RM_OPEN to 2;
+	'Check Number' of table RM_OPEN = 'Receipt Number Credit Card' of table SOP_Payment_WORK_HIST;
+end if;
+
+{EFT Process}
+set 'EFT Flag' of file RM_OPEN to 'EFT Flag' of table SOP_Payment_WORK_HIST;
+if 'EFT Flag' of table RM_OPEN = true then
+	'Checkbook ID Check' of table RM_OPEN = 'Checkbook ID' of table SOP_Payment_WORK_HIST;
+end if;
+save file RM_OPEN;
+
+
+
+if (IN_IS_MC_Trx = MC_TRX) then
+	
+	set 'RM Document Type-All' of file MC_RM_Transactions to RM_DOC_CASH;
+	set 'Document Number' of file MC_RM_Transactions to 'Document Number' of file SOP_Payment_WORK_HIST;
+	change file MC_RM_Transactions;
+
+	set 'Customer Number' of file MC_RM_Transactions to 'Customer Number' of file SOP_HDR_HIST;
+	set 'Document Status' of file MC_RM_Transactions to OPEN;
+	set 'Document Date' of file MC_RM_Transactions to 'Document Date' of file SOP_Payment_WORK_HIST;
+	set 'TRX Source' of file MC_RM_Transactions to IN_TRX_Source;
+
+	if not fInvoiceReturnWithNegDocAmt then
+		set 'Originating Current Trx Amount' of file MC_RM_Transactions to 
+			'Originating Amount Paid' of file SOP_Payment_WORK_HIST - l_o_apply_amt;
+	else
+		{invoice should be treated as a return and should equal the amount paid}
+		set 'Originating Current Trx Amount' of file MC_RM_Transactions to 
+			'Originating Amount Paid' of file SOP_Payment_WORK_HIST;
+	end if;	
+
+	
+	set 'Originating Original Trx Amount' of file MC_RM_Transactions to 
+		'Originating Amount Paid' of file SOP_Payment_WORK_HIST;
+	
+	if not l_discounts_already_applied then
+		set	'Originating Discount Available Taken' of file MC_RM_Transactions to
+			 'Originating Discount Available Taken' of file SOP_HDR_HIST;
+		set 'Originating Discount Taken Amount' of file MC_RM_Transactions to 
+			'Originating Discount Taken Amount' of file SOP_HDR_HIST;
+	end if;
+	
+	set 'Currency ID' of file MC_RM_Transactions to 'Currency ID' of file SOP_HDR_HIST;
+	set 'Currency Index' of file MC_RM_Transactions to 'Currency Index' of file SOP_HDR_HIST;
+	set 'Rate Type ID' of file MC_RM_Transactions to 'Rate Type ID' of file SOP_HDR_HIST;
+	set 'Exchange Table ID' of file MC_RM_Transactions to 'Exchange Table ID' of file SOP_HDR_HIST;
+	set 'Exchange Rate' of file MC_RM_Transactions to 'Exchange Rate' of file SOP_HDR_HIST;
+	set 'Denomination Exchange Rate' of file MC_RM_Transactions to 'Denomination Exchange Rate' of file SOP_HDR_HIST;
+	set 'Exchange Date' of file MC_RM_Transactions to 'Exchange Date' of file SOP_HDR_HIST;
+	set Time of file MC_RM_Transactions to Time of file SOP_HDR_HIST;
+	set 'Rate Calculation Method' of file MC_RM_Transactions to 'Rate Calculation Method' of file SOP_HDR_HIST;
+	set 'MC Transaction State' of file MC_RM_Transactions to 'MC Transaction State' of file SOP_HDR_HIST;
+	
+	save file MC_RM_Transactions;
+end if;
+
+increment INOUT_Total_Apply_Amount by l_apply_amount;
+increment INOUT_O_Total_Apply_Amount by l_o_apply_amt;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

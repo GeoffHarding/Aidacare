@@ -1,0 +1,74 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Remove_Button_Change_Pre_PayWay"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		integer			nPaymentRefundPrepayment;
+local		string			sPrompt;
+local		string			sPrepaymentOrderNumber;
+local		integer			sPayWayPaymentType;
+local		string			sPassword;
+
+
+if not Check_Alternate_Form_Security(Runtime_GetCurrentProductID(), resourceid(form SOP_Payment_Entry)) then
+	abort script;
+end if;
+
+
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+clear nPaymentRefundPrepayment;
+
+if Is_PayWay_Prepayment(integer(itemdata('SOP Type', 'SOP Type')), 'SOP Number', 'Line Item Sequence', sPrepaymentOrderNumber) then
+	nPaymentRefundPrepayment = 3;
+	sPrompt = getmsg(22035);   {Enter the password to remove this PayWay prepayment.}
+else
+	sPayWayPaymentType = Get_PayWay_Payment_Type('Document Number' of table SOP_Payment_WORK_HIST);
+	
+	if empty(sPayWayPaymentType) and
+	 'Document Number' of table SOP_Payment_WORK_HIST <> getmsg(22031) then   {PAYWAY REFUND}
+		abort script;
+	end if;
+	
+	if sPayWayPaymentType = HS_PAYWAY_REFUND or
+	 'Document Number' of table SOP_Payment_WORK_HIST = getmsg(22031) then   {PAYWAY REFUND}
+		nPaymentRefundPrepayment = 2;
+		sPrompt = getmsg(22021);   {Enter the password to remove this PayWay refund.}
+	else
+		nPaymentRefundPrepayment = 1;
+		sPrompt = getmsg(22020);   {Enter the password to remove this PayWay payment.}
+	end if;
+end if;
+
+
+'Dummy Record' of table HS_PayWay_SETP = false;
+get table HS_PayWay_SETP;
+if err() <> OKAY then
+	clear table HS_PayWay_SETP;
+end if;
+
+if not empty('PayWay Remove Payment Password' of table HS_PayWay_SETP) then
+	if not getstring(sPrompt, true, sPassword) then
+		reject script;
+	end if;
+	
+	if sPassword <> 'PayWay Remove Payment Password' of table HS_PayWay_SETP then
+		reject script;
+	end if;
+end if;
+
+
+if nPaymentRefundPrepayment = 1 then
+	run script '(L) PayWay Refund Single Button';
+elseif nPaymentRefundPrepayment = 3 then
+	run script '(L) PayWay PrePaid Make Refund Button';
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

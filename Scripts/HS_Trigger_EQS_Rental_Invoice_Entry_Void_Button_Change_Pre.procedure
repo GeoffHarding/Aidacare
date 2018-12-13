@@ -1,0 +1,20 @@
+Procedure	"HS_Trigger_EQS_Rental_Invoice_Entry_Void_Button_Change_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if not Is_SOP_Payments_Open_From_Rental() then
+	abort script;
+end if;
+
+
+warning getmsg(22002);   {Please close the Sales Payment Entry window first.}
+open window SOP_Payment_Entry of form SOP_Payment_Entry;
+reject script;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

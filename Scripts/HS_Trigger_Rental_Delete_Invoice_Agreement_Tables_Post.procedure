@@ -1,0 +1,47 @@
+Procedure	"HS_Trigger_Rental_Delete_Invoice_Agreement_Tables_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in 				string				IN_Invoice_Number;
+in				string				IN_Agreement_Number;
+inout 			boolean 			OUT_Rec_Deleted;
+optional in		integer				IN_Line_Type; {1 = Line, 2 = Misc}
+optional in		long				IN_Ord;
+
+local			boolean				bCredit;
+local			integer				nSOPType;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not OUT_Rec_Deleted then
+	abort script;
+end if;
+
+
+if not missing(IN_Line_Type) or not missing(IN_Ord) then
+	abort script;
+end if;
+
+
+bCredit = Rental_Is_Invoice_Credit(IN_Invoice_Number);
+if bCredit then
+	nSOPType = SOP_TYPE_RENTAL_CREDIT;
+else
+	nSOPType = SOP_TYPE_RENTAL_INVOICE;
+end if;
+
+
+call Rental_Delete_Payments,
+ nSOPType,
+ IN_Invoice_Number,
+ false;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

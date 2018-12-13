@@ -1,0 +1,76 @@
+= SystemVariableList	"Globals"
+{
+	SystemVariables
+	{
+		SystemVariable	"HS CM CMDocAmount"		
+		{
+			Field	"HS CM CMDocAmount"
+			Position	"00370"
+		}
+		SystemVariable	"HS CM CMDocNumber"		
+		{
+			Field	"HS CM CMDocNumber"
+			Position	"00371"
+		}
+		SystemVariable	"HS CM Checkbook Amount"		
+		{
+			Field	"HS CM Checkbook Amount"
+			Position	"00369"
+		}
+		SystemVariable	"HS CM Description"		
+		{
+			Field	"HS CM Description"
+			Position	"00372"
+		}
+		SystemVariable	"HS CM Originating Amount"		
+		{
+			Field	"HS CM Originating Amount"
+			Position	"00373"
+		}
+		SystemVariable	"HS Corporate Customer Number"		
+		{
+			Field	"HS Corporate Customer Number"
+			Position	"00364"
+		}
+		SystemVariable	"HS Feature"		
+		{
+			Field	"HS Feature"
+			Position	"00360"
+		}
+		SystemVariable	"HS Primary Billto Address Code"		
+		{
+			Field	"HS Primary Billto Address Code"
+			Position	"00363"
+		}
+		SystemVariable	"HS Rental Invoice Entry Save Record"		
+		{
+			Field	"HS Rental Invoice Entry Save Record"
+			Position	"00365"
+		}
+		SystemVariable	"HS Rental Invoice Is Credit"		
+		{
+			Field	"HS Rental Invoice Is Credit"
+			Position	"00367"
+		}
+		SystemVariable	"HS Rental Invoice Posting Credit"		
+		{
+			Field	"HS Rental Invoice Posting Credit"
+			Position	"00368"
+		}
+		SystemVariable	"HS SOP Type"		
+		{
+			Field	"HS SOP Type"
+			Position	"00362"
+		}
+		SystemVariable	"HS SOP Type Credit To Return"		
+		{
+			Field	"HS SOP Type Credit To Return"
+			Position	"00366"
+		}
+		SystemVariable	"HS Trigger Tag"		
+		{
+			Field	"HS Trigger Tag"
+			Position	"00361"
+		}
+	}
+}

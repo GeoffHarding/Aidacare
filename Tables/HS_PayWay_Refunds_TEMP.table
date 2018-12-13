@@ -1,0 +1,226 @@
+Table	"HS_PayWay_Refunds_TEMP"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"PayWay Refunds Temp"
+	FourByteHeader	"true"
+	PhysicalName	"TEMP"
+	Restriction	""
+	Series	"Sales"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"Amount Paid"		
+		{
+			Encrypt	"false"
+			Field	"Amount Paid"
+			Position	"2"
+		}
+		TableField	"HS PayWay Date"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Date"
+			Position	"1"
+		}
+		TableField	"HS PayWay Original Order Number"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Original Order Number"
+			Position	"0"
+		}
+		TableField	"HS PayWay Receipt Number"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Receipt Number"
+			Position	"6"
+		}
+		TableField	"HS PayWay Response Text"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Response Text"
+			Position	"7"
+		}
+		TableField	"HS Refund Amount"		
+		{
+			Encrypt	"false"
+			Field	"HS Refund Amount"
+			Position	"4"
+		}
+		TableField	"HS Refund Marked"		
+		{
+			Encrypt	"false"
+			Field	"HS Refund Marked"
+			Position	"3"
+		}
+		TableField	"Status"		
+		{
+			Encrypt	"false"
+			Field	"Status"
+			Position	"5"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_PayWay_Refunds_TEMP_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"HS PayWay Original Order Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+		Key	"HS_PayWay_Refunds_TEMP_Key2"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"true"
+			Modifiable	"true"
+			Position	"1"
+			Primary	"false"
+			Segments
+			{
+				KeySegment	"HS PayWay Date"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+				KeySegment	"HS PayWay Original Order Number"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"1"
+				}
+			}
+		}
+		Key	"HS_PayWay_Refunds_TEMP_Key3"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"true"
+			Modifiable	"true"
+			Position	"2"
+			Primary	"false"
+			Segments
+			{
+				KeySegment	"HS PayWay Date"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"1"
+				}
+				KeySegment	"HS PayWay Original Order Number"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"2"
+				}
+				KeySegment	"HS Refund Marked"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+		Key	"HS_PayWay_Refunds_TEMP_Key4"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"true"
+			Modifiable	"true"
+			Position	"3"
+			Primary	"false"
+			Segments
+			{
+				KeySegment	"HS PayWay Date"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"1"
+				}
+				KeySegment	"HS PayWay Original Order Number"				
+				{
+					Component	""
+					Descending	"true"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"2"
+				}
+				KeySegment	"Status"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

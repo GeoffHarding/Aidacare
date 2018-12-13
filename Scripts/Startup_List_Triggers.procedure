@@ -1,0 +1,27 @@
+Procedure	"Startup_List_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if Trigger_RegisterProcedure(script GetColumnName of form ListObj_PurchasingTrx, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_ListObj_PurchasingTrx_GetColumnName_Post, 'HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_GETCOLUMNNAME_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering GetColumnName of form ListObj_PurchasingTrx procedure post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script LoadDataBackground of form ListObj_PurchasingTrx, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_ListObj_PurchasingTrx_LoadDataBackground_Post, 'HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_LOADDATABACKGROUND_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering LoadDataBackground of form ListObj_PurchasingTrx procedure post trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

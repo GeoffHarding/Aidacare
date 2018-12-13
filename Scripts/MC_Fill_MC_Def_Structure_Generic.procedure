@@ -1,0 +1,21 @@
+Procedure	"MC_Fill_MC_Def_Structure_Generic"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	'MC Def Structure'		OUT_MC_Def_Structure;
+
+
+clear OUT_MC_Def_Structure;
+
+OUT_MC_Def_Structure:'Currency ID' = 'Functional Currency' of globals;
+OUT_MC_Def_Structure:'Currency Index' = 'Functional Currency Index' of globals;
+OUT_MC_Def_Structure:'Decimal Places' = 'Functional Decimal Places' of globals;
+OUT_MC_Def_Structure:'View Mode' = FUNCTIONAL;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

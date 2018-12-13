@@ -1,0 +1,51 @@
+Function	"HS_Trigger_Get_Batch_Number_WS_SOP_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns string OUT_Batch_No;
+
+local	text		tCode;
+local	string		sCompileMessage;
+local	integer		nErrorCount;
+local	integer		nBatchCreationType;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+clear tCode;
+tCode = tCode + \"out	integer		OUT_Batch_Creation_Type;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"get first table WS_SOP_Setup_MSTR;\" + char(13);
+tCode = tCode + \"if err() <> OKAY then\" + char(13);
+tCode = tCode + \"	clear table WS_SOP_Setup_MSTR;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"OUT_Batch_Creation_Type = 'Batch Creation Type' of table WS_SOP_Setup_MSTR;\" + char(13);
+
+nErrorCount = execute(PRODID_WENNSOFT_PRODUCTS, tCode, sCompileMessage, nBatchCreationType);
+call OPEN_CODE_VIEWER of form HS_Misc_Code_Viewer, tCode, sCompileMessage;
+
+
+if nBatchCreationType = 2 then   { Use SOP Type }
+	case 'HS SOP Type' of globals
+		in [SOP_QUOTE]
+			OUT_Batch_No = WS_QUOTES;
+		in [SOP_BACK_ORDER]
+			OUT_Batch_No = WS_ORDERS;
+		in [SOP_ORDER]
+			OUT_Batch_No = WS_ORDERS;
+		in [SOP_RETURN]
+			OUT_Batch_No = WS_INVOICES;
+		in [SOP_INVOICE]
+			OUT_Batch_No = WS_INVOICES;
+		else
+			OUT_Batch_No = WS_INVOICES;
+	end case;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	UserProperties	""
+}

@@ -1,0 +1,61 @@
+Function	"Tables_Check"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns integer OUT_Result;
+
+local	boolean				bUpdateNeeded;
+local	integer				nNumberOfTables = 6;
+local	integer				nLoop;
+local	reference			rTable;
+local	anonymous table		aTable;
+local	boolean				bTables[100];
+
+
+try
+	clear OUT_Result;
+	bUpdateNeeded = false;
+	
+	Table_DisableErrorChecks(true);
+	Table_SetCreateMode(false);
+	
+	{ Check each table to see which need creating/upgrading }
+	for nLoop = 1 to nNumberOfTables do
+		rTable = Tables_Check_Get_Reference(nLoop);
+		
+		open table aTable with name technicalname(table(rTable));
+		if Table_Compare(table aTable) = STATUS_SUCCESS then
+			bTables[nLoop] = false;
+		else
+			bTables[nLoop] = true;
+			bUpdateNeeded = true;
+		end if;
+		close table aTable;
+	end for;
+	
+	if not bUpdateNeeded then
+		throw;
+	end if;
+	
+	
+	if 'User ID' of globals <> SA and 'User ID' of globals <> DYNSA then
+		OUT_Result = 1;
+		throw;
+	end if;
+	
+	
+	for nLoop = 1 to nNumberOfTables do
+		if bTables[nLoop] then
+			rTable = Tables_Check_Get_Reference(nLoop);
+			
+			call Table_Convert, technicalname(table(rTable)) ,'Company ID' of globals;
+		end if;
+	end for;
+	
+	
+	Table_FlushCache();
+else
+end try;
+"
+	UserProperties	""
+}

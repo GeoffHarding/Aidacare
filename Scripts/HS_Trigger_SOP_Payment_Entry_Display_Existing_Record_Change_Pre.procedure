@@ -1,0 +1,13 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Display_Existing_Record_Change_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"'HS SOP Type Credit To Return' of globals = false;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

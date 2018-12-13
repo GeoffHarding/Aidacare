@@ -1,0 +1,1635 @@
+Form	"HS_PayWay_Customer_Maintenance"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+	}
+	Datatypes
+	{
+		Datatype	"Card Holder Name"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"50"
+			StorageLength	"52"
+		}
+		Datatype	"Card Number"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"19"
+			StorageLength	"20"
+		}
+		Datatype	"Expiry Month"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"Expiry Month DDL"		
+		{
+			Control	"DropDownList"
+			Sort	"false"
+			StaticType	"Text"
+			~StaticItems
+			{
+				TextItem	"00001"				
+				{
+					Item	"01"
+				}
+				TextItem	"00002"				
+				{
+					Item	"02"
+				}
+				TextItem	"00003"				
+				{
+					Item	"03"
+				}
+				TextItem	"00004"				
+				{
+					Item	"04"
+				}
+				TextItem	"00005"				
+				{
+					Item	"05"
+				}
+				TextItem	"00006"				
+				{
+					Item	"06"
+				}
+				TextItem	"00007"				
+				{
+					Item	"07"
+				}
+				TextItem	"00008"				
+				{
+					Item	"08"
+				}
+				TextItem	"00009"				
+				{
+					Item	"09"
+				}
+				TextItem	"00010"				
+				{
+					Item	"10"
+				}
+				TextItem	"00011"				
+				{
+					Item	"11"
+				}
+				TextItem	"00012"				
+				{
+					Item	"12"
+				}
+			}
+		}
+		Datatype	"Expiry Year"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"Expiry Year DDL"		
+		{
+			Control	"DropDownList"
+			Sort	"true"
+			StaticType	"Text"
+			~StaticItems
+			{
+			}
+		}
+		Datatype	"PayWay Register Customer"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"Response Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"Response Text"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"250"
+			StorageLength	"252"
+		}
+		Datatype	"Summary Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"Update Credit Card"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	"Update Card Details"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Native Picture"
+			~ItemImages
+			{
+			}
+		}
+	}
+	EventPost	""
+	EventPre	""
+	Fields
+	{
+		Field	"Card Holder Name"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Card Holder Name"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Card Number"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Card Number"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Expiry Month"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Expiry Month"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Expiry Month DDL"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Expiry Month DDL"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Expiry Year"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Expiry Year"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Expiry Year DDL"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Expiry Year DDL"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Register Customer"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Register Customer"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Response Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Response Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Response Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Response Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Summary Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Summary Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Update Credit Card"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Update Credit Card"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+		FormTable	"HS_PayWay_Customer_MSTR"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"1"
+			Table	"HS_PayWay_Customer_MSTR"
+		}
+		FormTable	"RM_Customer_MSTR"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"2"
+			Table	"RM_Customer_MSTR"
+		}
+	}
+	Windows
+	{
+		Window	"PayWay_Customer_Maintenance"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"true"
+			DisplayName	"Debtor PayWay Maintenance"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	"PayWay_Customer_Maintenance_WIN_PRE"
+			EventPrint	""
+			Fields
+			{
+				WindowControl	"(L) Card Holder Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Card Holder Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"17"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"127"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"340"
+					TabStop	"true"
+					Tag	"20"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"10"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Card Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Card Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"18"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"127"
+					PositionTop	"205"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"true"
+					Tag	"21"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"11"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Expiry Month"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Expiry Month"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"300"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"35"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"29"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Expiry Month DDL"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					ControlType	"DropDownList"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance l_Expiry Month DDL_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Expiry Month DDL"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"19"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"127"
+					PositionTop	"224"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"42"
+					TabStop	"true"
+					Tag	"22"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					VisibleItems	"8"
+					ZOrder	"12"
+				}
+				WindowControl	"(L) Expiry Year"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Expiry Year"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"319"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"34"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"28"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Expiry Year DDL"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					ControlType	"DropDownList"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance l_Expiry Year DDL_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Expiry Year DDL"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"19"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"186"
+					PositionTop	"224"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"42"
+					TabStop	"true"
+					Tag	"23"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					VisibleItems	"8"
+					ZOrder	"13"
+				}
+				WindowControl	"(L) PayWay Register Customer"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Register Customer"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"300"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"27"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"25"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Response Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Response Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"338"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"28"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"26"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Response Text"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Response Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"357"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"29"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"27"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Summary Code"				
+				{
+					Alignment	"right"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Customer_Maintenance l_Summary Code_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Summary Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"319"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"36"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"30"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Update Credit Card"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Customer_Maintenance l_Update Credit Card_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Update Credit Card"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"348"
+					PositionTop	"224"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"119"
+					TabStop	"true"
+					Tag	"26"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"14"
+					Zoom	"false"
+				}
+				WindowLine	"1"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"24"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"0"
+					SizeWidth	"494"
+					ZOrder	"0"
+				}
+				WindowPrompt	"10"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"178"
+					PositionTop	"101"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Customer Reference Number"
+					Visible	"true"
+					ZOrder	"8"
+					Zoom	"false"
+				}
+				WindowLine	"13"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"73"
+					PositionTop	"5"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"16"
+					SizeWidth	"0"
+					ZOrder	"17"
+				}
+				WindowLine	"14"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"148"
+					PositionTop	"4"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"16"
+					SizeWidth	"0"
+					ZOrder	"18"
+				}
+				WindowPrompt	"15"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"12"
+					PositionTop	"157"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"95"
+					Text	"Credit Card Details"
+					Visible	"true"
+					ZOrder	"20"
+					Zoom	"false"
+				}
+				WindowShape	"16"				
+				{
+					Appearance	"3D Border"
+					BackColor	"Transparent"
+					LineColor	"System"
+					LineSize	"1"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"167"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					Shape	"Rectangle"
+					SizeHeight	"96"
+					SizeWidth	"477"
+					ZOrder	"19"
+				}
+				WindowPrompt	"17"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"103"
+					Text	"Card Holder Name"
+					Visible	"true"
+					ZOrder	"21"
+					Zoom	"false"
+				}
+				WindowPrompt	"18"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"205"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"103"
+					Text	"Card Number"
+					Visible	"true"
+					ZOrder	"22"
+					Zoom	"false"
+				}
+				WindowPrompt	"19"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"103"
+					Text	"Expiry"
+					Visible	"true"
+					ZOrder	"23"
+					Zoom	"false"
+				}
+				WindowPrompt	"2"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"86"
+					Text	"Debtor ID"
+					Visible	"true"
+					ZOrder	"1"
+					Zoom	"false"
+				}
+				WindowPrompt	"24"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"169"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"17"
+					Text	"/"
+					Visible	"true"
+					ZOrder	"24"
+					Zoom	"false"
+				}
+				WindowPrompt	"39"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"195"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"289"
+					Text	"Allow Customer Reference to be changed on Transactions"
+					Visible	"true"
+					ZOrder	"31"
+					Zoom	"false"
+				}
+				WindowPrompt	"5"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"86"
+					Text	"Name"
+					Visible	"true"
+					ZOrder	"2"
+					Zoom	"false"
+				}
+				WindowPrompt	"9"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"101"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"119"
+					Text	"PayWay Customer"
+					Visible	"true"
+					ZOrder	"7"
+					Zoom	"false"
+				}
+				WindowControl	"Allow Customer Reference Changes"				
+				{
+					Alignment	"left"
+					Appearance	"3D Border"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ButtonStyle	"Standard"
+					ControlType	"CheckBox"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Allow Customer Reference Changes"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PatternSelect	"50% Shading"
+					PositionLeft	"178"
+					PositionTop	"129"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"306"
+					TabStop	"true"
+					Tag	"38"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"9"
+				}
+				WindowControl	"Cancel Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Customer_Maintenance Cancel Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Cancel Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"75"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"12"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"16"
+					Zoom	"false"
+				}
+				WindowControl	"Customer Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Customer Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"5"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"93"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"391"
+					TabStop	"false"
+					Tag	"4"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"4"
+					Zoom	"false"
+				}
+				WindowControl	"Customer Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Customer_Maintenance Customer Number_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Customer Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"2"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"93"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"136"
+					TabStop	"false"
+					Tag	"3"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"3"
+					Zoom	"false"
+				}
+				WindowControl	"HS PayWay Customer CB"				
+				{
+					Alignment	"left"
+					Appearance	"3D Border"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ButtonStyle	"Standard"
+					ControlType	"CheckBox"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance HS PayWay Customer CB_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS PayWay Customer CB"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"9"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PatternSelect	"50% Shading"
+					PositionLeft	"8"
+					PositionTop	"101"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"7"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"5"
+				}
+				WindowControl	"HS PayWay Customer Reference Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance HS PayWay Customer Reference Number_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS PayWay Customer Reference Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"10"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"331"
+					PositionTop	"101"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"true"
+					Tag	"8"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"6"
+					Zoom	"false"
+				}
+				WindowControl	"Save Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Customer_Maintenance Save Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Save Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"0"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"11"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+			}
+			LastTag	"39"
+			Position	"1"
+			PositionLeft	"1"
+			PositionTop	"1"
+			Resizable	"false"
+			SizeHeight	"273"
+			SizeWidth	"494"
+			WindowType	"Primary"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"PayWay_Customer_Maintenance Cancel Button_CHG"		
+		{
+			Documentation	""
+			Script	"close form HS_PayWay_Customer_Maintenance;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance Customer Number_CHG"		
+		{
+			Documentation	""
+			Script	"'Customer Number' of table RM_Customer_MSTR = 'Customer Number';
+get table RM_Customer_MSTR;
+if err() <> OKAY then
+	close form HS_PayWay_Customer_Maintenance;
+end if;
+
+'Customer Name' = 'Customer Name' of table RM_Customer_MSTR;
+
+
+'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
+change table HS_PayWay_Customer_MSTR;
+if err() = OKAY then
+	'HS PayWay Customer CB' = true;
+	'HS PayWay Customer Reference Number' = 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR;
+	'Allow Customer Reference Changes' = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR;
+else
+	'HS PayWay Customer CB' = false;
+	clear 'HS PayWay Customer Reference Number';
+	clear 'Allow Customer Reference Changes';
+end if;
+
+run script 'HS PayWay Customer CB';
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance HS PayWay Customer CB_CHG"		
+		{
+			Documentation	""
+			Script	"if 'HS PayWay Customer CB' then
+	unlock 'HS PayWay Customer Reference Number';
+	unlock '(L) Card Holder Name';
+	unlock '(L) Card Number';
+	unlock '(L) Expiry Month DDL';
+	unlock '(L) Expiry Year DDL';
+	unlock '(L) Update Credit Card';
+else
+	lock 'HS PayWay Customer Reference Number';
+	lock '(L) Card Holder Name';
+	lock '(L) Card Number';
+	lock '(L) Expiry Month DDL';
+	lock '(L) Expiry Year DDL';
+	lock '(L) Update Credit Card';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance HS PayWay Customer Reference Number_CHG"		
+		{
+			Documentation	""
+			Script	"if not Is_PayWay_Reference_Unique('HS PayWay Customer Reference Number', 'Customer Number', \"\") then
+	warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
+	'HS PayWay Customer Reference Number' = old();
+	restart field;
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance Save Button_CHG"		
+		{
+			Documentation	""
+			Script	"if 'HS PayWay Customer CB' then
+	if empty('HS PayWay Customer Reference Number') then
+		warning getmsg(22008);   {Please enter a Customer Reference Number.}
+		abort script;
+	end if;
+	
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR = 'HS PayWay Customer Reference Number';
+	'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR = 'Allow Customer Reference Changes';
+	save table HS_PayWay_Customer_MSTR;
+	if err() = DUPLICATE then
+		warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
+		
+		'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
+		change table HS_PayWay_Customer_MSTR;
+		abort script;
+	end if;
+else
+	release table HS_PayWay_Customer_MSTR;
+	
+	'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
+	change table HS_PayWay_Customer_MSTR;
+	if err() = OKAY then
+		remove table HS_PayWay_Customer_MSTR;
+	else
+		release table HS_PayWay_Customer_MSTR;
+	end if;
+end if;
+
+close form HS_PayWay_Customer_Maintenance;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Expiry Month DDL_CHG"		
+		{
+			Documentation	""
+			Script	"'(L) Expiry Month' = itemname('(L) Expiry Month DDL', '(L) Expiry Month DDL');
+
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Expiry Year DDL_CHG"		
+		{
+			Documentation	""
+			Script	"'(L) Expiry Year' = itemname('(L) Expiry Year DDL', '(L) Expiry Year DDL');
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Summary Code_CHG"		
+		{
+			Documentation	""
+			Script	"pragma (disable warning LiteralStringUsed);
+
+case '(L) Response Code'
+	in [\"00\"]
+		warning getmsg(22013);   {Customer and credit card details have been successfully updated in PayWay.}
+		run script 'Save Button';
+		abort script;
+		
+	in [\"14\"]
+		warning getmsg(22017) + '(L) Response Text';   {PayWay update failed - Invalid card number (no such number)}
+		
+	in [\"QY\"]
+		warning getmsg(22017) + '(L) Response Text';   {PayWay update failed - Card Type Not Accepted}
+		
+	in [\"54\"]
+		warning getmsg(22017) + '(L) Response Text';   {PayWay update failed - Expired card}
+		
+	else
+		warning getmsg(22014);   {Error updating PayWay.}
+		
+end case;
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Update Credit Card_CHG"		
+		{
+			Documentation	""
+			Script	"clear '(L) PayWay Register Customer';
+
+if empty('HS PayWay Customer Reference Number') then
+	warning getmsg(22006);   {Please enter the Customer Reference Number first.}
+	abort script;
+end if;
+
+if empty('(L) Card Holder Name') or empty('(L) Card Number') or empty('(L) Expiry Month') or empty('(L) Expiry Year') then
+	warning getmsg(22007);   {Please enter all credit card details first.}
+	abort script;
+end if;
+
+
+'(L) PayWay Register Customer' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance_WIN_PRE"		
+		{
+			Documentation	""
+			Script	"local	integer		nYear;
+local	integer		nLoop;
+
+
+nYear = year('User Date' of globals);
+nYear = nYear - 1;
+
+
+clear '(L) Expiry Year DDL';
+for nLoop = nYear to (nYear + 9) do
+	add item pad(str(nLoop % 100), LEADING, CH_0, 2)  to '(L) Expiry Year DDL';
+end for;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+		Procedure	"OPEN"		
+		{
+			Documentation	""
+			Script	"in		string			IN_Customer_Number;
+
+
+open form HS_PayWay_Customer_Maintenance;
+if isopen(window PayWay_Customer_Maintenance of form HS_PayWay_Customer_Maintenance) then
+	'Customer Number' of window PayWay_Customer_Maintenance of form HS_PayWay_Customer_Maintenance = IN_Customer_Number;
+	run script 'Customer Number' of window PayWay_Customer_Maintenance of form HS_PayWay_Customer_Maintenance;
+end if;
+"
+			UserProperties	""
+		}
+	}
+}

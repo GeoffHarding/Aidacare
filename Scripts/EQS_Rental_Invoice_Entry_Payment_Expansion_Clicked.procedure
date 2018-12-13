@@ -1,0 +1,113 @@
+Procedure	"EQS_Rental_Invoice_Entry_Payment_Expansion_Clicked"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		currency				cPaymentAmount;
+local		currency				cCODAmount;
+local		currency				cPaymentDistributed;
+local		date					dDocumentDate;
+local		date					dGLPostingDate;
+local		string					sCustomerNumber;
+local		string					sCustomerName;
+local		string					sInvoiceNumber;
+local		'MC Def Structure'		mcDef;
+local		boolean					bCredit;
+local		integer					nSOPType;
+local		string					sCheckbook;
+local		integer					nError;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+if not 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	abort script;
+end if;
+
+
+if isopen(form SOP_Payment_Entry) then
+	close form SOP_Payment_Entry;
+	if isopen(form SOP_Payment_Entry) then
+		abort script;
+	end if;
+end if;
+
+
+call EQS_Rental_Invoice_Entry_Get_Window_Fields, cPaymentAmount, cCODAmount, cPaymentDistributed;
+
+
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"Document Date\", dDocumentDate;
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"Posting Date\", dGLPostingDate;
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"Customer Number\", sCustomerNumber;
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"Customer Name\", sCustomerName;
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"EQS Rental Invoice Number\", sInvoiceNumber;
+call MC_Fill_MC_Def_Structure_Generic, mcDef;
+
+if empty(sInvoiceNumber) then
+	abort script;
+end if;
+
+bCredit = Rental_Is_Invoice_Credit(sInvoiceNumber);
+if bCredit then
+	nSOPType = SOP_TYPE_RENTAL_CREDIT;
+else
+	nSOPType = SOP_TYPE_RENTAL_INVOICE;
+end if;
+
+
+'Customer Number' of table RM_Customer_MSTR = sCustomerNumber;
+get table RM_Customer_MSTR;
+if err() <> OKAY then
+	clear table RM_Customer_MSTR;
+end if;
+
+get first table SOP_SETP;
+if err() <> OKAY then
+	clear table SOP_SETP;
+end if;
+
+
+{ Determine the default checkbook }
+sCheckbook = 'Checkbook ID' of table RM_Customer_MSTR;
+if empty(sCheckbook) then
+	sCheckbook = 'Checkbook ID' of table SOP_SETP;
+end if;
+
+
+open form SOP_Payment_Entry;
+
+call OPEN of form SOP_Payment_Entry,
+ dDocumentDate,
+ dGLPostingDate,
+ cCODAmount,
+ cPaymentDistributed,
+ cPaymentAmount,
+ 0,   {Deposit Received}
+ nSOPType,
+ 'Functional Currency' of globals,
+ sCheckbook,
+ sCustomerNumber,
+ sCustomerName,
+ sInvoiceNumber,
+ 'Credit Card ID' of table RM_Customer_MSTR,
+ cCODAmount,
+ cPaymentDistributed,
+ cPaymentAmount,
+ 0,   {Originating Deposit Received}
+ mcDef,
+ nError,
+ FUNCTIONAL,
+ cPaymentAmount,
+ cPaymentAmount,
+ RENTAL_INVOICE_ENTRY;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

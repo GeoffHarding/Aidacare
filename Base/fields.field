@@ -1,0 +1,273 @@
+Field	"HS Return Long"
+{
+	ArraySize	"0"
+	Datatype	"LI_14"
+	LookupForm	""
+	PhysicalName	"HS_Return_Long"
+}
+Field	"HS Return Nofocus"
+{
+	ArraySize	"30"
+	Datatype	"Boolean"
+	LookupForm	""
+	PhysicalName	"HS_Return_Nofocus"
+}
+Field	"HS Return String"
+{
+	ArraySize	"0"
+	Datatype	"STR100"
+	LookupForm	""
+	PhysicalName	"HS_Return_String"
+}
+Field	"HS Return To Field"
+{
+	ArraySize	"30"
+	Datatype	"Field Reference"
+	LookupForm	""
+	PhysicalName	"HS_Return_To_Field"
+}
+Field	"HS Return Value Long"
+{
+	ArraySize	"30"
+	Datatype	"LI_14"
+	LookupForm	""
+	PhysicalName	"HS_Return_Value_Long"
+}
+Field	"HS Return Value String"
+{
+	ArraySize	"30"
+	Datatype	"STR100"
+	LookupForm	""
+	PhysicalName	"HS_Return_Value_String"
+}
+Field	"HS Check Box"
+{
+	ArraySize	"30"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"HS_Check_Box"
+}
+Field	"HS Feature"
+{
+	ArraySize	"30"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"HS_Feature"
+}
+Field	"HS Trigger Tag"
+{
+	ArraySize	"200"
+	Datatype	"INT"
+	LookupForm	""
+	PhysicalName	"HS_Trigger_Tag"
+}
+Field	"HS SOP Type"
+{
+	ArraySize	"0"
+	Datatype	"INT"
+	LookupForm	""
+	PhysicalName	"HS_SOP_Type"
+}
+Field	"HS Primary Billto Address Code"
+{
+	ArraySize	"0"
+	Datatype	"STR15_LBAU"
+	LookupForm	""
+	PhysicalName	"HS_Primary_Billto_Addres"
+}
+Field	"HS Corporate Customer Number"
+{
+	ArraySize	"0"
+	Datatype	"STR15_RM_Customer_Number"
+	LookupForm	""
+	PhysicalName	"HS_Corporate_Customer_No"
+}
+Field	"EQS Rental Invoice Number"
+{
+	ArraySize	"0"
+	Datatype	"STR15_LBAU"
+	LookupForm	""
+	PhysicalName	"EQSRtlInv_Number"
+}
+Field	"HS Rental Invoice Entry Save Record"
+{
+	ArraySize	"0"
+	Datatype	"boolean"
+	LookupForm	""
+	PhysicalName	"HSRtlInvEntry_SaveRecord"
+}
+Field	"HS SOP Type Credit To Return"
+{
+	ArraySize	"0"
+	Datatype	"Boolean"
+	LookupForm	""
+	PhysicalName	"HS_SOP_Type_Credit_To_Re"
+}
+Field	"HS Rental Invoice Is Credit"
+{
+	ArraySize	"0"
+	Datatype	"Boolean"
+	LookupForm	""
+	PhysicalName	"HS_Rental_Invoice_Is_Cre"
+}
+Field	"HS Rental Invoice Posting Credit"
+{
+	ArraySize	"0"
+	Datatype	"Boolean"
+	LookupForm	""
+	PhysicalName	"HS_Rtl_Inv_Postg_Credit"
+}
+Field	"HS CM CMDocNumber"
+{
+	ArraySize	"0"
+	Datatype	"STR20_Document_Number"
+	LookupForm	""
+	PhysicalName	"HS_CM_CMDocNumber"
+}
+Field	"HS CM Checkbook Amount"
+{
+	ArraySize	"0"
+	Datatype	"DLR19_$S2"
+	LookupForm	""
+	PhysicalName	"HS_CM_Checkbook_Amount"
+}
+Field	"HS CM Originating Amount"
+{
+	ArraySize	"0"
+	Datatype	"DLR19_$S2"
+	LookupForm	""
+	PhysicalName	"HS_CM_Originating_Amount"
+}
+Field	"HS CM CMDocAmount"
+{
+	ArraySize	"0"
+	Datatype	"DLR17_RBS0_STR$"
+	LookupForm	""
+	PhysicalName	"HS_CM_CMDocAmount"
+}
+Field	"HS CM Description"
+{
+	ArraySize	"0"
+	Datatype	"STR30"
+	LookupForm	""
+	PhysicalName	"HS_CM_Description"
+}
+Field	"HS PayWay Customer CB"
+{
+	ArraySize	"0"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Customer_CB"
+}
+Field	"HS PayWay Customer Reference Number"
+{
+	ArraySize	"0"
+	Datatype	"STR20"
+	LookupForm	""
+	PhysicalName	"HS_PW_Cust_Reference_No"
+}
+Field	"PayWay Merchant"
+{
+	ArraySize	"0"
+	Datatype	"STR32"
+	LookupForm	""
+	PhysicalName	"PayWay_Merchant"
+}
+Field	"PayWay User Name"
+{
+	ArraySize	"0"
+	Datatype	"STR32"
+	LookupForm	""
+	PhysicalName	"PayWay_User_Name"
+}
+Field	"PayWay Password"
+{
+	ArraySize	"0"
+	Datatype	"STR32"
+	LookupForm	""
+	PhysicalName	"PayWay_Password"
+}
+Field	"PayWay Credentials File"
+{
+	ArraySize	"0"
+	Datatype	"STR250"
+	LookupForm	""
+	PhysicalName	"PayWay_Credentials_File"
+}
+Field	"PayWay Log Directory"
+{
+	ArraySize	"0"
+	Datatype	"STR250"
+	LookupForm	""
+	PhysicalName	"PayWay_Log_Directory"
+}
+Field	"HS PayWay Order Number"
+{
+	ArraySize	"0"
+	Datatype	"STR20"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Order_Number"
+}
+Field	"HS PayWay Original Order Number"
+{
+	ArraySize	"0"
+	Datatype	"STR20"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Original_Order"
+}
+Field	"HS PayWay Payment Refund"
+{
+	ArraySize	"0"
+	Datatype	"INT"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Payment_Refund"
+}
+Field	"HS PayWay Receipt Number"
+{
+	ArraySize	"0"
+	Datatype	"STR32"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Receipt_Number"
+}
+Field	"PayWay Remove Payment Password"
+{
+	ArraySize	"0"
+	Datatype	"STR15"
+	LookupForm	""
+	PhysicalName	"PayWay_Remove_Pay_Passwd"
+}
+Field	"HS Refund Amount"
+{
+	ArraySize	"0"
+	Datatype	"DLR17_RBS0_STR$"
+	LookupForm	""
+	PhysicalName	"HS_Refund_Amount"
+}
+Field	"HS PayWay Date"
+{
+	ArraySize	"0"
+	Datatype	"DATE"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Date"
+}
+Field	"HS Refund Marked"
+{
+	ArraySize	"0"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"HS_Refund_Marked"
+}
+Field	"HS PayWay Response Text"
+{
+	ArraySize	"0"
+	Datatype	"STR250"
+	LookupForm	""
+	PhysicalName	"HS_PayWay_Response_Text"
+}
+Field	"Allow Customer Reference Changes"
+{
+	ArraySize	"0"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"Allow_Customer_Ref_Chngs"
+}

@@ -1,0 +1,24 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_Address_Code_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if not Check_Modified_Form_Security(PRODID_WENNSOFT_PRODUCTS, resourceid(form RM_Customer_Maintenance)) then
+	abort script;
+end if;
+
+
+default form to RM_Customer_Maintenance;
+default window to RM_Customer_Maintenance;
+
+
+if not empty ('HS Primary Billto Address Code' of globals) then
+	'Primary Billto Address Code' = 'HS Primary Billto Address Code' of globals;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

@@ -1,0 +1,43 @@
+Function	"Rental_Get_Customer"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns string OUT_Customer_Number;
+in		string			IN_Invoice_Number;
+
+local	text			tCode;
+local	integer			nErrorCount;
+local 	string			sCompileMessage;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+clear tCode;
+tCode = tCode + \"in		string		IN_Invoice_Number;\" + char(13);
+tCode = tCode + \"out		string		OUT_Customer_Number;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"'EQS Rental Invoice Number' of table EQS_Rental_Invoice_Header_WORK = IN_Invoice_Number;\" + char(13);
+tCode = tCode + \"get table EQS_Rental_Invoice_Header_WORK;\" + char(13);
+tCode = tCode + \"if err() = OKAY then\" + char(13);
+tCode = tCode + \"	OUT_Customer_Number = 'Customer Number' of table EQS_Rental_Invoice_Header_WORK;\" + char(13);
+tCode = tCode + \"else\" + char(13);
+tCode = tCode + \"	'EQS Rental Invoice Number' of table EQS_Rental_Invoice_Header_HIST = IN_Invoice_Number;\" + char(13);
+tCode = tCode + \"	get table EQS_Rental_Invoice_Header_HIST;\" + char(13);
+tCode = tCode + \"	if err() <> OKAY then\" + char(13);
+tCode = tCode + \"		clear table EQS_Rental_Invoice_Header_HIST;\" + char(13);
+tCode = tCode + \"	end if;\" + char(13);
+tCode = tCode + \"	\" + char(13);
+tCode = tCode + \"	OUT_Customer_Number = 'Customer Number' of table EQS_Rental_Invoice_Header_HIST;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+
+
+nErrorCount = execute(PRODID_EQUIPMENT_MANAGEMENT, tCode, sCompileMessage, IN_Invoice_Number, OUT_Customer_Number);
+call OPEN_CODE_VIEWER of form HS_Misc_Code_Viewer, tCode, sCompileMessage;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	UserProperties	""
+}

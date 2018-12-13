@@ -1,0 +1,18 @@
+Function	"Get_PayWay_Payment_Type"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns integer OUT_PayWay_Type;
+in		string			IN_Document_Number;
+
+
+'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = IN_Document_Number;
+get table HS_PayWay_Payments_WORK_HIST;
+if err() <> OKAY then
+	clear table HS_PayWay_Payments_WORK_HIST;
+end if;
+
+OUT_PayWay_Type = 'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST;
+"
+	UserProperties	""
+}

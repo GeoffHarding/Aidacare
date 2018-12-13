@@ -1,0 +1,25 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Card_Name_Change_Post_PayWay"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if not Check_Alternate_Form_Security(Runtime_GetCurrentProductID(), resourceid(form SOP_Payment_Entry)) then
+	abort script;
+end if;
+
+
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+if Is_PayWay_Card('Card Name') then
+	clear 'Card Name';
+	focus 'Card Name';
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

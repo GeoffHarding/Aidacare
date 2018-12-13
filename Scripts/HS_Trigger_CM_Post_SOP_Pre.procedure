@@ -1,0 +1,41 @@
+Procedure	"HS_Trigger_CM_Post_SOP_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string				IN_Trx_Source;
+in		string				IN_Checkbook;
+inout	table 				SOP_Payment_WORK_HIST;
+inout	table				SOP_HDR_WORK;
+inout	table				RM_Customer_MSTR;
+inout	MC_Def_Structure	INOUT_MC_Def_Structure;
+
+
+pragma (disable warning UnusedVariable);
+
+
+if not 'HS Rental Invoice Is Credit' of globals then
+	abort script;
+end if;
+
+
+if IsCheck('Payment Type' of table SOP_Payment_WORK_HIST) of form SOP_Payment_Entry then
+	'HS CM CMDocNumber' of globals = 'Check Number' of table SOP_Payment_WORK_HIST;
+	'HS CM Checkbook Amount' of globals = 'Originating Amount Paid' of table SOP_Payment_WORK_HIST;
+else
+	'HS CM Originating Amount' of globals = 'Originating Amount Paid' of table SOP_Payment_WORK_HIST * -1;
+	'HS CM CMDocAmount' of globals = 'Amount Paid' of table SOP_Payment_WORK_HIST * -1;
+	if empty('Document Number' of table SOP_Payment_WORK_HIST) then
+		'HS CM CMDocNumber' of globals = 'SOP Number' of table SOP_HDR_WORK;
+	else
+		'HS CM CMDocNumber' of globals = 'Document Number' of table SOP_Payment_WORK_HIST;
+	end if;
+end if;
+'HS CM Description' of globals = substring((getmsg(151) + \" \" + 'SOP Number' of table SOP_HDR_WORK), 1, 30);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

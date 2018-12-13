@@ -1,0 +1,13 @@
+Procedure	"HS_Trigger_About_Box_Feature_Setup"
+{
+	Core	"System"
+	Documentation	""
+	Script	"open form HS_Feature_Setup;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

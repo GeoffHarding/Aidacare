@@ -1,0 +1,52 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Line_Item_Sequence_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		string			sPrepaymentOrderNumber;
+
+
+if not Check_Alternate_Form_Security(Runtime_GetCurrentProductID(), resourceid(form SOP_Payment_Entry)) then
+	abort script;
+end if;
+
+
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+if Is_PayWay_Payment('Document Number') or
+ '(L) Return Document Number' = getmsg(22031) or   {PAYWAY REFUND}
+ Is_PayWay_Prepayment(integer(itemdata('SOP Type', 'SOP Type')), 'SOP Number', 'Line Item Sequence', sPrepaymentOrderNumber) then
+	lock 'Payment Type';
+	lock 'Card Name';
+	lock 'Credit Card Number';
+	lock '(L) DDL_Month';
+	lock '(L) DDL_Year';
+	lock 'Authorization Code';
+	lock 'HS PayWay Customer Reference Number';
+	lock 'Document Date';
+	lock 'Document Number';
+	lock '(L) Return Document Number';
+	lock 'Originating Amount Paid';
+	lock 'Amount Paid';
+	lock 'Currency ID';
+	disable 'Insert>> Button I';
+	hide '(L) PayWay Payment Button';
+	hide '(L) PayWay Refund Button';
+end if;
+
+if Is_PayWay_Prepayment(integer(itemdata('SOP Type', 'SOP Type')), 'SOP Number', 'Line Item Sequence', sPrepaymentOrderNumber) then
+	'(L) PayWay PrePaid CB' = true;
+	'(L) PayWay PrePaid Order Number' = sPrepaymentOrderNumber;
+	show '(L) PayWay PrePaid Order Number';
+	lock '(L) PayWay PrePaid CB';
+	lock '(L) PayWay PrePaid Order Number';
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

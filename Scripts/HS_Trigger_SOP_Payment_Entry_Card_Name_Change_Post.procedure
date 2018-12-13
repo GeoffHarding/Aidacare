@@ -1,0 +1,25 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Card_Name_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+if SOPTypeToInt('SOP Type') = SOP_TYPE_RENTAL_INVOICE then
+	if empty('Line Item Sequence') then
+		{Cash account could change.}
+		clear 'Cash Index';
+		
+		{Redefault the new cash account.}
+		run script '(L) Get Posting Accounts';
+	end if;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

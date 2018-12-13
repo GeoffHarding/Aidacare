@@ -1,0 +1,23 @@
+Function	"Check_Alternate_Form_Security"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Alternate_Form_Used;
+in		integer			IN_Dictionary_ID;
+in		integer			IN_Resource_ID;
+
+local	integer			nDictID;
+local	string			sAlias;
+
+
+OUT_Alternate_Form_Used = false;
+
+nDictID = 0;
+call Security, nDictID, DT_FORM, IN_Resource_ID, sAlias;
+
+if nDictID = IN_Dictionary_ID then
+	OUT_Alternate_Form_Used = true;
+end if;
+"
+	UserProperties	""
+}

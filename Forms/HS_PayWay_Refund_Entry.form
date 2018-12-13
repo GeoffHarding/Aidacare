@@ -1,0 +1,2777 @@
+Form	"HS_PayWay_Refund_Entry"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+	}
+	Datatypes
+	{
+		Datatype	"Create Refunds Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00001"
+			Prompt	"Create &Refunds"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+				PictItem	"00001"				
+				{
+					Item	"PayWay"
+				}
+			}
+		}
+		Datatype	"Finished All Refunds"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"Get Next Refund"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"0"
+			StorageLength	"2"
+		}
+		Datatype	"PayWay Make Refund"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"PayWay Refund Receipt Number"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"32"
+			StorageLength	"34"
+		}
+		Datatype	"PayWay Refund Response Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay Refund Response Text"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"250"
+			StorageLength	"252"
+		}
+		Datatype	"PayWay Refund Single Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	""
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Native Picture"
+			~ItemImages
+			{
+			}
+		}
+		Datatype	"PayWay Refund Summary Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"Refund Failures"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"Refund Successes"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"Temp Table Populate"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+	}
+	EventPost	""
+	EventPre	"HS_PayWay_Refund_Entry_FORM_PRE"
+	Fields
+	{
+		Field	"Create Refunds Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Create Refunds Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Finished All Refunds"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Finished All Refunds"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Get Next Refund"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Get Next Refund"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Make Refund"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Make Refund"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Receipt Number"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Receipt Number"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Response Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Response Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Response Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Response Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Single Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Single Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Summary Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Summary Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Refund Failures"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Refund Failures"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Refund Success Total"		
+		{
+			ArraySize	"0"
+			Datatype	"DLR17_RBS0_STR$"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Refund Successes"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Refund Successes"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Refund Total"		
+		{
+			ArraySize	"0"
+			Datatype	"DLR17_RBS0_STR$"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Temp Table Populate"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Temp Table Populate"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+		FormTable	"HS_PayWay_Payments_WORK_HIST"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"2"
+			Table	"HS_PayWay_Payments_WORK_HIST"
+		}
+		FormTable	"HS_PayWay_Refunds_TEMP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"1"
+			Table	"HS_PayWay_Refunds_TEMP"
+		}
+		FormTable	"HS_PayWay_SETP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"5"
+			Table	"HS_PayWay_SETP"
+		}
+		FormTable	"RM_Customer_MSTR"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"4"
+			Table	"RM_Customer_MSTR"
+		}
+		FormTable	"SOP_Distribution_WORK_HIST"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"6"
+			Table	"SOP_Distribution_WORK_HIST"
+		}
+		FormTable	"SOP_Payment_WORK_HIST"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"3"
+			Table	"SOP_Payment_WORK_HIST"
+		}
+	}
+	Windows
+	{
+		Window	"PayWay_Refund_Entry"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"true"
+			DisplayName	"PayWay Refund Entry"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	"PayWay_Refund_Entry_WIN_PRE"
+			EventPrint	""
+			Fields
+			{
+				WindowControl	"(L) Create Refunds Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry l_Create Refunds Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Create Refunds Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"75"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"132"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"10"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Finished All Refunds"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Refund_Entry l_Finished All Refunds_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Finished All Refunds"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"338"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"155"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"26"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Get Next Refund"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Refund_Entry l_Get Next Refund_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Get Next Refund"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"91"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"152"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"23"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Make Refund"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Make Refund"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"205"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"145"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"16"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Receipt Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Receipt Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"281"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"149"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"20"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Response Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Response Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"243"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"147"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"18"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Response Text"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Response Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"262"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"148"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"19"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Single Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"false"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry l_PayWay Refund Single Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Single Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"186"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"156"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"27"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Summary Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Refund_Entry l_PayWay Refund Summary Code_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Summary Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"146"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"17"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Refund Failures"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Refund Failures"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"151"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"22"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Refund Success Total"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Currency"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Refund Success Total"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"376"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"170"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"34"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Refund Successes"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Refund Successes"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"150"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"21"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Refund Total"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"Currency"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Refund Total"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"433"
+					PositionTop	"490"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayBottom"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"120"
+					TabStop	"false"
+					Tag	"141"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"14"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Temp Table Populate"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Refund_Entry l_Temp Table Populate_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Temp Table Populate"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"195"
+					PositionTop	"528"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"131"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"8"
+					Zoom	"false"
+				}
+				ScrollingWindow	"0123-Refunds_Scroll"				
+				{
+					AltLineColor	"true"
+					Appearance	"2D Border"
+					BackColor	"System - List Line2"
+					BigLineItem	"38"
+					DefaultDblClick	"false"
+					EventLineChange	"Refunds_Scroll SCROLL_CHG"
+					EventLineContextMenu	""
+					EventLineDelete	""
+					EventLineFill	""
+					EventLineInsert	""
+					EventLinePost	""
+					EventLinePre	""
+					Fields
+					{
+						WindowLine	"10"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"544"
+							PositionTop	"0"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"20"
+							SizeWidth	"0"
+							ZOrder	"10"
+						}
+						WindowLine	"14"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"306"
+							PositionTop	"0"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"20"
+							SizeWidth	"0"
+							ZOrder	"11"
+						}
+						WindowLine	"17"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"0"
+							PositionTop	"38"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"0"
+							SizeWidth	"680"
+							ZOrder	"12"
+						}
+						WindowLine	"3"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"51"
+							PositionTop	"0"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"20"
+							SizeWidth	"0"
+							ZOrder	"0"
+						}
+						WindowLine	"4"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"221"
+							PositionTop	"0"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"20"
+							SizeWidth	"0"
+							ZOrder	"1"
+						}
+						WindowLine	"5"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"0"
+							PositionTop	"19"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"0"
+							SizeWidth	"680"
+							ZOrder	"2"
+						}
+						WindowLine	"9"						
+						{
+							Appearance	"2D Border"
+							LineColor	"System"
+							LineSize	"1"
+							PositionLeft	"425"
+							PositionTop	"0"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SizeHeight	"20"
+							SizeWidth	"0"
+							ZOrder	"9"
+						}
+						WindowControl	"Amount Paid"						
+						{
+							Appearance	"2D Border"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"Currency"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"Amount Paid"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"306"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"119"
+							TabStop	"false"
+							Tag	"6"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"7"
+							Zoom	"false"
+						}
+						WindowControl	"HS PayWay Date"						
+						{
+							Appearance	"2D Border"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"Date"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"HS PayWay Date"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"221"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"84"
+							TabStop	"false"
+							Tag	"12"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"6"
+							Zoom	"false"
+						}
+						WindowControl	"HS PayWay Original Order Number"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoComplete	"false"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"String"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"HS PayWay Original Order Number"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Password	"false"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"51"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"170"
+							TabStop	"false"
+							Tag	"1"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"5"
+							Zoom	"false"
+						}
+						WindowControl	"HS PayWay Receipt Number"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoComplete	"false"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"String"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"HS PayWay Receipt Number"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Password	"false"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"544"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"136"
+							TabStop	"false"
+							Tag	"8"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"3"
+							Zoom	"false"
+						}
+						WindowControl	"HS PayWay Response Text"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoComplete	"false"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"String"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"HS PayWay Response Text"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Password	"false"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"0"
+							PositionTop	"19"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"680"
+							TabStop	"false"
+							Tag	"18"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"13"
+							Zoom	"false"
+						}
+						WindowControl	"HS Refund Amount"						
+						{
+							Appearance	"2D Border"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"Currency"
+							DisableLookup	"false"
+							Editable	"true"
+							EventChange	"Refunds_Scroll HS Refund Amount_CHG"
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	"Refunds_Scroll HS Refund Amount_PRE"
+							Field	"HS Refund Amount"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"425"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"true"
+							SizeHeight	"20"
+							SizeWidth	"119"
+							TabStop	"true"
+							Tag	"7"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"8"
+							Zoom	"false"
+						}
+						WindowControl	"HS Refund Marked"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoCopy	"true"
+							BackColor	"White"
+							Border	"true"
+							ButtonStyle	"Standard"
+							ControlType	"CheckBox"
+							Editable	"true"
+							EventChange	"Refunds_Scroll HS Refund Marked_CHG"
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"HS Refund Marked"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							HyperSpace	"false"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PatternSelect	"50% Shading"
+							PositionLeft	"17"
+							PositionTop	"0"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"true"
+							SizeHeight	"20"
+							SizeWidth	"17"
+							TabStop	"true"
+							Tag	"15"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"4"
+						}
+						WindowControl	"Status"						
+						{
+							Appearance	"2D Border"
+							AutoCopy	"true"
+							BackColor	"Pink"
+							Border	"true"
+							ControlType	"Integer"
+							DisableLookup	"false"
+							Editable	"false"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"Status"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"17"
+							PositionTop	"399"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"false"
+							SizeHeight	"20"
+							SizeWidth	"119"
+							TabStop	"false"
+							Tag	"19"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"false"
+							ZOrder	"14"
+							Zoom	"false"
+						}
+					}
+					FontColor	"System - List Line2 Text"
+					IgnoreActiveLine	"false"
+					LastTag	"19"
+					LinkTable	"HS_PayWay_Refunds_TEMP"
+					LinkTableKey	"2"
+					Name	"Refunds_Scroll"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"110"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					ScrollToBottom	"false"
+					SizeHeight	"382"
+					SizeWidth	"679"
+					SmallLineItem	"19"
+					WindowType	"Editable"
+					ZOrder	"33"
+				}
+				WindowPrompt	"124"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"59"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"171"
+					Text	"Payment Number"
+					Visible	"true"
+					ZOrder	"2"
+					Zoom	"false"
+				}
+				WindowPrompt	"125"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"52"
+					Text	"Refund"
+					Visible	"true"
+					ZOrder	"3"
+					Zoom	"false"
+				}
+				WindowPrompt	"126"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"314"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"120"
+					Text	"Payment Amount"
+					Visible	"true"
+					ZOrder	"4"
+					Zoom	"false"
+				}
+				WindowPrompt	"127"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"433"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"120"
+					Text	"Refund Amount"
+					Visible	"true"
+					ZOrder	"5"
+					Zoom	"false"
+				}
+				WindowPrompt	"128"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"552"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"135"
+					Text	"Receipt Number"
+					Visible	"true"
+					ZOrder	"6"
+					Zoom	"false"
+				}
+				WindowLine	"133"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"212"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"11"
+				}
+				WindowPrompt	"136"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"229"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"86"
+					Text	"Payment Date"
+					Visible	"true"
+					ZOrder	"13"
+					Zoom	"false"
+				}
+				WindowPrompt	"142"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"true"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"348"
+					PositionTop	"490"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayBottom"
+					SizeHeight	"20"
+					SizeWidth	"85"
+					Text	"Refund Total"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+				WindowPrompt	"157"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - List Header2"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Line2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"91"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"679"
+					Text	"PayWay Response"
+					Visible	"true"
+					ZOrder	"28"
+					Zoom	"false"
+				}
+				WindowPrompt	"176"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					Text	"Customer Number"
+					Visible	"true"
+					ZOrder	"38"
+					Zoom	"false"
+				}
+				WindowPrompt	"177"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"331"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					Text	"Customer Reference No."
+					Visible	"true"
+					ZOrder	"39"
+					Zoom	"false"
+				}
+				WindowLine	"41"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"24"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayTop"
+					SizeHeight	"0"
+					SizeWidth	"715"
+					ZOrder	"1"
+				}
+				WindowLine	"5"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"73"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"0"
+				}
+				WindowControl	"Customer Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Customer Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"176"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"144"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"129"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"7"
+					Zoom	"false"
+				}
+				WindowControl	"HS PayWay Customer Reference Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS PayWay Customer Reference Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"177"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"467"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"175"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"37"
+					Zoom	"false"
+				}
+				WindowControl	"HS PayWay Original Order Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS PayWay Original Order Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"110"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"153"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"24"
+					Zoom	"false"
+				}
+				WindowControl	"HS Refund Amount"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Currency"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS Refund Amount"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"756"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"204"
+					TabStop	"false"
+					Tag	"154"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"25"
+					Zoom	"false"
+				}
+				WindowControl	"OK Button K"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry OK Button K_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"OK Button K"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"0"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"143"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"9"
+					Zoom	"false"
+				}
+				WindowControl	"Redisplay Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"false"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry Redisplay Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Redisplay Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"195"
+					PositionTop	"547"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"135"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"12"
+					Zoom	"false"
+				}
+				WindowControl	"SOP Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"SOP Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"547"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"172"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"36"
+					Zoom	"false"
+				}
+				WindowControl	"SOP Type"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					ControlType	"DropDownList"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"SOP Type"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"528"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"171"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					VisibleItems	"8"
+					ZOrder	"35"
+				}
+				WindowControl	"Scroll Expand Switch"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"System - List Header2"
+					Border	"true"
+					ControlType	"VisualSwitch"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Scroll Expand Switch"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"670"
+					PositionTop	"91"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"167"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"32"
+				}
+				WindowControl	"Scroll Shrink Switch"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"System - List Header2"
+					Border	"true"
+					ControlType	"VisualSwitch"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Scroll Shrink Switch"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"670"
+					PositionTop	"72"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"166"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"31"
+				}
+				WindowControl	"Scrolling Window Expand Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry Scrolling Window Expand Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Scrolling Window Expand Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"670"
+					PositionTop	"91"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"168"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"29"
+					Zoom	"false"
+				}
+				WindowControl	"Scrolling Window Shrink Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Refund_Entry Scrolling Window Shrink Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Scrolling Window Shrink Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"670"
+					PositionTop	"72"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"169"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"30"
+					Zoom	"false"
+				}
+			}
+			LastTag	"179"
+			Position	"1"
+			PositionLeft	"203"
+			PositionTop	"152"
+			Resizable	"True-Per Field"
+			SizeHeight	"520"
+			SizeWidth	"715"
+			WindowType	"Primary"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"HS_PayWay_Refund_Entry_FORM_PRE"		
+		{
+			Documentation	""
+			Script	"clear 'SOP Type' of window PayWay_Refund_Entry of form HS_PayWay_Refund_Entry;
+
+call FillSOPType, 'SOP Type' of window PayWay_Refund_Entry of form HS_PayWay_Refund_Entry;
+
+add item getmsg(22001), SOP_TYPE_RENTAL_INVOICE to 'SOP Type' of window PayWay_Refund_Entry of form HS_PayWay_Refund_Entry;   {Rental Invoice}
+add item getmsg(22003), SOP_TYPE_RENTAL_CREDIT to 'SOP Type' of window PayWay_Refund_Entry of form HS_PayWay_Refund_Entry;   {Rental Credit}
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry OK Button K_CHG"		
+		{
+			Documentation	""
+			Script	"if Get_Number_Marked_Records(Table_GetOSName(table HS_PayWay_Refunds_TEMP)) <> 0 then
+	if ask(getmsg(22025), getmsg(YES), getmsg(CANCEL), \"\") <> ASKBUTTON1 then   {Some payments are marked.  Do you wish to close the window?}
+		abort script;
+	end if;
+end if;
+
+close form HS_PayWay_Refund_Entry;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry Redisplay Button_CHG"		
+		{
+			Documentation	""
+			Script	"fill window Refunds_Scroll table HS_PayWay_Refunds_TEMP by number 2;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry Scrolling Window Expand Button_CHG"		
+		{
+			Documentation	""
+			Script	"expand window Refunds_Scroll, true;
+
+'Scroll Shrink Switch' = 1;
+'Scroll Expand Switch' = 2;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry Scrolling Window Shrink Button_CHG"		
+		{
+			Documentation	""
+			Script	"expand window Refunds_Scroll, false;
+
+'Scroll Shrink Switch' = 2;
+'Scroll Expand Switch' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_Create Refunds Button_CHG"		
+		{
+			Documentation	""
+			Script	"if empty(Get_Number_Marked_Records(Table_GetOSName(table HS_PayWay_Refunds_TEMP))) then
+	warning getmsg(22026);   {No payments are marked to refund.}
+	abort script;
+end if;
+
+
+if ask(getmsg(22027), getmsg(YES), getmsg(CANCEL), \"\") <> ASKBUTTON1 then   {Are you sure you wish to make PayWay refunds?}
+	abort script;
+end if;
+
+
+clear '(L) Refund Successes';
+clear '(L) Refund Failures';
+clear '(L) Refund Success Total';
+
+run script '(L) Get Next Refund';
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_Finished All Refunds_CHG"		
+		{
+			Documentation	""
+			Script	"local		string			sMsg;
+
+
+call Create_SOP_Payment of form HS_PayWay_Refund_Entry;
+
+
+hide '(L) Create Refunds Button';
+
+run script 'Scrolling Window Expand Button';
+
+Window_SetLineMode(window Refunds_Scroll, LINEMODE_BROWSE_ONLY);
+
+range clear table HS_PayWay_Refunds_TEMP;
+fill table HS_PayWay_Refunds_TEMP;
+'Status' of table HS_PayWay_Refunds_TEMP = 1;
+range start table HS_PayWay_Refunds_TEMP by number 4;
+clear table HS_PayWay_Refunds_TEMP;
+'Status' of table HS_PayWay_Refunds_TEMP = 2;
+range end table HS_PayWay_Refunds_TEMP by number 4;
+
+fill window Refunds_Scroll table HS_PayWay_Refunds_TEMP by number 4;
+
+
+{Display Results}
+if empty('(L) Refund Failures') then
+	if empty('(L) Refund Successes') then
+		abort script;
+	else
+		sMsg = getmsg(22028);   {PayWay processed %1 successful Refunds}
+		substitute sMsg, str('(L) Refund Successes');
+	end if;
+else
+	if empty('(L) Refund Successes') then
+		sMsg = getmsg(22029);   {PayWay failed %1 refund attempts}
+		substitute sMsg, str('(L) Refund Failures');
+	else
+		sMsg = getmsg(22030);   {PayWay processed %1 successful Refunds and failed %2 attempts}
+		substitute sMsg, str('(L) Refund Successes'), str('(L) Refund Failures');
+	end if;
+end if;
+
+warning sMsg;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_Get Next Refund_CHG"		
+		{
+			Documentation	""
+			Script	"range clear table HS_PayWay_Refunds_TEMP;
+fill table HS_PayWay_Refunds_TEMP;
+'HS Refund Marked' of table HS_PayWay_Refunds_TEMP = true;
+range start table HS_PayWay_Refunds_TEMP by number 3;
+clear table HS_PayWay_Refunds_TEMP;
+'HS Refund Marked' of table HS_PayWay_Refunds_TEMP = true;
+range end table HS_PayWay_Refunds_TEMP by number 3;
+
+change first table HS_PayWay_Refunds_TEMP by number 3;
+if err() <> OKAY then
+	release table HS_PayWay_Refunds_TEMP;
+	run script '(L) Finished All Refunds';
+	abort script;
+end if;
+
+
+'HS PayWay Original Order Number' = 'HS PayWay Original Order Number' of table HS_PayWay_Refunds_TEMP;
+'HS Refund Amount' = 'HS Refund Amount' of table HS_PayWay_Refunds_TEMP;
+'HS Refund Marked' of table HS_PayWay_Refunds_TEMP = false;
+save table HS_PayWay_Refunds_TEMP;
+
+
+run script '(L) PayWay Refund Single Button';
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_PayWay Refund Single Button_CHG"		
+		{
+			Documentation	""
+			Script	"'(L) PayWay Make Refund' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_PayWay Refund Summary Code_CHG"		
+		{
+			Documentation	""
+			Script	"if  '(L) PayWay Refund Summary Code' = CH_0 then
+	increment '(L) Refund Successes';
+	increment '(L) Refund Success Total' by 'HS Refund Amount';
+		
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Original Order Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PAYMENT_REFUNDED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+	
+	'HS PayWay Original Order Number' of table HS_PayWay_Refunds_TEMP = 'HS PayWay Original Order Number';
+	change table HS_PayWay_Refunds_TEMP;
+	if err() = OKAY then
+		'HS PayWay Receipt Number' of table HS_PayWay_Refunds_TEMP = '(L) PayWay Refund Receipt Number';
+		'HS PayWay Response Text' of table HS_PayWay_Refunds_TEMP = '(L) PayWay Refund Response Text';
+		'Status' of table HS_PayWay_Refunds_TEMP = 1;
+		save table HS_PayWay_Refunds_TEMP;
+	else
+		release table HS_PayWay_Refunds_TEMP;
+	end if;
+	
+	
+	'HS SOP Type Credit To Return' of globals = false;
+	
+	clear table HS_PayWay_Payments_WORK_HIST;
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Original Order Number' + CH_R;
+	'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_REFUND;
+	'SOP Type' of table HS_PayWay_Payments_WORK_HIST = SOPTypeToInt('SOP Type');
+	'SOP Number' of table HS_PayWay_Payments_WORK_HIST = 'SOP Number';
+	'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = '(L) Next Sequence Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
+	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'HS Refund Amount';
+	'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Original Order Number';
+	'HS PayWay Receipt Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay Refund Receipt Number';
+	save table HS_PayWay_Payments_WORK_HIST;
+else
+	increment '(L) Refund Failures';
+	
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Original Order Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PAYMENT_REFUND_FAILED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+	
+	'HS PayWay Original Order Number' of table HS_PayWay_Refunds_TEMP = 'HS PayWay Original Order Number';
+	change table HS_PayWay_Refunds_TEMP;
+	if err() = OKAY then
+		'(L) Refund Total' = '(L) Refund Total' - 'HS Refund Amount' of table HS_PayWay_Refunds_TEMP;
+		clear 'HS Refund Amount' of table HS_PayWay_Refunds_TEMP;
+		'HS PayWay Receipt Number' of table HS_PayWay_Refunds_TEMP = '(L) PayWay Refund Receipt Number';
+		'HS PayWay Response Text' of table HS_PayWay_Refunds_TEMP = '(L) PayWay Refund Response Text';
+		'Status' of table HS_PayWay_Refunds_TEMP = 2;
+		save table HS_PayWay_Refunds_TEMP;
+	else
+		release table HS_PayWay_Refunds_TEMP;
+	end if;
+end if;
+
+'HS SOP Type Credit To Return' of globals = true;
+
+run script delayed '(L) Get Next Refund';
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry l_Temp Table Populate_CHG"		
+		{
+			Documentation	""
+			Script	"local	long			lExeStatus;
+local	long			lSQLConnection;
+local	text			tSQLCode[10];
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+close table HS_PayWay_Refunds_TEMP;
+open table HS_PayWay_Refunds_TEMP;
+
+
+clear '(L) Refund Total';
+
+
+lExeStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+if not empty(lExeStatus) then
+	abort script;
+end if;
+
+clear tSQLCode[1];
+tSQLCode[1] = tSQLCode[1] + \"USE \" + 'Intercompany ID' of globals + char(13);
+tSQLCode[1] = tSQLCode[1] + char(13);
+tSQLCode[1] = tSQLCode[1] + \"INSERT INTO \" + Table_GetOSName(table HS_PayWay_Refunds_TEMP) + char(13);
+tSQLCode[1] = tSQLCode[1] + \"	(HS_PayWay_Original_Order, HS_PayWay_Date, AMNTPAID, HS_Refund_Marked, HS_Refund_Amount, Status, HS_PayWay_Receipt_Number, HS_PayWay_Response_Text)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"SELECT\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"	HS_PayWay_Order_Number, HS_PayWay_Date, AMNTPAID, 0, 0, 0, '', ''\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"FROM HSPayWayPayments\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"WHERE\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"	HS_PW_Cust_Reference_No = \" + SQL_FormatStrings('HS PayWay Customer Reference Number') + char(13);
+tSQLCode[1] = tSQLCode[1] + \"	AND (HS_PayWay_Payment_Refund = \" + str(HS_PAYWAY_PAYMENT) + \" OR HS_PayWay_Payment_Refund = \" + str(HS_PAYWAY_PREPAYMENT) + \")\" + char(13);
+
+lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+
+lExeStatus = SQL_Clear(lSQLConnection);
+
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Refund_Entry_WIN_PRE"		
+		{
+			Documentation	""
+			Script	"Window_SetLineMode(window Refunds_Scroll, LINEMODE_EDITABLE);
+
+run script 'Scrolling Window Shrink Button';
+"
+			UserProperties	""
+		}
+		EventScript	"Refunds_Scroll HS Refund Amount_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('HS Refund Amount') then
+	clear 'HS Refund Marked';
+end if;
+
+'(L) Refund Total' of window PayWay_Refund_Entry = '(L) Refund Total' of window PayWay_Refund_Entry - old() + 'HS Refund Amount';
+"
+			UserProperties	""
+		}
+		EventScript	"Refunds_Scroll HS Refund Amount_PRE"		
+		{
+			Documentation	""
+			Script	"if not 'HS Refund Marked' then
+	focus 'HS Refund Marked';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Refunds_Scroll HS Refund Marked_CHG"		
+		{
+			Documentation	""
+			Script	"if 'HS Refund Marked' then
+	if empty('HS Refund Amount') then
+		'HS Refund Amount' = 'Amount Paid';
+		'(L) Refund Total' of window PayWay_Refund_Entry = '(L) Refund Total' of window PayWay_Refund_Entry + 'HS Refund Amount';
+	end if;
+	focus 'HS Refund Amount';
+else
+	'(L) Refund Total' of window PayWay_Refund_Entry = '(L) Refund Total' of window PayWay_Refund_Entry - 'HS Refund Amount';
+	clear 'HS Refund Amount';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Refunds_Scroll SCROLL_CHG"		
+		{
+			Documentation	""
+			Script	"copy from window Refunds_Scroll to table HS_PayWay_Refunds_TEMP;
+save table HS_PayWay_Refunds_TEMP;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+		Function	"Get_Number_Marked_Records"		
+		{
+			Documentation	""
+			Script	"function returns integer OUT_Number_Records;
+in		string			IN_Table_Name;
+
+local	long			lExeStatus;
+local	long			lSQLConnection;
+local	text			tSQLCode[10];
+local	integer			nNumberRecords;
+
+
+pragma (disable warning LiteralStringUsed);
+
+clear OUT_Number_Records;
+
+lExeStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+if not empty(lExeStatus) then
+	abort script;
+end if;
+
+
+clear tSQLCode[1];
+tSQLCode[1] = tSQLCode[1] + \"USE \" + 'Intercompany ID' of globals + char(13);
+tSQLCode[1] = tSQLCode[1] + char(13);
+tSQLCode[1] = tSQLCode[1] + \"SELECT COUNT(*) FROM \" + IN_Table_Name + char(13);
+tSQLCode[1] = tSQLCode[1] + \"WHERE\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"	HS_Refund_Marked = 1\" + char(13);
+
+lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+
+if empty(lExeStatus) then
+	lExeStatus = SQL_FetchNext(lSQLConnection);
+	if lExeStatus <> 31 then
+		lExeStatus = SQL_GetData(lSQLConnection, 1, nNumberRecords);
+
+		OUT_Number_Records = nNumberRecords;
+	end if;
+end if;
+
+lExeStatus = SQL_Clear(lSQLConnection);
+
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+	}
+	~Procedures
+	{
+		Procedure	"Create_SOP_Payment"		
+		{
+			Documentation	""
+			Script	"if not isopen(window SOP_Payment_Entry of form SOP_Payment_Entry) then
+	abort script;
+end if;
+
+'Dummy Record' of table HS_PayWay_SETP = false;
+get table HS_PayWay_SETP;
+if err() <> OKAY then
+	clear table HS_PayWay_SETP;
+end if;
+
+'Customer Number' of table RM_Customer_MSTR = 'Customer Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+get table RM_Customer_MSTR;
+if err() <> OKAY then
+	clear table RM_Customer_MSTR;
+end if;
+
+'HS SOP Type Credit To Return' of globals = false;
+
+clear table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = SOPTypeToInt('SOP Type' of window SOP_Payment_Entry of form SOP_Payment_Entry);
+'SOP Number' of table SOP_Payment_WORK_HIST = 'SOP Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Sequence Number' of table SOP_Payment_WORK_HIST = '(L) Next Sequence Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+increment '(L) Next Sequence Number' of window SOP_Payment_Entry of form SOP_Payment_Entry by SEQUENCE_NUMBER;
+clear 'RM Document Type-All' of table SOP_Payment_WORK_HIST;
+
+'Cash Index' of table SOP_Payment_WORK_HIST = 'Cash Index' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Deposits Index' of table SOP_Payment_WORK_HIST = 'Deposits Index' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Payment Type' of table SOP_Payment_WORK_HIST = integer(itemdata('Payment Type' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'Payment Type' of window SOP_Payment_Entry of form SOP_Payment_Entry));
+'EFT Flag' of table SOP_Payment_WORK_HIST = 'EFT Flag' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+
+'Document Number' of table SOP_Payment_WORK_HIST = getmsg(22031);   {PAYWAY REFUND}
+'Document Date' of table SOP_Payment_WORK_HIST = 'Document Date' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'GL Posting Date' of table SOP_Payment_WORK_HIST = 'GL Posting Date' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Expiration Date' of table SOP_Payment_WORK_HIST = 'Expiration Date' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Authorization Code' of table SOP_Payment_WORK_HIST = 'Authorization Code' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+
+'Amount Paid' of table SOP_Payment_WORK_HIST = '(L) Refund Success Total' of window PayWay_Refund_Entry;
+'Amount Remaining' of table SOP_Payment_WORK_HIST = '(L) Refund Success Total' of window PayWay_Refund_Entry;
+call MC_Calc_Orig_Amt_RT, 'MC Def Structure' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'Amount Paid' of table SOP_Payment_WORK_HIST, 'Originating Amount Paid' of table SOP_Payment_WORK_HIST;
+call MC_Calc_Orig_Amt_RT, 'MC Def Structure' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'Amount Remaining' of table SOP_Payment_WORK_HIST, 'Originating Amount Remaining' of table SOP_Payment_WORK_HIST;
+
+'Card Name' of table SOP_Payment_WORK_HIST = 'Card Name' of table HS_PayWay_SETP;
+'Receipt Number Credit Card' of table SOP_Payment_WORK_HIST = '(L) CreditCardNumber' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+
+'Currency ID' of table SOP_Payment_WORK_HIST = 'Currency ID' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+'Currency Index' of table SOP_Payment_WORK_HIST = 'Currency Index' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+
+save table SOP_Payment_WORK_HIST;
+if err() = OKAY then
+	{Update the scrolling window total.}
+	increment '(L) O Total Distributed' of window SOP_Payment_Entry of form SOP_Payment_Entry by '(L) Refund Success Total' of window PayWay_Refund_Entry;
+	call MC_Calc_Func_Amt, 'MC Def Structure' of window SOP_Payment_Entry of form SOP_Payment_Entry, '(L) O Total Distributed' of window SOP_Payment_Entry of form SOP_Payment_Entry, '(L) Total Distributed' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+	
+	increment 'Originating Payment Received' of window SOP_Payment_Entry of form SOP_Payment_Entry by '(L) Refund Success Total' of window PayWay_Refund_Entry;
+	call MC_Calc_Func_Amt, 'MC Def Structure' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'Originating Payment Received' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'Payment Received' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+	
+	{Used the default number.}
+	clear 'Document Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+	clear '(L) Default Document Number' of window SOP_Payment_Entry of form SOP_Payment_Entry;
+else
+	check error;
+end if;
+
+'HS SOP Type Credit To Return' of globals = true;
+
+{Update the distributions. GPSS Script}
+call SOP_Dist_Update_Payment, 
+	'SOP Type' of table SOP_Payment_WORK_HIST,
+	'SOP Number' of table SOP_Payment_WORK_HIST,
+	'Payment Type' of table SOP_Payment_WORK_HIST,
+	'Card Name' of table SOP_Payment_WORK_HIST,
+	'Checkbook ID' of table SOP_Payment_WORK_HIST,
+	'Originating Amount Paid' of table SOP_Payment_WORK_HIST,
+	'MC Def Structure' of window SOP_Payment_Entry of form SOP_Payment_Entry,			{GPSS}
+	table RM_Customer_MSTR,
+	table SOP_Distribution_WORK_HIST;
+
+
+{Mark changes on the window.}
+'(L) Invisible Changes' of window SOP_Payment_Entry of form SOP_Payment_Entry = 1;
+
+{Clear the window. }
+call Clear_Window of form SOP_Payment_Entry;
+"
+			UserProperties	""
+		}
+		Procedure	"OPEN"		
+		{
+			Documentation	""
+			Script	"in		integer			IN_SOP_Type;
+in		string			IN_SOP_Number;
+in		string			IN_Customer_Number;
+in		string			IN_PayWay_Customer_Reference_No;
+
+
+if isopen(form HS_PayWay_Refund_Entry) then
+	abort script;
+end if;
+
+
+open form HS_PayWay_Refund_Entry;
+if not isopen(form HS_PayWay_Refund_Entry) then
+	abort script;
+end if;
+
+
+'SOP Type' of window PayWay_Refund_Entry = IN_SOP_Type;
+'SOP Number' of window PayWay_Refund_Entry = IN_SOP_Number;
+'Customer Number' of window PayWay_Refund_Entry = IN_Customer_Number;
+'HS PayWay Customer Reference Number' of window PayWay_Refund_Entry = IN_PayWay_Customer_Reference_No;
+
+run script '(L) Temp Table Populate' of window PayWay_Refund_Entry;
+
+run script 'Redisplay Button' of window PayWay_Refund_Entry;
+"
+			UserProperties	""
+		}
+	}
+}

@@ -1,0 +1,18 @@
+Datatype	"PB_Create_Refunds"
+{
+	Control	"PushButton"
+	DefaultDown	"00000"
+	DefaultMouseOver	"00000"
+	DefaultUp	"00001"
+	Prompt	"Create &Refunds"
+	PromptDown	""
+	PromptMouseOver	""
+	StaticType	"Picture"
+	~ItemImages
+	{
+		PictItem	"00001"		
+		{
+			Item	"PayWay"
+		}
+	}
+}

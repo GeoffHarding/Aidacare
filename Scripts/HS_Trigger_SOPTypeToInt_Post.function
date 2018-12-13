@@ -1,0 +1,17 @@
+Function	"HS_Trigger_SOPTypeToInt_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns integer SOPTypeToInt;
+inout			anonymous field		nSrcSOPType;  {Source}
+optional in		dollar				cyQty;
+
+
+if 'HS SOP Type Credit To Return' of globals then
+	if itemdata(nSrcSOPType, nSrcSOPType) = SOP_TYPE_RENTAL_CREDIT then
+		SOPTypeToInt = SOP_RETURN;
+	end if;
+end if;
+"
+	UserProperties	""
+}

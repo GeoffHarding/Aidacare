@@ -1,0 +1,85 @@
+Procedure	"Table_Bind_Defaults"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in			string			IN_Table_Physical_Name;
+in			string			IN_Path;
+
+local		long			lStatus;
+local		long			lSQLConnection;
+local		text			tSQLCode[10];
+
+
+lStatus = SQL_GetConnection(FOREGROUND, lSQLConnection) of form XSQLExec;
+if lStatus <> OKAY then
+	abort script;
+end if;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+{ Bind Defaults to Table }
+clear tSQLCode[1];
+tSQLCode[1] = tSQLCode[1] + \"use \" + IN_Path + char(13);
+tSQLCode[1] = tSQLCode[1] + char(13);
+tSQLCode[1] = tSQLCode[1] + \"declare @name varchar(255)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"declare @xtype tinyint\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"declare @bindname varchar(255)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"declare @statement varchar(8000)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"declare Column_Cursor cursor for\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"   select name, xtype from syscolumns\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      where id = OBJECT_ID(N'\" + IN_Table_Physical_Name + \"', N'U') \" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      order by colorder\" + char(13);
+tSQLCode[1] = tSQLCode[1] + char(13);
+tSQLCode[1] = tSQLCode[1] + \"open Column_Cursor\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"fetch next from Column_Cursor into @name, @xtype\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"while @@FETCH_STATUS = 0\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"   begin\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"   if @name <> 'DEX_ROW_ID' and @name <> 'DEX_ROW_TS'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      begin\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      set @bindname =\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         case @xtype\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 34 then 'GPS_CHAR'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 35 then 'GPS_CHAR'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 48 then 'GPS_INT'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 52 then 'GPS_INT'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 56 then 'GPS_INT'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 61 then 'GPS_DATE'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 108 then 'GPS_MONEY'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 173 then 'GPS_INT'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            when 175 then 'GPS_CHAR'\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"            else ''\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         end\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      \" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      if @bindname <> ''\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         begin\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         set @statement = 'execute sp_bindefault N' + char(39) + '[dbo].[' + @bindname + ']' + char(39)\";
+tSQLCode[1] = tSQLCode[1] + \"         set @statement = @statement + ', N' + char(39) + '[\" + IN_Table_Physical_Name + \"].[' + @name + ']' + char(39) + char(13)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         \" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         execute(@statement)\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"         end\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      end\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      \" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"      fetch next from Column_Cursor into @name, @xtype\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"   end\" + char(13);
+tSQLCode[1] = tSQLCode[1] + char(13);
+tSQLCode[1] = tSQLCode[1] + \"close Column_Cursor\" + char(13);
+tSQLCode[1] = tSQLCode[1] + \"deallocate Column_Cursor\" + char(13);
+
+lStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lStatus;
+
+
+lStatus = SQL_Clear(lSQLConnection);
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

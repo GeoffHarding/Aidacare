@@ -1,0 +1,148 @@
+Message	"22000"
+{
+	MessageString	"Please login as 'sa' or 'DYNSA' to create/update tables."
+}
+Message	"22001"
+{
+	MessageString	"Rental Invoice"
+}
+Message	"22002"
+{
+	MessageString	"Please close the Sales Payment Entry window first."
+}
+Message	"22003"
+{
+	MessageString	"Rental Credit"
+}
+Message	"22004"
+{
+	MessageString	"Buyer ID"
+}
+Message	"22005"
+{
+	MessageString	"Created By"
+}
+Message	"22006"
+{
+	MessageString	"Please enter the Customer Reference Number first."
+}
+Message	"22007"
+{
+	MessageString	"Please enter all credit card details first."
+}
+Message	"22008"
+{
+	MessageString	"Please enter a Customer Reference Number."
+}
+Message	"22009"
+{
+	MessageString	"Please enter a unique Customer Reference Number."
+}
+Message	"22010"
+{
+	MessageString	"Please enter a valid file."
+}
+Message	"22011"
+{
+	MessageString	"Please enter a valid path."
+}
+Message	"22012"
+{
+	MessageString	"Select a credentials file."
+}
+Message	"22013"
+{
+	MessageString	"Customer and credit card details have been successfully updated in PayWay."
+}
+Message	"22014"
+{
+	MessageString	"Error updating PayWay."
+}
+Message	"22015"
+{
+	MessageString	"Please enter an amount for the payment."
+}
+Message	"22016"
+{
+	MessageString	"Payment has been successfully made in PayWay."
+}
+Message	"22017"
+{
+	MessageString	"PayWay update failed - "
+}
+Message	"22018"
+{
+	MessageString	"PayWay payment unsuccessful - "
+}
+Message	"22019"
+{
+	MessageString	"Are you sure you wish to make a PayWay payment?"
+}
+Message	"22020"
+{
+	MessageString	"Enter the password to remove this PayWay payment."
+}
+Message	"22021"
+{
+	MessageString	"Enter the password to remove this PayWay refund."
+}
+Message	"22022"
+{
+	MessageString	"Do you want to create a PayWay Refund?"
+}
+Message	"22023"
+{
+	MessageString	"Refund has been successfully made in PayWay."
+}
+Message	"22024"
+{
+	MessageString	"PayWay refund unsuccessful - "
+}
+Message	"22025"
+{
+	MessageString	"Some payments are marked.  Do you wish to close the window?"
+}
+Message	"22026"
+{
+	MessageString	"No payments are marked to refund."
+}
+Message	"22027"
+{
+	MessageString	"Are you sure you wish to make PayWay refunds?"
+}
+Message	"22028"
+{
+	MessageString	"PayWay processed %1 successful Refunds"
+}
+Message	"22029"
+{
+	MessageString	"PayWay failed %1 refund attempts"
+}
+Message	"22030"
+{
+	MessageString	"PayWay processed %1 successful Refunds and failed %2 attempts"
+}
+Message	"22031"
+{
+	MessageString	"PAYWAY REFUND"
+}
+Message	"22032"
+{
+	MessageString	"You cannot %1 a document with PayWay payments associated with it."
+}
+Message	"22033"
+{
+	MessageString	"delete"
+}
+Message	"22034"
+{
+	MessageString	"void"
+}
+Message	"22035"
+{
+	MessageString	"Enter the password to remove this PayWay prepayment."
+}
+Message	"22036"
+{
+	MessageString	"Do you want to create a PayWay Pre-paid Refund?"
+}

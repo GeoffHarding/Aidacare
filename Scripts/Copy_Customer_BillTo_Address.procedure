@@ -1,0 +1,140 @@
+Procedure	"Copy_Customer_BillTo_Address"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string				IN_From_Customer;
+in		string				IN_To_Customer;
+
+local	string				sAddressCode;
+local	reference			RM_Customer_MSTR_ADDR_Orig;
+local	text				tCode;
+local	string				sCompileMessage;
+local	integer				nErrorCount;
+
+
+{ Get From Customer record }
+'Customer Number' of table RM_Customer_MSTR = IN_From_Customer;
+get table RM_Customer_MSTR;
+if err() <> OKAY then
+	abort script;
+end if;
+
+sAddressCode = 'Primary Billto Address Code' of table RM_Customer_MSTR;
+
+
+{ Set Billto Address for To Customer}
+'Customer Number' of table RM_Customer_MSTR = IN_To_Customer;
+change table RM_Customer_MSTR;
+if err() <> OKAY then
+	release table RM_Customer_MSTR;
+	abort script;
+end if;
+
+'Primary Billto Address Code' of table RM_Customer_MSTR = PARENT_BILLTO_ADDRESS;
+save table RM_Customer_MSTR;
+
+
+{ Get From Customer Address record }
+'Customer Number' of table RM_Customer_MSTR_ADDR = IN_From_Customer;
+'Address Code' of table RM_Customer_MSTR_ADDR = sAddressCode;
+get table RM_Customer_MSTR_ADDR;
+if err() <> OKAY then
+	abort script;
+end if;
+
+RM_Customer_MSTR_ADDR_Orig = Table_OpenAsTemp(table RM_Customer_MSTR_ADDR);
+copy from table RM_Customer_MSTR_ADDR to table(RM_Customer_MSTR_ADDR_Orig);
+
+
+{ Create/Copy Address record for To Customer}
+'Customer Number' of table RM_Customer_MSTR_ADDR = IN_To_Customer;
+'Address Code' of table RM_Customer_MSTR_ADDR = PARENT_BILLTO_ADDRESS;
+change table RM_Customer_MSTR_ADDR;
+copy from table(RM_Customer_MSTR_ADDR_Orig) to table RM_Customer_MSTR_ADDR;
+'Customer Number' of table RM_Customer_MSTR_ADDR = IN_To_Customer;
+'Address Code' of table RM_Customer_MSTR_ADDR = PARENT_BILLTO_ADDRESS;
+if empty('Created Date' of table RM_Customer_MSTR_ADDR) then
+	'Created Date' of table RM_Customer_MSTR_ADDR = sysdate();
+end if;
+'Modified Date' of table RM_Customer_MSTR_ADDR = sysdate();
+save table RM_Customer_MSTR_ADDR;
+
+
+
+{ Now do the same for the WennSoft tables SV_Location_MSTR and SV_Customer_Quicksearch}
+pragma (disable warning LiteralStringUsed);
+
+clear tCode;
+tCode = tCode + \"in		string			IN_From_Customer;\" + char(13);
+tCode = tCode + \"in		string			IN_From_Address_Code;\" + char(13);
+tCode = tCode + \"in		string			IN_To_Customer;\" + char(13);
+tCode = tCode + \"in		string			IN_To_Customer_Name;\" + char(13);
+tCode = tCode + \"in		string			IN_To_Address_Code;\" + char(13);
+tCode = tCode + \"in		string			IN_User_ID;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"local	reference		SV_Location_MSTR_Orig;\" + char(13);
+tCode = tCode + \"local	reference		SV_Customer_Quicksearch_Orig;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"{ Get From SV Location record }\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Location_MSTR = IN_From_Customer;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Location_MSTR = IN_From_Address_Code;\" + char(13);
+tCode = tCode + \"get table SV_Location_MSTR by number 2;\" + char(13);
+tCode = tCode + \"if err() <> OKAY then\" + char(13);
+tCode = tCode + \"	abort script;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"SV_Location_MSTR_Orig = Table_OpenAsTemp(table SV_Location_MSTR);\" + char(13);
+tCode = tCode + \"copy from table SV_Location_MSTR to table(SV_Location_MSTR_Orig);\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"{ Create/Copy SV Location for To Customer}\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Location_MSTR = IN_To_Customer;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Location_MSTR = IN_To_Address_Code;\" + char(13);
+tCode = tCode + \"change table SV_Location_MSTR by number 2;\" + char(13);
+tCode = tCode + \"copy from table(SV_Location_MSTR_Orig) to table SV_Location_MSTR;\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Location_MSTR = IN_To_Customer;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Location_MSTR = IN_To_Address_Code;\" + char(13);
+tCode = tCode + \"'Modified Date' of table SV_Location_MSTR = sysdate();\" + char(13);
+tCode = tCode + \"'Modified Time' of table SV_Location_MSTR = systime();\" + char(13);
+tCode = tCode + \"'Modified User ID' of table SV_Location_MSTR = IN_User_ID;\" + char(13);
+tCode = tCode + \"save table SV_Location_MSTR;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"{ Get From SV Customer Quicksearch record }\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Customer_Quicksearch = IN_From_Customer;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Customer_Quicksearch = IN_From_Address_Code;\" + char(13);
+tCode = tCode + \"get table SV_Customer_Quicksearch by number 11;\" + char(13);
+tCode = tCode + \"if err() <> OKAY then\" + char(13);
+tCode = tCode + \"	abort script;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"SV_Customer_Quicksearch_Orig = Table_OpenAsTemp(table SV_Customer_Quicksearch);\" + char(13);
+tCode = tCode + \"copy from table SV_Customer_Quicksearch to table(SV_Customer_Quicksearch_Orig);\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"{ Create/Copy SV Customer Quicksearch for To Customer}\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Customer_Quicksearch = IN_To_Customer;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Customer_Quicksearch = IN_To_Address_Code;\" + char(13);
+tCode = tCode + \"change table SV_Customer_Quicksearch by SV_Customer_Quicksearch_Key12;\" + char(13);
+tCode = tCode + \"copy from table(SV_Customer_Quicksearch_Orig) to table SV_Customer_Quicksearch;\" + char(13);
+tCode = tCode + \"'Customer Number' of table SV_Customer_Quicksearch = IN_To_Customer;\" + char(13);
+tCode = tCode + \"'Customer Name' of table SV_Customer_Quicksearch = IN_To_Customer_Name;\" + char(13);
+tCode = tCode + \"'Address Code' of table SV_Customer_Quicksearch = IN_To_Address_Code;\" + char(13);
+tCode = tCode + \"'Modified Date' of table SV_Customer_Quicksearch = sysdate();\" + char(13);
+tCode = tCode + \"'Modified Time' of table SV_Customer_Quicksearch = systime();\" + char(13);
+tCode = tCode + \"'Modified User ID' of table SV_Customer_Quicksearch = IN_User_ID;\" + char(13);
+tCode = tCode + \"save table SV_Customer_Quicksearch;\" + char(13);
+
+nErrorCount = execute(PRODID_WENNSOFT_PRODUCTS, tCode, sCompileMessage, IN_From_Customer, sAddressCode, IN_To_Customer, 'Customer Name' of table RM_Customer_MSTR, PARENT_BILLTO_ADDRESS, 'User ID' of globals);
+call OPEN_CODE_VIEWER of form HS_Misc_Code_Viewer, tCode, sCompileMessage;
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

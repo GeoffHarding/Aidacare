@@ -1,0 +1,41 @@
+Function	"Rental_Is_Invoice_Credit"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Credit;
+in		string			IN_Invoice_Number;
+
+local	text			tCode;
+local	integer			nErrorCount;
+local 	string			sCompileMessage;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+clear tCode;
+tCode = tCode + \"in		string		IN_Invoice_Number;\" + char(13);
+tCode = tCode + \"out		boolean		OUT_Credit;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"'EQS Rental Invoice Number' of table EQS_Rental_Invoice_Header_WORK = IN_Invoice_Number;\" + char(13);
+tCode = tCode + \"get table EQS_Rental_Invoice_Header_WORK;\" + char(13);
+tCode = tCode + \"if err() <> OKAY then\" + char(13);
+tCode = tCode + \"	clear table EQS_Rental_Invoice_Header_WORK;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+tCode = tCode + char(13);
+tCode = tCode + char(13);
+tCode = tCode + \"if 'EQS Rental Total' of table EQS_Rental_Invoice_Header_WORK < 0 then\" + char(13);
+tCode = tCode + \"	OUT_Credit = true;\" + char(13);
+tCode = tCode + \"else\" + char(13);
+tCode = tCode + \"	OUT_Credit = false;\" + char(13);
+tCode = tCode + \"end if;\" + char(13);
+
+nErrorCount = execute(PRODID_EQUIPMENT_MANAGEMENT, tCode, sCompileMessage, IN_Invoice_Number, OUT_Credit);
+call OPEN_CODE_VIEWER of form HS_Misc_Code_Viewer, tCode, sCompileMessage;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	UserProperties	""
+}

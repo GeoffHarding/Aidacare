@@ -1,0 +1,16 @@
+Function	"Is_Product_Loaded"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Product_Loaded;
+in		integer		IN_Product_ID;
+
+
+if Launch_GetProdPosition(IN_Product_ID) <= 0 or empty(Runtime_GetCurrentProductID()) then
+	OUT_Product_Loaded = false;
+else
+	OUT_Product_Loaded = true;
+end if;
+"
+	UserProperties	""
+}

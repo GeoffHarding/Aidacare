@@ -1,0 +1,88 @@
+Procedure	"HS_Trigger_Rental_Posting_SOP_Create_Tables_Header_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	table				SOP_HDR_WORK;
+in		anonymous table		EQS_Rental_Invoice_Header_WORK;
+in		table				SOP_SETP;
+in		table				RM_Customer_MSTR;
+in		currency			IN_Total_Comm_Amount;			
+in		currency			IN_Total_Comm_Sales_Amount;
+in		currency			IN_Discount_Available;
+out		currency			OUT_Rental_Total_No_Tax;
+out		integer				OUT_Error_Occurred;			
+
+local	boolean				bCredit;
+local	integer				nSOPType;
+local	integer				nMultiplier;
+
+
+pragma (disable warning UnusedVariable);
+pragma (disable warning LiteralStringUsed);
+
+
+bCredit = Rental_Is_Invoice_Credit(column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK);
+if bCredit then
+	nSOPType = SOP_TYPE_RENTAL_CREDIT;
+	nMultiplier = -1;
+else
+	nSOPType = SOP_TYPE_RENTAL_INVOICE;
+	nMultiplier = 1;
+end if;
+
+{ Get payment values }
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+get table HS_Rental_Payments_WORK_HIST;
+if err() <> OKAY then
+	abort script;
+end if;
+
+{ Set Payment values in table SOP_HDR_WORK }
+change table SOP_HDR_WORK;
+if err() = OKAY then
+	'Payment Received' of table SOP_HDR_WORK = 'Payment Amount' of table HS_Rental_Payments_WORK_HIST;
+	'Originating Payment Received' of table SOP_HDR_WORK = 'Payment Amount' of table HS_Rental_Payments_WORK_HIST;
+	'COD Amount' of table SOP_HDR_WORK = 'COD Amount' of table HS_Rental_Payments_WORK_HIST;
+	'Originating COD Amount' of table SOP_HDR_WORK = 'COD Amount' of table HS_Rental_Payments_WORK_HIST;
+	'Account Amount' of table SOP_HDR_WORK = 'Account Amount' of table SOP_HDR_WORK - ('Payment Amount' of table HS_Rental_Payments_WORK_HIST * nMultiplier);
+	'Originating Account Amount' of table SOP_HDR_WORK = 'Originating Account Amount' of table SOP_HDR_WORK - ('Payment Amount' of table HS_Rental_Payments_WORK_HIST * nMultiplier);
+	save table SOP_HDR_WORK;
+else
+	release table SOP_HDR_WORK;
+	abort script;
+end if;
+
+
+{ Copy Payments to new SOP Invoice and reset old Rental Invoice ones }
+range clear table SOP_Payment_WORK_HIST;
+clear table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = nSOPType;
+'SOP Number' of table SOP_Payment_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+range start table SOP_Payment_WORK_HIST;
+fill table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = nSOPType;
+'SOP Number' of table SOP_Payment_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+range end table SOP_Payment_WORK_HIST;
+
+get first table SOP_Payment_WORK_HIST;
+while err() <> EOF do
+	'SOP Type' of table SOP_Payment_WORK_HIST = 'SOP Type' of table SOP_HDR_WORK;
+	'SOP Number' of table SOP_Payment_WORK_HIST = 'SOP Number' of table SOP_HDR_WORK;
+	save table SOP_Payment_WORK_HIST;
+	
+	'SOP Type' of table SOP_Payment_WORK_HIST = nSOPType;
+	'SOP Number' of table SOP_Payment_WORK_HIST = column(\"EQS Rental Invoice Number\") of table EQS_Rental_Invoice_Header_WORK;
+	
+	get next table SOP_Payment_WORK_HIST;
+end while;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

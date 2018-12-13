@@ -1,0 +1,27 @@
+Function	"Tables_Check_Get_Reference"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns reference OUT_Reference;
+in		integer			IN_Table_No;
+
+
+case IN_Table_No
+	in [1]
+		assign OUT_Reference as reference to table HS_Features;
+	in [2]
+		assign OUT_Reference as reference to table HS_Rental_Payments_WORK_HIST;
+	in [3]
+		assign OUT_Reference as reference to table HS_PayWay_SETP;
+	in [4]
+		assign OUT_Reference as reference to table HS_PayWay_Customer_MSTR;
+	in [5]
+		assign OUT_Reference as reference to table HS_PayWay_Payments_WORK_HIST;
+	in [6]
+		assign OUT_Reference as reference to table HS_PayWay_Address_MSTR;
+	else
+		clear OUT_Reference;
+end case;
+"
+	UserProperties	""
+}

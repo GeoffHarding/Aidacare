@@ -1,0 +1,18 @@
+Function	"Is_PayWay_Payment"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_PayWay_Record;
+in		string			IN_Document_Number;
+
+
+'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = IN_Document_Number;
+get table HS_PayWay_Payments_WORK_HIST;
+if err() = OKAY then
+	OUT_PayWay_Record = true;
+else
+	OUT_PayWay_Record = false;
+end if;
+"
+	UserProperties	""
+}

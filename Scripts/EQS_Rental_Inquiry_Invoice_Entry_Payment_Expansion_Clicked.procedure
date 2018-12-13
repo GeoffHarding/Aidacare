@@ -1,0 +1,60 @@
+Procedure	"EQS_Rental_Inquiry_Invoice_Entry_Payment_Expansion_Clicked"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		string					sInvoiceNumber;
+local		boolean					bCredit;
+local		integer					nSOPType;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+if not 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	abort script;
+end if;
+
+
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Inquiry_Invoice_Entry\", \"Inquiry\", \"EQS Rental Invoice Number\", sInvoiceNumber;
+
+if empty(sInvoiceNumber) then
+	abort script;
+end if;
+
+
+bCredit = Rental_Is_Invoice_Credit(sInvoiceNumber);
+if bCredit then
+	nSOPType = SOP_TYPE_RENTAL_CREDIT;
+else
+	nSOPType = SOP_TYPE_RENTAL_INVOICE;
+end if;
+
+
+'EQS Rental Invoice Number' of table HS_Rental_Payments_WORK_HIST = sInvoiceNumber;
+get table HS_Rental_Payments_WORK_HIST;
+if err() <> OKAY then
+	clear table HS_Rental_Payments_WORK_HIST;
+end if;
+
+
+call OpenWindow of form SOP_Inquiry_Payment,
+ nSOPType,
+ sInvoiceNumber,
+ 'Functional Currency Index' of globals,
+ 'COD Amount' of table HS_Rental_Payments_WORK_HIST,
+ 'COD Amount' of table HS_Rental_Payments_WORK_HIST,
+ 'Payment Amount' of table HS_Rental_Payments_WORK_HIST,
+ 'Payment Amount' of table HS_Rental_Payments_WORK_HIST,
+ CURRENCYVIEW_FUNCTIONAL,
+ RENTAL_INVOICE_ENTRY;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

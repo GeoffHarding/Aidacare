@@ -1,0 +1,18 @@
+Function	"RM_Customer_Exists"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Boolean;
+in				string		IN_Customer;
+
+
+'Customer Number' of table RM_Customer_MSTR = IN_Customer;
+get table RM_Customer_MSTR;
+if err() = OKAY then
+	OUT_Boolean = true;
+else
+	OUT_Boolean = false;
+end if;
+"
+	UserProperties	""
+}

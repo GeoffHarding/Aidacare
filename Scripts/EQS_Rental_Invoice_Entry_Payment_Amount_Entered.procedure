@@ -1,0 +1,31 @@
+Procedure	"EQS_Rental_Invoice_Entry_Payment_Amount_Entered"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		string			sInvoiceNumber;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+if not 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	abort script;
+end if;
+
+
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"EQS Rental Invoice Number\", sInvoiceNumber;
+
+if not empty(sInvoiceNumber) then
+	call EQS_Rental_Invoice_Entry_Payment_Expansion_Clicked;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

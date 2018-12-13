@@ -1,0 +1,16 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Activate_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if isopen(form HS_PayWay_Refund_Entry) then
+	open form HS_PayWay_Refund_Entry;
+	abort script;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

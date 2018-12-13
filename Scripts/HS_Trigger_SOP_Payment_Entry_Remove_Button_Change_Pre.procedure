@@ -1,0 +1,189 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Remove_Button_Change_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"{-----------------------------------------------------------------------------
+	Replace GP Code
+------------------------------------------------------------------------------}
+local	boolean		l_payment;
+local 	reference	MCDef;
+local	integer				l_error;
+local	integer				l_period;
+local	boolean				l_period_closed;
+local	integer				l_year;
+local	integer				lPaymentType;
+local	currency			cOAmountRemoved;  
+
+
+{ @@@HS@@@ }
+default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+{ @@@HS@@@ }
+
+assign 	MCDef as reference to 'MC Def Structure';
+
+{init}
+set l_payment to true;
+set lPaymentType to GetPaymentType();
+
+{check for required fields}
+if 'Payment Type' of window Payments_Scroll = 0 then
+	call Warning_Dialog, 6085, \"\", \"\", \"\";
+	abort script;
+end if;	
+
+
+if IsDeposit(lPaymentType) then		
+
+	if 'Module Registered'[GL] of globals then
+		if empty('GL Posting Date' of file SOP_Payment_WORK_HIST) then 
+			set l_error to 2;
+		else
+			call Calculate_GL_Period,
+			SALES,
+			TRX_SOURCE_SOP_ENTRY,
+			'GL Posting Date' of file SOP_Payment_WORK_HIST,
+			l_period,
+			l_period_closed,
+			l_year,
+			l_error;
+		end if;
+	else
+		set l_error to 0;
+	end if;
+
+	if l_error = 2 then
+		{GL posting date period not set up.}
+		call Warning_Dialog, 20240, \"\", \"\", \"\";
+		abort script;
+
+	elseif l_period_closed then
+		{GL posting date period closed.}
+		call Warning_Dialog, 552, \"\", \"\", \"\";
+		abort script;
+	end if;
+
+end if;
+
+if (SOPTypeToInt('SOP Type') <> SOP_RETURN) then
+	{Remove the keys file record.}
+	set 'RM Document Type-All' of file RM_Keys_MSTR to RM_DOC_CASH;
+	set 'Document Number' of file RM_Keys_MSTR to 'Document Number' of file SOP_Payment_WORK_HIST;
+	change file RM_Keys_MSTR;
+	if err() = OKAY then
+		remove file RM_Keys_MSTR;
+	else
+		release file RM_Keys_MSTR;
+	end if;
+end if;
+
+set cOAmountRemoved to 'Originating Amount Paid';
+
+{Remove the payment.}
+change file SOP_Payment_WORK_HIST;
+if err() = OKAY then
+  	set cOAmountRemoved to 'Originating Amount Remaining' of file SOP_Payment_WORK_HIST;
+	if IsDeposit(lPaymentType) and (not empty('TRX Source' of window Payments_Scroll)) then	
+		{Only mark posted deposits as deleted so they can be unposted.}
+		set 'Delete' of file SOP_Payment_WORK_HIST to true;
+		'GL Posting Date' of table SOP_Payment_WORK_HIST = 'GL Posting Date';
+		save file SOP_Payment_WORK_HIST;
+		check error;
+	elseif 'Amount Remaining' of file SOP_Payment_WORK_HIST <> 'Amount Paid' of file SOP_Payment_WORK_HIST then
+	  {Can't remove something that has been partially xferred}
+		decrement 'Originating Amount Paid' of file SOP_Payment_WORK_HIST by 'Originating Amount Remaining' of file SOP_Payment_WORK_HIST;
+		call MC_Calc_Func_Amt,field(MCDef),'Originating Amount Paid' of file SOP_Payment_WORK_HIST,
+			'Amount Paid' of file SOP_Payment_WORK_HIST;
+		clear 'Amount Remaining' of file SOP_Payment_WORK_HIST, 
+			'Originating Amount Remaining' of file SOP_Payment_WORK_HIST;
+		set 'Deposit Status' of file SOP_Payment_WORK_HIST to 1;
+		save file SOP_Payment_WORK_HIST;
+		check error;
+	else
+		remove file SOP_Payment_WORK_HIST;
+	end if;
+else
+	{Nothing to update.}
+	clear file SOP_Payment_WORK_HIST;
+end if;
+
+if IsDeposit(lPaymentType) then
+	{Update the total deposits.}
+	decrement 'Originating Deposit Received' by 'Originating Amount Paid' of window Payments_Scroll;
+	call MC_Calc_Func_Amt,field(MCDef),'Originating Deposit Received','Deposit Received';
+	{Set flag so GL is not updated.}
+	set l_payment to false;
+end if;
+{Because deposit totals are tracked on invoices in the payment recieved field as well, the amount is decremented}
+if IsPayment(lPaymentType) or (SOPTypeToInt('SOP Type') = SOP_INVOICE or SOPTypeToInt('SOP Type') = SOP_FULFILLMENT_ORDER) then
+	{Update the total payments}
+	decrement 'Originating Payment Received' by cOAmountRemoved;
+	call MC_Calc_Func_Amt,field(MCDef),'Originating Payment Received','Payment Received';
+end if;
+		
+{Clear the payment type so there is no record selected.}
+set 'Payment Type' of window Payments_Scroll to 0;
+
+if l_payment then
+	{Update the distributions for the removed payment.}
+	call SOP_Dist_Update_Payment, 
+{ @@@HS@@@ }
+{		SOPTypeToInt('SOP Type'),}
+		integer(itemdata('SOP Type', 'SOP Type')),
+{ @@@HS@@@ }
+		'SOP Number', 
+		'Payment Type' of file SOP_Payment_WORK_HIST, 
+		'Card Name' of file SOP_Payment_WORK_HIST, 
+		'Checkbook ID' of file SOP_Payment_WORK_HIST,
+		-'Originating Amount Paid' of file SOP_Payment_WORK_HIST,
+		'MC Def Structure',
+		file RM_Customer_MSTR, 
+		file SOP_Distribution_WORK_HIST;
+else
+	{Deposit}	{GPSS Script}
+	call SOP_Dist_Update_Deposit, 
+{ @@@HS@@@ }
+{		SOPTypeToInt('SOP Type'),}
+		integer(itemdata('SOP Type', 'SOP Type')),
+{ @@@HS@@@ }
+		'SOP Number', 
+		'Deposits Index' of file SOP_Payment_WORK_HIST, 
+		-'Originating Amount Paid' of file SOP_Payment_WORK_HIST, 
+		'MC Def Structure',	
+		file RM_Customer_MSTR, 
+		file SOP_Distribution_WORK_HIST;
+end if;
+
+{Update the total.}
+decrement '(L) O Total Distributed' by cOAmountRemoved;
+call MC_Calc_Func_Amt,field(MCDef),'(L) O Total Distributed','(L) Total Distributed';
+
+{Not on a record now.}
+clear '(L) Old Amount Paid';
+clear 'Line Item Sequence';
+
+{Mark changes on the window.}
+set '(L) Invisible Changes' to 1;
+
+{Clear the window. GPSS Script}
+call Clear_Window of form SOP_Payment_Entry;
+
+{Focus to the top like restart window. - GPSS}
+if 'View Mode' = FUNCTIONAL then
+	focus 'Amount Received';
+else
+	focus 'Originating Amount Received';
+end if;
+
+
+{ @@@HS@@@ }
+reject script;
+{ @@@HS@@@ }
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

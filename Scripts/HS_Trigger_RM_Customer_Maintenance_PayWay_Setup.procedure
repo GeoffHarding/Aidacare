@@ -1,0 +1,17 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_PayWay_Setup"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if not isopen(window RM_Customer_Maintenance of form RM_Customer_Maintenance) then
+	abort script;
+end if;
+
+call OPEN of form HS_PayWay_Customer_Maintenance, 'Customer Number' of window RM_Customer_Maintenance of form RM_Customer_Maintenance;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

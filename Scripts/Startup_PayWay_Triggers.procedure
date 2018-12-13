@@ -1,0 +1,67 @@
+Procedure	"Startup_PayWay_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if Trigger_RegisterForm(form RM_Customer_Maintenance, \"Debtor PayWay Setup\", CH_P,
+ script HS_Trigger_RM_Customer_Maintenance_PayWay_Setup, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_PAYWAY_SETUP_MENU] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Debtor PayWay Setup' of form RM_Customer_Maintenance menu trigger.\";
+end if;
+
+if Trigger_RegisterForm(form RM_Customer_Address, \"Debtor Address PayWay Setup\", CH_P,
+ script HS_Trigger_RM_Customer_Address_PayWay_Setup, 'HS Trigger Tag'[TAG_RM_CUSTOMER_ADDRESS_PAYWAY_SETUP_MENU] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Debtor Address PayWay Setup' of form RM_Customer_Address menu trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous (window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_ACTIVATE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Activate_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering window SOP_Payment_Entry of form SOP_Payment_Entry activate focus post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Payment Type' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Payment_Type_Change_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_PAYMENT_TYPE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Payment Type' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post trigger.\";
+end if;
+
+{if Trigger_RegisterFocus(anonymous ('Card Name' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Card_Name_Change_Post_PayWay, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Card Name' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post 2 trigger.\";
+end if;}
+
+if Trigger_RegisterFocus(anonymous ('Line Item Sequence' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Line_Item_Sequence_Change_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Line Item Sequence' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Line Item Sequence' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Line_Item_Sequence_Change_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Line Item Sequence' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script Clear_Window of form SOP_Payment_Entry, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Clear_Window_Pre, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering Clear_Window of form SOP_Payment_Entry procedure pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('(L) Remove Button' of window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Payment_Entry_Remove_Button_Change_Pre_PayWay, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE_PAYWAY] of globals) <> SY_NOERR then
+	warning \"Failed registering '(L) Remove Button' of window SOP_Payment_Entry of form SOP_Payment_Entry change focus pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous ('Action Button' of window SOP_Entry of form SOP_Entry), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_SOP_Entry_Action_Button_Pre, 'HS Trigger Tag'[TAG_SOP_ENTRY_ACTION_BUTTON_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Action Button' of window SOP_Entry of form SOP_Entry change focus pre trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

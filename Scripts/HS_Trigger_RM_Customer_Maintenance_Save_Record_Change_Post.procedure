@@ -1,0 +1,68 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_Save_Record_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local	integer		nResult;
+local	boolean		bNAHoldInactive;
+
+
+if not Check_Modified_Form_Security(PRODID_WENNSOFT_PRODUCTS, resourceid(form RM_Customer_Maintenance)) then
+	abort script;
+end if;
+
+
+default form to RM_Customer_Maintenance;
+default window to RM_Customer_Maintenance;
+
+
+{ Check record was saved }
+if not ('Save Record') then
+	abort script;
+end if;
+
+{ Check Corporate Customer was changed }
+if 'Corporate Customer Number' = 'HS Corporate Customer Number' of globals then
+	abort script;
+end if;
+
+
+{ Remove old national account record }
+if not empty('HS Corporate Customer Number' of globals) then
+	call ReleaseCustomer of form RM_NationalAccounts_Maintenance,
+	 'HS Corporate Customer Number' of globals,
+	 'Customer Number',
+	 nResult;
+end if;
+
+
+{ Add new national account record }
+if not empty('Corporate Customer Number') then
+	{ Get Hold Inactive value }
+	'Corporate Customer Number' of table RM_NationalAccounts_MSTR = 'Corporate Customer Number';
+	get table RM_NationalAccounts_MSTR;
+	if err() = OKAY then
+		bNAHoldInactive = 'NAHoldInactive' of table RM_NationalAccounts_MSTR;
+	end if;
+	
+	call AdoptCustomer of form RM_NationalAccounts_Maintenance,
+	 'Corporate Customer Number',
+	 'Customer Number',
+	 bNAHoldInactive,
+	 nResult;
+end if;
+
+
+{ Create/Copy the Billto Address Code from the Parent to the Child }
+if not empty('HS Primary Billto Address Code' of globals) then
+	call Copy_Customer_BillTo_Address,
+	 'Corporate Customer Number',
+	 'Customer Number';
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

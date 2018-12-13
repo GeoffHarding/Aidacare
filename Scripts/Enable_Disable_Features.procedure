@@ -1,0 +1,207 @@
+Procedure	"Enable_Disable_Features"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local	integer			nLoop;
+
+
+{ Enable or disable triggers depending on features }
+
+Table_DisableErrorChecks(true);
+Table_SetCreateMode(false);
+
+open table HS_Features;
+if Table_Compare(table HS_Features) <> STATUS_SUCCESS then
+	Table_DisableErrorChecks(false);
+	clear table HS_Features;
+else
+	Table_DisableErrorChecks(false);
+	
+	'Dummy Record' of table HS_Features = false;
+	get table HS_Features;
+	if err() <> OKAY then
+		clear table HS_Features;
+	end if;
+end if;
+
+for nLoop = 1 to 30 do
+	'HS Feature'[nLoop] of globals = 'HS Check Box'[nLoop] of table HS_Features;
+end for;
+
+
+
+if 'HS Feature'[FEATURE_BATCH_CREATION_SOP_TYPE] of globals then
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_GET_BATCH_NUMBER_WS_SOP_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_CREATE_SOP_HEADER_WS_SOP_PRE] of globals);
+else
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_GET_BATCH_NUMBER_WS_SOP_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_CREATE_SOP_HEADER_WS_SOP_PRE] of globals);
+end if;
+
+
+if 'HS Feature'[FEATURE_NATIONAL_ACCOUNT_CUSTOMER_INTEGRATION] of globals then
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_CORPORATE_CUSTOMER_NO_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_ADDRESS_CODE_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_CHILDSCROLL_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_PERFORM_SAVE_PRE] of globals);
+else
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_CORPORATE_CUSTOMER_NO_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_ADDRESS_CODE_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_CHILDSCROLL_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_PERFORM_SAVE_PRE] of globals);
+end if;
+
+
+if 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals then
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_DISPLAY_EXISTING_RECORD_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_RECORD_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_RECORD_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_DELETE_INVOICE_AGREEMENT_TABLES_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_PRE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_WINDOW_POST_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_INTTOSOPTYPE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_OPEN_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_CREATE_DISTRIBUTIONS_RECEIVABLES_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_INVOICE_CALC_RECEIVABLES_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_DISTRIBUTION_CHECK_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_CREATE_TABLES_HEADER_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INQUIRY_INVOICE_ENTRY_DISPLAY_EXISTING_RECORD_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_WINDOW_POST_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_DELETE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_VOID_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_POST_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_GLOBAL_BRANCH_FILTER_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_EQ_PRINT_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_TOP_OF_FILE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_PREVIOUS_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_NEXT_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_END_OF_FILE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_LOOKUP_BUTTON_1_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOPTYPETOINT_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_POST_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_UPDATE_INVOICE_HEADER_TOTALS_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_UPDATE_INVOICE_HEADER_TOTALS_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_POST_INVOICE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_CREATE_TABLES_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_POST_INVOICE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_POST_VERIFY_PAYMENTS_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_DIST_CHECK_INVOICE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_CM_POST_SOP_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_CM_BANKTRXOBJ_AUTOPOST_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_POST_CREATE_RM_SALES_DOC_POST] of globals);
+else
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_DISPLAY_EXISTING_RECORD_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_RECORD_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_RECORD_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_DELETE_INVOICE_AGREEMENT_TABLES_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_PRE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_WINDOW_POST_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_INTTOSOPTYPE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_OPEN_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_CREATE_DISTRIBUTIONS_RECEIVABLES_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_INVOICE_CALC_RECEIVABLES_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_DISTRIBUTION_CHECK_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_CREATE_TABLES_HEADER_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INQUIRY_INVOICE_ENTRY_DISPLAY_EXISTING_RECORD_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_WINDOW_POST_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_SAVE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_DELETE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_VOID_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_POST_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_GLOBAL_BRANCH_FILTER_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_EQ_PRINT_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_TOP_OF_FILE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_PREVIOUS_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_NEXT_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_END_OF_FILE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_EQS_RENTAL_INVOICE_ENTRY_LOOKUP_BUTTON_1_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOPTYPETOINT_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_FORM_POST_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_SET_WINDOW_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_UPDATE_INVOICE_HEADER_TOTALS_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_UPDATE_INVOICE_HEADER_TOTALS_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_POST_INVOICE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_CREATE_TABLES_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RENTAL_POSTING_SOP_POST_INVOICE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_POST_VERIFY_PAYMENTS_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_DIST_CHECK_INVOICE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_CM_POST_SOP_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_CM_BANKTRXOBJ_AUTOPOST_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_POST_PAYMENTS_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_POST_CREATE_RM_SALES_DOC_POST] of globals);
+end if;
+
+
+if 'HS Feature'[FEATURE_NAVIGATION_LIST_EXTRA_FIELDS_POP_TRX] of globals then
+	call Navigation_List_Create_Extra_Columns_POP_TRX, true;
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_GETCOLUMNNAME_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_LOADDATABACKGROUND_POST] of globals);
+else
+	call Navigation_List_Create_Extra_Columns_POP_TRX, false;
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_GETCOLUMNNAME_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_LISTOBJ_PURCHASINGTRX_LOADDATABACKGROUND_POST] of globals);
+end if;
+
+
+if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_PAYWAY_SETUP_MENU] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_ADDRESS_PAYWAY_SETUP_MENU] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_PAYMENT_TYPE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_POST] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_PRE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE_PAYWAY] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_ENTRY_ACTION_BUTTON_PRE] of globals);
+else
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_PAYWAY_SETUP_MENU] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_ADDRESS_PAYWAY_SETUP_MENU] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_PAYMENT_TYPE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_LINE_ITEM_SEQUENCE_CHANGE_POST] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CLEAR_WINDOW_PRE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_REMOVE_BUTTON_CHANGE_PRE_PAYWAY] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_ENTRY_ACTION_BUTTON_PRE] of globals);
+end if;
+
+
+if 'HS Feature'[FEATURE_SOP_PAYMENTS_FOR_RENTAL_INVOICES] of globals or 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_INSERT_BUTTON_CHANGE_PRE] of globals);
+else
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_INSERT_BUTTON_CHANGE_PRE] of globals);
+end if;
+
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

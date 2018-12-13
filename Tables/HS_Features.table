@@ -1,0 +1,61 @@
+Table	"HS_Features"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"HS Features"
+	FourByteHeader	"true"
+	PhysicalName	"HSFeatures"
+	Restriction	""
+	Series	"Financial"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"Dummy Record"		
+		{
+			Encrypt	"false"
+			Field	"Dummy Record"
+			Position	"0"
+		}
+		TableField	"HS Check Box"		
+		{
+			Encrypt	"false"
+			Field	"HS Check Box"
+			Position	"1"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_Features_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"Dummy Record"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"false"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

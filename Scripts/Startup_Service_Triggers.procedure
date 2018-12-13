@@ -1,0 +1,31 @@
+Procedure	"Startup_Service_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+if not Is_Product_Loaded(PRODID_WENNSOFT_PRODUCTS) then
+	abort script;
+end if;
+
+
+if Trigger_RegisterFunctionByName(PRODID_WENNSOFT_PRODUCTS, \"Get_Batch_Number of form WS_SOP\", TRIGGER_AFTER_ORIGINAL,
+ function HS_Trigger_Get_Batch_Number_WS_SOP_Post, 'HS Trigger Tag'[TAG_GET_BATCH_NUMBER_WS_SOP_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering Get_Batch_Number of form WS_SOP function post trigger.\";
+end if;
+
+if Trigger_RegisterProcedureByName(PRODID_WENNSOFT_PRODUCTS, \"WS_Create_SOP_Header of form WS_SOP\", TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_WS_Create_SOP_Header_WS_SOP_Pre, 'HS Trigger Tag'[TAG_CREATE_SOP_HEADER_WS_SOP_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering WS_Create_SOP_Header of form WS_SOP procedure pre trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

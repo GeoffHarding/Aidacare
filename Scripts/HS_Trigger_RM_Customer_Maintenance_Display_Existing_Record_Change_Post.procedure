@@ -1,0 +1,38 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_Display_Existing_Record_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"if not Check_Modified_Form_Security(PRODID_WENNSOFT_PRODUCTS, resourceid(form RM_Customer_Maintenance)) then
+	abort script;
+end if;
+
+
+default form to RM_Customer_Maintenance;
+default window to RM_Customer_Maintenance;
+
+
+'HS Corporate Customer Number' of globals = 'Corporate Customer Number' of table RM_Customer_MSTR;
+clear 'HS Primary Billto Address Code' of globals;
+
+if 'Display Existing Record' then
+	'Corporate Customer Number' of table RM_NationalAccounts_MSTR = 'Customer Number';
+	get table RM_NationalAccounts_MSTR;
+	if err() = OKAY then
+		{ Parent }
+		lock field 'Corporate Customer Number';
+	else
+		unlock field 'Corporate Customer Number';
+	end if;
+	
+	'Corporate Customer Number' = 'Corporate Customer Number' of table RM_Customer_MSTR;
+else
+	unlock field 'Corporate Customer Number';
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

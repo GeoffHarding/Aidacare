@@ -1,0 +1,138 @@
+Procedure	"HS_Fix_SOP_Post_Get_RM_Number"
+{
+	Core	"System"
+	Documentation	""
+	Script	"{----------------------------------------------------------------------------------
+SOP_Post_Get_RM_Number
+
+This script returns a valid RM document number for the SOP_Number.
+
+01Feb95	JELLINGS	Created
+29Nov99	TBROOKIN	Add code to 'find' a document number we already created before a posting interruption
+08Feb00	TIRSFELD	INTL32 - added support for multi-lingual data
+04Apr00	EPEGORS		have to reserve the RM keys record or the RM check links will 
+					delete it
+07Nov01	PWINJE		PR21821 - Check for existence of tax history records.
+07Oct03 BFITZGER	SOP00027 - check for negative quantity invoice acting as a return
+15Mar04	MSWANSON	Performance Work - add parameter fInvoiceHasReturns
+----------------------------------------------------------------------------------}
+
+inout	integer					INOUT_RM_Type;
+inout	'Document Number'		INOUT_RM_Number;
+in		'Transaction Source'	IN_TRX_Source;
+in		boolean					IN_CreateNumber;
+in		boolean					fInvoiceHasReturns;
+inout 	integer					INOUT_TRX_Error;
+inout	table					SOP_HDR_HIST;			{positioned}
+
+local 	boolean 	l_okay;
+local	boolean 	l_got_one;
+local 	boolean 	l_first;
+local 	integer 	l_count;
+local	string		l_str;
+
+
+if 'SOP Type' of file SOP_HDR_HIST = SOP_INVOICE then
+	if fInvoiceHasReturns and
+			'Document Amount' of table SOP_HDR_HIST < 0 then
+		{invoice document is acting as a return}
+		set INOUT_RM_Type to RM_DOC_RETURNS;			
+	else
+		{regular SOP invoice}
+		set INOUT_RM_Type to RM_DOC_SALES;
+	end if;	
+
+elseif 'SOP Type' of file SOP_HDR_HIST = SOP_RETURN then
+	set INOUT_RM_Type to RM_DOC_RETURNS;
+end if;
+
+if 'Module Registered'[RM] of globals then
+	set l_okay to false;
+	set l_got_one to false;
+	set l_first to true;
+	clear l_count;
+	
+	while not l_okay do
+		if l_first then
+			set INOUT_RM_Number to 'SOP Number' of file SOP_HDR_HIST;
+		else
+			set l_count to l_count + 1;
+			
+			{Try to make a recurring type document for the RM document.}
+			if l_count < 10 then
+				set l_str to CH_0 + CH_0;
+			elseif l_count < 100 then
+				set l_str to CH_0;
+			else
+				clear l_str;
+			end if;
+			
+			set INOUT_RM_Number to 'SOP Number' of file SOP_HDR_HIST + l_str + str(l_count);
+		end if;
+		
+		set 'RM Document Type-All' of file RM_Keys_MSTR to INOUT_RM_Type;
+		set 'Document Number' of file RM_Keys_MSTR to INOUT_RM_Number;
+		get file RM_Keys_MSTR;
+
+		if IN_CreateNumber then
+			{ 
+			  We need to create a new RM document number for this SOP document.
+			  Find an RM number which is not currently being used.
+			}
+			if err() = MISSING then
+				if not ExistsForDocNum(INOUT_RM_Number, INOUT_RM_Type, VATSERIESID_RM) of form coTaxHistory then
+					set 'Customer Number' of file RM_Keys_MSTR to 'Customer Number' of file SOP_HDR_HIST;
+					set 'Document Date' of file RM_Keys_MSTR to 'Document Date' of file SOP_HDR_HIST;
+					set 'Batch Source' of file RM_Keys_MSTR to BATCH_SOURCE_SOP_ENTRY;
+					set 'TRX Source' of file RM_Keys_MSTR to IN_TRX_Source;
+					set 'Document Status' of file RM_Keys_MSTR to RESERVED;
+					save file RM_Keys_MSTR;
+
+					set l_okay to true;
+					set l_got_one to true;
+				end if;
+			end if;
+		else
+			{ 
+			  We have previously created the keys record and stamped it with our transaction source.
+			  We then crashed, and we are now re-posting.  We need to find the keys record we
+			  created during the first posting run.  When we find the keys record (using the
+			  transaction source), then we can retrieve the document number.
+			 }
+			if err() = OKAY then
+				if 'TRX Source' of file RM_Keys_MSTR = IN_TRX_Source then
+					
+					set INOUT_RM_Number to 'Document Number' of file RM_Keys_MSTR;
+
+					set l_okay to true;
+					set l_got_one to true;
+				end if;
+			end if;
+		end if;		{ Create or Find	}
+				
+		if (l_count = 999) and (not l_got_one) then
+			{Can't get a recurring document number either.}
+			set l_okay to true;
+		end if;
+		
+		if l_first then 
+			set l_first to false;
+		end if;
+	end while;
+	
+	if not l_got_one then
+		{Unable to get RM document.}
+		check field 'SOP HDR Errors 2' of file SOP_HDR_HIST, 13;
+		set INOUT_TRX_Error to 1;
+	end if;
+else 
+	clear INOUT_RM_Number;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

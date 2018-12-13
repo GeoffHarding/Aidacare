@@ -1,0 +1,97 @@
+Form	"HS_Command_Form"
+{
+	Commands
+	{
+		Command	"HS_PayWay_Setup"		
+		{
+			CheckedImage	""
+			CheckedImageType	"NativePicture"
+			CommandForm	"HS_PayWay_Setup"
+			CommandType	"Form"
+			DisplayName	"PayWay Setup"
+			MenuShowImage	"false"
+			RibbonButtonSize	"Large"
+			RibbonButtonType	"ActionButton"
+			RibbonLayoutPriority	"Primary"
+			SecurityForm	""
+			ShortcutChar	""
+			ShortcutModKeys	""
+			StandardImage	""
+			StandardImageType	"NativePicture"
+			ToolbarButtonStyle	"ImageOnly"
+			Tooltip	""
+			Unfocus	"false"
+		}
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+		Constant	"~SHORTCUT~"		
+		{
+			Value	"0"
+		}
+	}
+	Datatypes
+	{
+	}
+	EventPost	""
+	EventPre	""
+	Fields
+	{
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+	}
+	Windows
+	{
+		Window	"Dummy"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"false"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"false"
+			DisplayName	"~internal~"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	""
+			EventPrint	""
+			Fields
+			{
+			}
+			LastTag	"0"
+			Position	"1"
+			PositionLeft	"1"
+			PositionTop	"1"
+			Resizable	"true"
+			SizeHeight	"338"
+			SizeWidth	"424"
+			WindowType	"Internal"
+		}
+	}
+	~EventScripts
+	{
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+		Procedure	"Enable_Commands"		
+		{
+			Documentation	""
+			Script	"if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
+	call Command_ShowAndEnable, command HS_PayWay_Setup;
+else
+	call Command_HideAndDisable, command HS_PayWay_Setup;
+end if;
+"
+			UserProperties	""
+		}
+	}
+}

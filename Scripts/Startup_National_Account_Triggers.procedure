@@ -1,0 +1,55 @@
+Procedure	"Startup_National_Account_Triggers"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+{ RM Customer Maintenance triggers }
+if Trigger_RegisterFocus(anonymous('Corporate Customer Number' of window RM_Customer_Maintenance of form RM_Customer_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_RM_Customer_Maintenance_Corporate_Customer_Number_Change_Post, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_CORPORATE_CUSTOMER_NO_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Corporate Customer Number' of window RM_Customer_Maintenance of form RM_Customer_Maintenance focus change post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous('Save Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_RM_Customer_Maintenance_Save_Record_Change_Pre, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Save Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance focus change pre trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous('Save Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_RM_Customer_Maintenance_Save_Record_Change_Post, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_SAVE_RECORD_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Save Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance focus change post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous('Display Existing Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_RM_Customer_Maintenance_Display_Existing_Record_Change_Post, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_DISPLAY_EXISTING_RECORD_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Display Existing Record' of window RM_Customer_Maintenance of form RM_Customer_Maintenance focus change post trigger.\";
+end if;
+
+if Trigger_RegisterFocus(anonymous('Address Code' of window RM_Customer_Maintenance of form RM_Customer_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_RM_Customer_Maintenance_Address_Code_Change_Post, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_ADDRESS_CODE_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering 'Address Code' of window RM_Customer_Maintenance of form RM_Customer_Maintenance focus change post trigger.\";
+end if;
+
+
+{ RM National Accounts Maintenance triggers }
+if Trigger_RegisterFocus(anonymous(window ChildScroll of form RM_NationalAccounts_Maintenance), TRIGGER_FOCUS_CHANGE, TRIGGER_AFTER_ORIGINAL,
+ script HS_Trigger_RM_NationalAccounts_Maintenance_ChildScroll_Change_Post, 'HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_CHILDSCROLL_CHANGE_POST] of globals) <> SY_NOERR then
+	warning \"Failed registering window ChildScroll of form RM_NationalAccounts_Maintenance focus change post trigger.\";
+end if;
+
+if Trigger_RegisterProcedure(script PerformSave of form RM_NationalAccounts_Maintenance, TRIGGER_BEFORE_ORIGINAL,
+ script HS_Trigger_RM_NationalAccounts_Maintenance_Perform_Save_Pre, 'HS Trigger Tag'[TAG_RM_NATIONALACCOUNTS_MAINTENANCE_PERFORM_SAVE_PRE] of globals) <> SY_NOERR then
+	warning \"Failed registering PerformSave of form RM_NationalAccounts_Maintenance procedure pre trigger.\";
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

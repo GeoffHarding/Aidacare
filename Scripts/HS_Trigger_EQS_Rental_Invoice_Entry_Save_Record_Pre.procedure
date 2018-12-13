@@ -1,0 +1,13 @@
+Procedure	"HS_Trigger_EQS_Rental_Invoice_Entry_Save_Record_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"'HS Rental Invoice Entry Save Record' of globals = true;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

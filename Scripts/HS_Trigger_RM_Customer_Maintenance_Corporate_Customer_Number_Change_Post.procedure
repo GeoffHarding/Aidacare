@@ -1,0 +1,65 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_Corporate_Customer_Number_Change_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"pragma (disable warning LiteralStringUsed);
+
+
+if not Check_Modified_Form_Security(PRODID_WENNSOFT_PRODUCTS, resourceid(form RM_Customer_Maintenance)) then
+	abort script;
+end if;
+
+
+default form to RM_Customer_Maintenance;
+default window to RM_Customer_Maintenance;
+
+
+if empty('Corporate Customer Number') then
+	clear 'HS Primary Billto Address Code' of globals;
+	abort script;
+end if;
+
+{ You can't enter a Child Customer that is the same as the Parent Customer ID }
+if 'Corporate Customer Number' = 'Customer Number' then
+	call Warning_Dialog, 36535;
+	restart field;
+	abort script;
+end if;
+
+
+{ Check customer exists }
+if not RM_Customer_Exists('Corporate Customer Number') then
+	warning \"This Debtor ID is not a Parent Debtor\";
+	restart field;
+	abort script;
+end if;
+
+
+{ Check if corporate number exists }
+'Corporate Customer Number' of table RM_NationalAccounts_MSTR = 'Corporate Customer Number';
+get table RM_NationalAccounts_MSTR;
+if err() <> OKAY then
+	warning \"This Debtor ID is not a Parent Debtor\";
+	restart field;
+	abort script;
+end if;
+
+
+{ Ask whether user wants to update the Billto Address from the parent }
+if ask(\"You have attached this Debtor to a National Account. Do you wish to update its Bill To Address to that of the Parent?\", \"Yes\", \"No\", \"\") = ASKBUTTON1 then
+	'Primary Billto Address Code' = PARENT_BILLTO_ADDRESS;
+	'HS Primary Billto Address Code' of globals = 'Primary Billto Address Code';
+else
+	clear 'HS Primary Billto Address Code' of globals;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

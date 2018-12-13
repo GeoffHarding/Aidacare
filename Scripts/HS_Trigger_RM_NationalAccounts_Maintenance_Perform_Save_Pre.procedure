@@ -1,0 +1,38 @@
+Procedure	"HS_Trigger_RM_NationalAccounts_Maintenance_Perform_Save_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	table		RM_NationalAccounts_MSTR;
+inout	table		RM_NationalAccounts_TEMP;
+inout	table		RM_Deleted_Customer_TEMP;
+inout	table		SOP_Log_TEMP;
+out		integer		O_nStatus;
+
+
+pragma (disable warning UnusedVariable);
+
+
+{ Loop through records and find the ones we want to update Bill To Address for }
+get first table RM_NationalAccounts_TEMP;
+
+while err(table RM_NationalAccounts_TEMP) = OKAY do
+	if 'action' of table RM_NationalAccounts_TEMP = 10 then
+		call Copy_Customer_BillTo_Address,
+		 'Corporate Customer Number' of window RM_NationalAccounts_Maintenance of form RM_NationalAccounts_Maintenance,
+		 'Customer Number' of table RM_NationalAccounts_TEMP;
+		
+		change table RM_NationalAccounts_TEMP;
+		'action' of table RM_NationalAccounts_TEMP = 2;
+		save table RM_NationalAccounts_TEMP;
+	end if;
+	
+	get next table RM_NationalAccounts_TEMP;
+end while;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

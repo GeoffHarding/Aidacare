@@ -1,0 +1,21 @@
+Procedure	"HS_Trigger_SOP_Payment_Entry_Form_Pre_Post"
+{
+	Core	"System"
+	Documentation	""
+	Script	"default form to SOP_Payment_Entry;
+default window to SOP_Payment_Entry;
+
+
+add item getmsg(22001), SOP_TYPE_RENTAL_INVOICE to 'SOP Type';   {Rental Invoice}
+add item getmsg(22003), SOP_TYPE_RENTAL_CREDIT to 'SOP Type';   {Rental Credit}
+
+
+'HS SOP Type Credit To Return' of globals = true;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

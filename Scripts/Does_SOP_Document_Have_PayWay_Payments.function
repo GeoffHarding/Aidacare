@@ -1,0 +1,28 @@
+Function	"Does_SOP_Document_Have_PayWay_Payments"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Payments_Exist;
+in		'SOP Type'			IN_SOP_Type;
+in		'SOP Number'		IN_SOP_Number;
+
+
+OUT_Payments_Exist = false;
+
+range clear table HS_PayWay_Payments_WORK_HIST;
+clear table HS_PayWay_Payments_WORK_HIST;
+'SOP Type' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Number;
+range start table HS_PayWay_Payments_WORK_HIST by number 2;
+fill table HS_PayWay_Payments_WORK_HIST;
+'SOP Type' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Type;
+'SOP Number' of table HS_PayWay_Payments_WORK_HIST = IN_SOP_Number;
+range end table HS_PayWay_Payments_WORK_HIST by number 2;
+
+get first table HS_PayWay_Payments_WORK_HIST by number 2;
+if err() = OKAY then
+	OUT_Payments_Exist = true;
+end if;
+"
+	UserProperties	""
+}

@@ -1,0 +1,68 @@
+Procedure	"HS_Trigger_RM_Customer_Maintenance_Save_Record_Change_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"local		boolean			bAbortScript;
+local		integer			nResult;
+
+
+pragma (disable warning LiteralStringUsed);
+
+
+if not Check_Modified_Form_Security(PRODID_WENNSOFT_PRODUCTS, resourceid(form RM_Customer_Maintenance)) then
+	abort script;
+end if;
+
+
+default form to RM_Customer_Maintenance;
+default window to RM_Customer_Maintenance;
+
+bAbortScript = false;
+
+if empty('Corporate Customer Number') then
+	abort script;
+end if;
+
+
+{ Check if the Balance Type is Balance Forward }
+if 'Balance Type' of window RM_Customer_Options = RM_BALANCE_FORWARD then
+	warning \"You cannot add a National Account to a customer whose balance type is Balance Forward.\";
+	bAbortScript = true;
+end if;
+
+
+'Corporate Customer Number' of table RM_NationalAccounts_MSTR = 'Corporate Customer Number';
+get table RM_NationalAccounts_MSTR;
+if err() = OKAY then
+	if 'NAHoldInactive' of table RM_NationalAccounts_MSTR and not 'Inactive' then
+		try
+			if CustomerIsInactive('Corporate Customer Number') of form rmCust then
+				call VerifyDocumentStatusesForCustomer of form RM_NationalAccounts_Maintenance,
+				 'Customer Number',
+				 table RM_Keys_MSTR,
+				 nResult;
+				if nResult = FAILED then
+					warning \"Unposted or open documents exist for this customer which is not allowed by the National Account.\";
+					bAbortScript = true;
+				end if;			
+			end if;
+		else
+			throw;
+		end try;
+	end if;
+end if;
+
+if bAbortScript then
+	reject script;
+end if;
+
+
+pragma (enable warning LiteralStringUsed);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

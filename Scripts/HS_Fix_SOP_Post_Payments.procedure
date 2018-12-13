@@ -1,0 +1,70 @@
+Procedure	"HS_Fix_SOP_Post_Payments"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	file					SOP_HDR_HIST;				{positioned}
+
+local	boolean					fInvoiceHasReturns;
+local	dollar					l_apply_amount;
+local	dollar					l_o_apply_amt;
+local	integer					l_RM_type;
+local	'Document Number'		l_RM_number;
+local	integer					l_trx_error;
+
+
+fInvoiceHasReturns = sopInvoiceHasReturns('SOP Number' of file SOP_HDR_WORK, 'SOP Type' of file SOP_HDR_WORK);
+
+
+'Customer Number' of table RM_Customer_MSTR = 'Customer Number' of table SOP_HDR_HIST;
+get table RM_Customer_MSTR;
+
+
+call HS_Fix_SOP_Post_Get_RM_Number,
+	l_RM_type,
+	l_RM_number,
+	'TRX Source' of table SOP_HDR_HIST,
+	false,
+	fInvoiceHasReturns,
+	l_trx_error,
+	table SOP_HDR_HIST;
+
+
+clear l_apply_amount;
+clear l_o_apply_amt;
+
+range clear file SOP_Payment_WORK_HIST;
+clear file SOP_Payment_WORK_HIST;
+set 'SOP Number' of file SOP_Payment_WORK_HIST to 'SOP Number' of file SOP_HDR_HIST;
+set 'SOP Type' of file SOP_Payment_WORK_HIST to 'SOP Type' of file SOP_HDR_HIST;
+range start file SOP_Payment_WORK_HIST;
+fill 'Sequence Number' of file SOP_Payment_WORK_HIST;
+range end file SOP_Payment_WORK_HIST;
+
+get first file SOP_Payment_WORK_HIST;
+while err() = OKAY do 
+	call HS_Fix_SOP_Post_Create_RM_Cash_Doc,
+		l_RM_type,
+		l_RM_number,
+		'TRX Source' of table SOP_HDR_HIST,
+		l_apply_amount,
+		l_o_apply_amt,						
+		file RM_Applied_OPEN,
+		file RM_Customer_MSTR,
+		file RM_Keys_MSTR,
+		file RM_OPEN,
+		file SOP_HDR_HIST,
+		file SOP_Payment_WORK_HIST,
+		0,		{IN_IS_MC_Trx,}
+		fInvoiceHasReturns;
+ 
+	
+	get next file SOP_Payment_WORK_HIST;
+end while;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

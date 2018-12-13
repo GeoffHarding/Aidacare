@@ -1,0 +1,49 @@
+Function	"Is_PayWay_Customer"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_PayWay_Customer;
+in		string			IN_Customer_Number;
+in		string			IN_Address_Code;
+out		string			OUT_PayWay_Customer_Reference_No;
+out		boolean			OUT_Allow_Reference_Changes;
+
+
+OUT_PayWay_Customer = false;
+clear OUT_PayWay_Customer_Reference_No;
+OUT_Allow_Reference_Changes = false;
+
+
+{ Check Customer Address record }
+'Customer Number' of table HS_PayWay_Address_MSTR = IN_Customer_Number;
+'Address Code' of table HS_PayWay_Address_MSTR = IN_Address_Code;
+get table HS_PayWay_Address_MSTR;
+if err() = OKAY then
+	if not empty('HS PayWay Customer Reference Number' of table HS_PayWay_Address_MSTR) then
+		OUT_PayWay_Customer = true;
+		OUT_PayWay_Customer_Reference_No = 'HS PayWay Customer Reference Number' of table HS_PayWay_Address_MSTR;
+		
+		'Customer Number' of table HS_PayWay_Customer_MSTR = IN_Customer_Number;
+		get table HS_PayWay_Customer_MSTR;
+		if err() = OKAY then
+			OUT_Allow_Reference_Changes = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR;
+		end if;
+		
+		abort script;
+	end if;
+end if;
+
+
+{ Check Customer record }
+'Customer Number' of table HS_PayWay_Customer_MSTR = IN_Customer_Number;
+get table HS_PayWay_Customer_MSTR;
+if err() = OKAY then
+	if not empty('HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR) then
+		OUT_PayWay_Customer = true;
+		OUT_PayWay_Customer_Reference_No = 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR;
+		OUT_Allow_Reference_Changes = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR;
+	end if;
+end if;
+"
+	UserProperties	""
+}

@@ -1,0 +1,19 @@
+Procedure	"HS_Trigger_Rental_Update_Invoice_Header_Totals_Pre"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string			IN_Invoice_Number;
+out		boolean			OUT_Record_Saved;
+
+
+pragma (disable warning UnusedVariable);
+
+'HS Rental Invoice Is Credit' of globals = Rental_Is_Invoice_Credit(IN_Invoice_Number);
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}
