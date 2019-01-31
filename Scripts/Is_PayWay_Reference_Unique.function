@@ -11,13 +11,20 @@ in		string			IN_Address_Code;
 OUT_Unique = true;
 
 { Check Customer records }
+range clear table HS_PayWay_Customer_MSTR;
 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR = IN_Reference_Number;
-get table HS_PayWay_Customer_MSTR by number 2;
-if err() = OKAY then
+range start table HS_PayWay_Customer_MSTR by number 2;
+range end table HS_PayWay_Customer_MSTR by number 2;
+
+get first table HS_PayWay_Customer_MSTR by number 2;
+while err() <> EOF do
 	if IN_Customer_Number <> 'Customer Number' of table HS_PayWay_Customer_MSTR or not empty(IN_Address_Code) then
 		OUT_Unique = false;
+		abort script;
 	end if;
-end if;
+	
+	get next table HS_PayWay_Customer_MSTR by number 2;
+end while;
 
 
 { Check Customer Address records }
@@ -26,6 +33,7 @@ get table HS_PayWay_Address_MSTR by number 2;
 if err() = OKAY then
 	if IN_Customer_Number <> 'Customer Number' of table HS_PayWay_Address_MSTR or IN_Address_Code <> 'Address Code' of table HS_PayWay_Address_MSTR then
 		OUT_Unique = false;
+		abort script;
 	end if;
 end if;
 "

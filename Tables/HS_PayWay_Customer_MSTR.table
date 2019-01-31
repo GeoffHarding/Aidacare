@@ -15,7 +15,7 @@ Table	"HS_PayWay_Customer_MSTR"
 		{
 			Encrypt	"false"
 			Field	"Allow Customer Reference Changes"
-			Position	"2"
+			Position	"3"
 		}
 		TableField	"Customer Number"		
 		{
@@ -23,11 +23,17 @@ Table	"HS_PayWay_Customer_MSTR"
 			Field	"Customer Number"
 			Position	"0"
 		}
+		TableField	"Force PayWay Details From Address"		
+		{
+			Encrypt	"false"
+			Field	"Force PayWay Details From Address"
+			Position	"1"
+		}
 		TableField	"HS PayWay Customer Reference Number"		
 		{
 			Encrypt	"false"
 			Field	"HS PayWay Customer Reference Number"
-			Position	"1"
+			Position	"2"
 		}
 	}
 	~Keys
@@ -71,7 +77,7 @@ Table	"HS_PayWay_Customer_MSTR"
 			DisableInserts	"false"
 			DisableLasts	"false"
 			DisableNexts	"false"
-			Duplicates	"false"
+			Duplicates	"true"
 			Modifiable	"true"
 			Position	"1"
 			Primary	"false"

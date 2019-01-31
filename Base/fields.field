@@ -271,3 +271,10 @@ Field	"Allow Customer Reference Changes"
 	LookupForm	""
 	PhysicalName	"Allow_Customer_Ref_Chngs"
 }
+Field	"Force PayWay Details From Address"
+{
+	ArraySize	"0"
+	Datatype	"CB"
+	LookupForm	""
+	PhysicalName	"Force_PayWay_Details_Fro"
+}
