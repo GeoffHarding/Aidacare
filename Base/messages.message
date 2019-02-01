@@ -146,3 +146,7 @@ Message	"22036"
 {
 	MessageString	"Do you want to create a PayWay Pre-paid Refund?"
 }
+Message	"22037"
+{
+	MessageString	"A Customer Reference Number is already being used."
+}

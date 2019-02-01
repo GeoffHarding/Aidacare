@@ -1,0 +1,41 @@
+Procedure	"hsPayWayGenerateCustomerReference"
+{
+	Core	"Sales"
+	Documentation	""
+	Script	"sproc returns long OUT_Status;
+in		string			IN_Customer_Or_Address;
+in		string			IN_User_ID;
+inout	string			INOUT_Customer_Reference_Number;
+
+local	integer			nLoop;
+local	integer			nLoopcount;
+
+
+nLoopcount = SQLDeadLockRetryCount();
+
+try
+	call sproc \"hsPayWayGenerateCustomerReference\",
+	 OUT_Status,
+	 IN_Customer_Or_Address,
+	 IN_User_ID,
+	 INOUT_Customer_Reference_Number;
+	
+catch [EXCEPTION_CLASS_DB_DEADLOCK]  
+	if nLoop <= nLoopcount then
+		Timer_Sleep(200);
+		increment nLoop;
+		restart try;
+	else
+		exit try;
+	end if;
+else
+	exit try;
+end try;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

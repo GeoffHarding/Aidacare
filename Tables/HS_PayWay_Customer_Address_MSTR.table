@@ -1,0 +1,116 @@
+Table	"HS_PayWay_Customer_Address_MSTR"
+{
+	AllowActiveLocking	"false"
+	DatabaseType	"SQL"
+	DexRowTimestamp	"false"
+	DisplayName	"PayWay Customer Address Master"
+	FourByteHeader	"true"
+	PhysicalName	"HSPayWayCustAddresses"
+	Restriction	""
+	Series	"Sales"
+	TableType	"Standard"
+	~Fields
+	{
+		TableField	"Address Code"		
+		{
+			Encrypt	"false"
+			Field	"Address Code"
+			Position	"1"
+		}
+		TableField	"Allow Customer Reference Changes"		
+		{
+			Encrypt	"false"
+			Field	"Allow Customer Reference Changes"
+			Position	"4"
+		}
+		TableField	"Customer Number"		
+		{
+			Encrypt	"false"
+			Field	"Customer Number"
+			Position	"0"
+		}
+		TableField	"Force PayWay Details From Address"		
+		{
+			Encrypt	"false"
+			Field	"Force PayWay Details From Address"
+			Position	"2"
+		}
+		TableField	"HS PayWay Customer Reference Number"		
+		{
+			Encrypt	"false"
+			Field	"HS PayWay Customer Reference Number"
+			Position	"3"
+		}
+	}
+	~Keys
+	{
+		Key	"HS_PayWay_Customer_Address_MSTR_Key1"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"0"
+			Primary	"true"
+			Segments
+			{
+				KeySegment	"Address Code"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"1"
+				}
+				KeySegment	"Customer Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+		Key	"HS_PayWay_Customer_Address_MSTR_Key2"		
+		{
+			Clustered	"false"
+			Compress	"false"
+			CreateIndex	"true"
+			DisableDeletes	"false"
+			DisableFirsts	"false"
+			DisableGets	"false"
+			DisableInserts	"false"
+			DisableLasts	"false"
+			DisableNexts	"false"
+			Duplicates	"false"
+			Modifiable	"true"
+			Position	"1"
+			Primary	"false"
+			Segments
+			{
+				KeySegment	"HS PayWay Customer Reference Number"				
+				{
+					Component	""
+					Descending	"false"
+					IgnoreCase	"true"
+					NoCombining	"false"
+					NoLengthByte	"false"
+					Position	"0"
+				}
+			}
+		}
+	}
+	~Relationships
+	{
+	}
+}

@@ -1,0 +1,24 @@
+Procedure	"Delete_PayWay_Customer_Address"
+{
+	Core	"System"
+	Documentation	""
+	Script	"in		string			IN_Customer_Or_Address;
+in		string			IN_User_ID;
+
+
+'Customer Number' of table HS_PayWay_Customer_Address_MSTR = IN_Customer_Or_Address;
+'Address Code' of table HS_PayWay_Customer_Address_MSTR = IN_User_ID;
+change table HS_PayWay_Customer_Address_MSTR;
+if err() = OKAY then
+	remove table HS_PayWay_Customer_Address_MSTR;
+else
+	release table HS_PayWay_Customer_Address_MSTR;
+end if;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

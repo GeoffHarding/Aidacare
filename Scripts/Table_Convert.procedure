@@ -305,6 +305,23 @@ if nTableExists = 1 then
 end if;
 
 
+{ Run special conversion scripts }
+if empty(lExeStatus) then
+	clear tSQLCode[1];
+	call Table_Convert_Special, IN_Table_Name, sTablePhysicalName, tSQLCode;
+	
+	if not empty(tSQLCode[1]) then
+		lExeStatus = SQL_Execute(lSQLConnection, tSQLCode[1]);
+		call OPEN_SQL_VIEWER of form HS_Misc_Code_Viewer, tSQLCode, lExeStatus;
+		
+		if empty(lExeStatus) then
+			lClearStatus = SQL_Clear(lSQLConnection);
+			lExeStatus = lClearStatus;
+		end if;
+	end if;
+end if;
+
+
 { Grant security }
 if empty(lExeStatus) then
 	GrantAccess(sTablePhysicalName, false, \"DYNGRP\", sDB) of form 'SQL Maintenance';

@@ -1,6 +1,6 @@
 Constant	"HS_VERSION"
 {
-	Value	"Version 2015 - Build 23"
+	Value	"Version 2015 - Build 24"
 }
 Constant	"HS_VIEW_EXECUTE_CODE"
 {

@@ -14,11 +14,9 @@ case IN_Table_No
 	in [3]
 		assign OUT_Reference as reference to table HS_PayWay_SETP;
 	in [4]
-		assign OUT_Reference as reference to table HS_PayWay_Customer_MSTR;
+		assign OUT_Reference as reference to table HS_PayWay_Customer_Address_MSTR;
 	in [5]
 		assign OUT_Reference as reference to table HS_PayWay_Payments_WORK_HIST;
-	in [6]
-		assign OUT_Reference as reference to table HS_PayWay_Address_MSTR;
 	else
 		clear OUT_Reference;
 end case;

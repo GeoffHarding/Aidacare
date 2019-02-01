@@ -107,6 +107,24 @@ Form	"HS_PayWay_Customer_Maintenance"
 			{
 			}
 		}
+		Datatype	"Generate Customer Reference"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00001"
+			Prompt	"Auto-Generate"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Native Picture"
+			~ItemImages
+			{
+				ImageItem	"00001"				
+				{
+					Item	"Cmd_Utilities"
+				}
+			}
+		}
 		Datatype	"PayWay Register Customer"		
 		{
 			Control	"Integer"
@@ -198,6 +216,13 @@ Form	"HS_PayWay_Customer_Maintenance"
 			LookupForm	""
 			PhysicalName	""
 		}
+		Field	"Generate Customer Reference"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Generate Customer Reference"
+			LookupForm	""
+			PhysicalName	""
+		}
 		Field	"PayWay Register Customer"		
 		{
 			ArraySize	"0"
@@ -240,13 +265,13 @@ Form	"HS_PayWay_Customer_Maintenance"
 	Series	"3rdParty"
 	Tables
 	{
-		FormTable	"HS_PayWay_Customer_MSTR"		
+		FormTable	"HS_PayWay_Customer_Address_MSTR"		
 		{
 			AutoOpen	"false"
 			CursorBlockSize	"0"
 			OpenMode	"ReadWrite"
 			Position	"1"
-			Table	"HS_PayWay_Customer_MSTR"
+			Table	"HS_PayWay_Customer_Address_MSTR"
 		}
 		FormTable	"RM_Customer_MSTR"		
 		{
@@ -269,7 +294,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 			DisplayName	"Debtor PayWay Maintenance"
 			EventActivate	""
 			EventContextMenu	""
-			EventPost	""
+			EventPost	"PayWay_Customer_Maintenance_WIN_POST"
 			EventPre	"PayWay_Customer_Maintenance_WIN_PRE"
 			EventPrint	""
 			Fields
@@ -551,6 +576,50 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Visible	"true"
 					VisibleItems	"8"
 					ZOrder	"14"
+				}
+				WindowControl	"(L) Generate Customer Reference"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Customer_Maintenance l_Generate Customer Reference_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Generate Customer Reference"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"361"
+					PositionTop	"156"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"106"
+					TabStop	"true"
+					Tag	"42"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"34"
+					Zoom	"false"
 				}
 				WindowControl	"(L) PayWay Register Customer"				
 				{
@@ -1484,7 +1553,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Zoom	"false"
 				}
 			}
-			LastTag	"41"
+			LastTag	"42"
 			Position	"1"
 			PositionLeft	"1"
 			PositionTop	"1"
@@ -1515,13 +1584,14 @@ end if;
 'Customer Name' = 'Customer Name' of table RM_Customer_MSTR;
 
 
-'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
-change table HS_PayWay_Customer_MSTR;
+'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
+clear 'Address Code' of table HS_PayWay_Customer_Address_MSTR;
+change table HS_PayWay_Customer_Address_MSTR;
 if err() = OKAY then
 	'HS PayWay Customer CB' = true;
-	'Force PayWay Details From Address' = 'Force PayWay Details From Address' of table HS_PayWay_Customer_MSTR;
-	'HS PayWay Customer Reference Number' = 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR;
-	'Allow Customer Reference Changes' = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR;
+	'Force PayWay Details From Address' = 'Force PayWay Details From Address' of table HS_PayWay_Customer_Address_MSTR;
+	'HS PayWay Customer Reference Number' = 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR;
+	'Allow Customer Reference Changes' = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR;
 else
 	'HS PayWay Customer CB' = false;
 	clear 'Force PayWay Details From Address';
@@ -1622,7 +1692,10 @@ run script 'Force PayWay Details From Address';
 		EventScript	"PayWay_Customer_Maintenance HS PayWay Customer Reference Number_CHG"		
 		{
 			Documentation	""
-			Script	"if not Is_PayWay_Reference_Unique('HS PayWay Customer Reference Number', 'Customer Number', \"\") then
+			Script	"call Delete_PayWay_Customer_Address, CH_1, 'User ID' of globals;
+
+
+if not Is_PayWay_Reference_Unique('HS PayWay Customer Reference Number', 'Customer Number', \"\") then
 	warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
 	'HS PayWay Customer Reference Number' = old();
 	restart field;
@@ -1634,32 +1707,37 @@ end if;
 		EventScript	"PayWay_Customer_Maintenance Save Button_CHG"		
 		{
 			Documentation	""
-			Script	"if 'HS PayWay Customer CB' then
+			Script	"call Delete_PayWay_Customer_Address, CH_1, 'User ID' of globals;
+
+
+if 'HS PayWay Customer CB' then
 	if not 'Force PayWay Details From Address' and empty('HS PayWay Customer Reference Number') then
 		warning getmsg(22008);   {Please enter a Customer Reference Number.}
 		abort script;
 	end if;
 	
-	'Force PayWay Details From Address' of table HS_PayWay_Customer_MSTR = 'Force PayWay Details From Address';
-	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_MSTR = 'HS PayWay Customer Reference Number';
-	'Allow Customer Reference Changes' of table HS_PayWay_Customer_MSTR = 'Allow Customer Reference Changes';
-	save table HS_PayWay_Customer_MSTR;
+	'Force PayWay Details From Address' of table HS_PayWay_Customer_Address_MSTR = 'Force PayWay Details From Address';
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR = 'HS PayWay Customer Reference Number';
+	'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR = 'Allow Customer Reference Changes';
+	save table HS_PayWay_Customer_Address_MSTR;
 	if err() = DUPLICATE then
 		warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
 		
-		'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
-		change table HS_PayWay_Customer_MSTR;
+		'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
+		clear 'Customer Number' of table HS_PayWay_Customer_Address_MSTR;
+		change table HS_PayWay_Customer_Address_MSTR;
 		abort script;
 	end if;
 else
-	release table HS_PayWay_Customer_MSTR;
+	release table HS_PayWay_Customer_Address_MSTR;
 	
-	'Customer Number' of table HS_PayWay_Customer_MSTR = 'Customer Number';
-	change table HS_PayWay_Customer_MSTR;
+	'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
+	clear 'Customer Number' of table HS_PayWay_Customer_Address_MSTR;
+	change table HS_PayWay_Customer_Address_MSTR;
 	if err() = OKAY then
-		remove table HS_PayWay_Customer_MSTR;
+		remove table HS_PayWay_Customer_Address_MSTR;
 	else
-		release table HS_PayWay_Customer_MSTR;
+		release table HS_PayWay_Customer_Address_MSTR;
 	end if;
 end if;
 
@@ -1679,6 +1757,32 @@ close form HS_PayWay_Customer_Maintenance;
 		{
 			Documentation	""
 			Script	"'(L) Expiry Year' = itemname('(L) Expiry Year DDL', '(L) Expiry Year DDL');
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Generate Customer Reference_CHG"		
+		{
+			Documentation	""
+			Script	"local	long		lStatus;
+local	string		sCustomerReferenceNumber;
+
+
+if not empty('HS PayWay Customer Reference Number') then
+	warning getmsg(22037);   {A Customer Reference Number is already being used.}
+	abort script;
+end if;
+
+
+call hsPayWayGenerateCustomerReference,
+ lStatus,
+ CH_1,
+ 'User ID' of globals,
+ sCustomerReferenceNumber;
+
+
+if not empty(sCustomerReferenceNumber) then
+	'HS PayWay Customer Reference Number' = sCustomerReferenceNumber;
+end if;
 "
 			UserProperties	""
 		}
@@ -1731,6 +1835,13 @@ end if;
 "
 			UserProperties	""
 		}
+		EventScript	"PayWay_Customer_Maintenance_WIN_POST"		
+		{
+			Documentation	""
+			Script	"call Delete_PayWay_Customer_Address, CH_1, 'User ID' of globals;
+"
+			UserProperties	""
+		}
 		EventScript	"PayWay_Customer_Maintenance_WIN_PRE"		
 		{
 			Documentation	""
@@ -1746,6 +1857,9 @@ clear '(L) Expiry Year DDL';
 for nLoop = nYear to (nYear + 9) do
 	add item pad(str(nLoop % 100), LEADING, CH_0, 2)  to '(L) Expiry Year DDL';
 end for;
+
+
+call Delete_PayWay_Customer_Address, CH_1, 'User ID' of globals;
 "
 			UserProperties	""
 		}
