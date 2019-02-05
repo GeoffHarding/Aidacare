@@ -1759,7 +1759,7 @@ else
 	release table HS_PayWay_Customer_Address_MSTR;
 	
 	'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
-	clear 'Customer Number' of table HS_PayWay_Customer_Address_MSTR;
+	clear 'Address Code' of table HS_PayWay_Customer_Address_MSTR;
 	change table HS_PayWay_Customer_Address_MSTR;
 	if err() = OKAY then
 		remove table HS_PayWay_Customer_Address_MSTR;
