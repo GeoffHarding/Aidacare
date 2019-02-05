@@ -1,0 +1,2660 @@
+= Form	"SOP_Payment_Entry"
+{
+	Datatypes
+	{
+		Datatype	"PayWay Make Payment"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"PayWay Make Refund"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"PayWay Payment Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00001"
+			Prompt	"&PayWay Payment"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+				PictItem	"00001"				
+				{
+					Item	"PayWay"
+				}
+			}
+		}
+		Datatype	"PayWay Payment Receipt Number"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"32"
+			StorageLength	"34"
+		}
+		Datatype	"PayWay Payment Response Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay Payment Response Text"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"250"
+			StorageLength	"252"
+		}
+		Datatype	"PayWay Payment Summary Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay PrePaid CB"		
+		{
+			Control	"CheckBox"
+			StaticType	"Text"
+			~StaticItems
+			{
+				TextItem	"00001"				
+				{
+					Item	"PayWay Pre-paid"
+				}
+			}
+		}
+		Datatype	"PayWay PrePaid Make PrePayment"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	""
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+			}
+		}
+		Datatype	"PayWay PrePaid Make Refund"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
+		Datatype	"PayWay PrePaid Make Refund Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	""
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Native Picture"
+			~ItemImages
+			{
+			}
+		}
+		Datatype	"PayWay PrePaid Refund Receipt Number"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"32"
+			StorageLength	"34"
+		}
+		Datatype	"PayWay PrePaid Refund Response Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay PrePaid Refund Response Text"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"250"
+			StorageLength	"252"
+		}
+		Datatype	"PayWay PrePaid Refund Summary Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay Refund Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00001"
+			Prompt	"&PayWay Refund"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+				PictItem	"00001"				
+				{
+					Item	"PayWay"
+				}
+			}
+		}
+		Datatype	"PayWay Refund Receipt Number"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"32"
+			StorageLength	"34"
+		}
+		Datatype	"PayWay Refund Response Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+		Datatype	"PayWay Refund Response Text"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"250"
+			StorageLength	"252"
+		}
+		Datatype	"PayWay Refund Single Button"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	""
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Native Picture"
+			~ItemImages
+			{
+			}
+		}
+		Datatype	"PayWay Refund Summary Code"		
+		{
+			AllowOddLength	"false"
+			Control	"String"
+			Format	""
+			KeyableLength	"2"
+			StorageLength	"4"
+		}
+	}
+	Fields
+	{
+		Field	"PayWay Make Payment"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Make Payment"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Make Refund"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Make Refund"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Payment Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Payment Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Payment Receipt Number"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Payment Receipt Number"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Payment Response Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Payment Response Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Payment Response Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Payment Response Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Payment Summary Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Payment Summary Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid CB"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid CB"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Make PrePayment"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Make PrePayment"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Make Refund"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Make Refund"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Make Refund Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Make Refund Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Order Number"		
+		{
+			ArraySize	"0"
+			Datatype	"STR20"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Refund Receipt Number"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Refund Receipt Number"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Refund Response Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Refund Response Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Refund Response Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Refund Response Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay PrePaid Refund Summary Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay PrePaid Refund Summary Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Receipt Number"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Receipt Number"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Response Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Response Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Response Text"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Response Text"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Single Button"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Single Button"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"PayWay Refund Summary Code"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) PayWay Refund Summary Code"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Tables
+	{
+		FormTable	"HS_PayWay_Payments_WORK_HIST"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"20"
+			Table	"HS_PayWay_Payments_WORK_HIST"
+		}
+		FormTable	"HS_PayWay_SETP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"21"
+			Table	"HS_PayWay_SETP"
+		}
+	}
+	Windows
+	{
+		= Window	"SOP_Payment_Entry"
+		{
+			Fields
+			{
+				= WindowControl	"(L) Account Number Focus"
+				{
+					PositionTop	"528"
+					ZOrder	"122"
+				}
+				= WindowControl	"(L) Amount Received Prompt"
+				{
+					PositionTop	"771"
+					ZOrder	"158"
+				}
+				= WindowControl	"(L) Amount Received Scroll Prompt"
+				{
+					PositionTop	"790"
+					ZOrder	"159"
+				}
+				= WindowControl	"(L) Authorize"
+				{
+					PositionTop	"160"
+					ZOrder	"31"
+				}
+				= WindowControl	"(L) Cash Account"
+				{
+					PositionTop	"205"
+					ZOrder	"32"
+				}
+				= WindowControl	"(L) Cash Account Description"
+				{
+					PositionTop	"224"
+					ZOrder	"33"
+				}
+				= WindowControl	"(L) Checkbooks"
+				{
+					PositionTop	"761"
+				}
+				= WindowControl	"(L) Close Flag"
+				{
+					PositionTop	"509"
+					ZOrder	"97"
+				}
+				= WindowControl	"(L) CreditCardNumber"
+				{
+					PositionTop	"585"
+					ZOrder	"167"
+				}
+				= WindowControl	"(L) CreditCards"
+				{
+					PositionTop	"789"
+					ZOrder	"24"
+				}
+				= WindowControl	"(L) Current Document Date"
+				{
+					PositionTop	"584"
+					ZOrder	"143"
+				}
+				= WindowControl	"(L) Current O Payment Received"
+				{
+					PositionTop	"660"
+					ZOrder	"150"
+				}
+				= WindowControl	"(L) Current Payment Received"
+				{
+					PositionTop	"641"
+					ZOrder	"142"
+				}
+				= WindowControl	"(L) DDL_Month"
+				{
+					ZOrder	"26"
+				}
+				= WindowControl	"(L) DDL_Year"
+				{
+					ZOrder	"27"
+				}
+				= WindowControl	"(L) Default Card Name"
+				{
+					PositionTop	"528"
+					ZOrder	"98"
+				}
+				= WindowControl	"(L) Default Check Number"
+				{
+					PositionTop	"603"
+					ZOrder	"131"
+				}
+				= WindowControl	"(L) Default Checkbook ID"
+				{
+					PositionTop	"546"
+					ZOrder	"99"
+				}
+				= WindowControl	"(L) Default Document Date"
+				{
+					PositionTop	"584"
+					ZOrder	"101"
+				}
+				= WindowControl	"(L) Default Document Number"
+				{
+					PositionTop	"565"
+					ZOrder	"100"
+				}
+				= WindowControl	"(L) Deposit Account Description"
+				{
+					PositionTop	"262"
+					ZOrder	"35"
+				}
+				= WindowControl	"(L) Deposits Account"
+				{
+					PositionTop	"243"
+					ZOrder	"34"
+				}
+				= WindowControl	"(L) FillCheckbooks"
+				{
+					PositionTop	"695"
+					ZOrder	"160"
+				}
+				= WindowControl	"(L) FillCreditCards"
+				{
+					PositionTop	"695"
+					ZOrder	"161"
+				}
+				= WindowControl	"(L) First TRX"
+				{
+					PositionTop	"603"
+					ZOrder	"128"
+				}
+				= WindowControl	"(L) GL Posting Date"
+				{
+					PositionTop	"528"
+					ZOrder	"155"
+				}
+				= WindowControl	"(L) Get Next Receipt Number"
+				{
+					PositionTop	"603"
+					ZOrder	"94"
+				}
+				= WindowControl	"(L) Get Posting Accounts"
+				{
+					PositionTop	"509"
+					ZOrder	"95"
+				}
+				= WindowControl	"(L) Get Record Notes"
+				{
+					PositionTop	"528"
+					ZOrder	"96"
+				}
+				= WindowControl	"(L) Invisible Changes"
+				{
+					PositionTop	"565"
+					ZOrder	"130"
+				}
+				= WindowControl	"(L) Next Sequence Number"
+				{
+					PositionTop	"509"
+					ZOrder	"102"
+				}
+				= WindowControl	"(L) Note Index Array[1]"
+				{
+					PositionTop	"528"
+					ZOrder	"103"
+				}
+				= WindowControl	"(L) Note Index Array[2]"
+				{
+					PositionTop	"546"
+					ZOrder	"104"
+				}
+				= WindowControl	"(L) Number Deposits"
+				{
+					PositionTop	"565"
+					ZOrder	"126"
+				}
+				= WindowControl	"(L) O Total Distributed"
+				{
+					PositionTop	"420"
+					ZOrder	"42"
+				}
+				= WindowControl	"(L) Old Amount Paid"
+				{
+					PositionTop	"697"
+					ZOrder	"105"
+				}
+				= WindowControl	"(L) Old Checkbook ID"
+				{
+					PositionTop	"603"
+					ZOrder	"164"
+				}
+				= WindowControl	"(L) Old O Amount Paid"
+				{
+					PositionTop	"716"
+					ZOrder	"135"
+				}
+				WindowControl	"(L) PayWay Make Payment"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Make Payment"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"148"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5313"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"172"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Make Refund"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Make Refund"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"148"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5320"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"179"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Payment Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay Payment Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Payment Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"552"
+					PositionTop	"160"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"5311"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"178"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Payment Receipt Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Payment Receipt Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5326"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"183"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Payment Response Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Payment Response Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5315"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"174"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Payment Response Text"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Payment Response Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"205"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5316"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"175"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Payment Summary Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay Payment Summary Code_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Payment Summary Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"167"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5314"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"173"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid CB"				
+				{
+					Alignment	"left"
+					Appearance	"3D Border"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ButtonStyle	"Standard"
+					ControlType	"CheckBox"
+					Editable	"true"
+					EventChange	"SOP_Payment_Entry l_PayWay PrePaid CB_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid CB"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PatternSelect	"50% Shading"
+					PositionLeft	"30"
+					PositionTop	"121"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"120"
+					TabStop	"true"
+					Tag	"5336"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"14"
+				}
+				WindowControl	"(L) PayWay PrePaid Make PrePayment"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Make PrePayment"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"300"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5339"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"190"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Make Refund"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Make Refund"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"319"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5341"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"192"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Make Refund Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay PrePaid Make Refund Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Make Refund Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"300"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5340"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"191"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Order Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Order Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"5338"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"149"
+					PositionTop	"140"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"139"
+					TabStop	"true"
+					Tag	"5337"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Refund Receipt Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Refund Receipt Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"395"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5345"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"195"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Refund Response Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Refund Response Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"357"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5343"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"193"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Refund Response Text"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Refund Response Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"376"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5344"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"194"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay PrePaid Refund Summary Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay PrePaid Refund Summary Code_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay PrePaid Refund Summary Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"338"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5346"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"196"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay Refund Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"552"
+					PositionTop	"160"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"136"
+					TabStop	"true"
+					Tag	"5319"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"177"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Receipt Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Receipt Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5327"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"184"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Response Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Response Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"186"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5322"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"181"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Response Text"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Response Text"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"205"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5323"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"182"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Single Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay Refund Single Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Single Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"129"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5329"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"185"
+					Zoom	"false"
+				}
+				WindowControl	"(L) PayWay Refund Summary Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"SOP_Payment_Entry l_PayWay Refund Summary Code_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) PayWay Refund Summary Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"943"
+					PositionTop	"167"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5321"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"180"
+					Zoom	"false"
+				}
+				= WindowControl	"(L) Record Note Flags[1]"
+				{
+					PositionTop	"546"
+					ZOrder	"109"
+				}
+				= WindowControl	"(L) Record Note Flags[2]"
+				{
+					PositionTop	"565"
+					ZOrder	"110"
+				}
+				= WindowControl	"(L) Record Note Flags[3]"
+				{
+					PositionTop	"584"
+					ZOrder	"111"
+				}
+				= WindowControl	"(L) Record Note Flags[4]"
+				{
+					PositionTop	"603"
+					ZOrder	"118"
+				}
+				= WindowControl	"(L) Record Note Flags[5]"
+				{
+					PositionTop	"509"
+					ZOrder	"119"
+				}
+				= WindowControl	"(L) Refund"
+				{
+					PositionTop	"160"
+					Visible	"false"
+					ZOrder	"176"
+				}
+				= WindowControl	"(L) Remove Button"
+				{
+					ZOrder	"37"
+				}
+				= WindowControl	"(L) Return Document Number"
+				{
+					PositionTop	"205"
+					ZOrder	"19"
+				}
+				= WindowControl	"(L) RunAuthorization"
+				{
+					PositionTop	"604"
+					ZOrder	"169"
+				}
+				= WindowControl	"(L) RunRefund"
+				{
+					PositionTop	"623"
+					ZOrder	"170"
+				}
+				= WindowControl	"(L) Set Window"
+				{
+					PositionTop	"546"
+					ZOrder	"124"
+				}
+				= WindowControl	"(L) SyncCheckbooks"
+				{
+					PositionTop	"714"
+					ZOrder	"162"
+				}
+				= WindowControl	"(L) SyncCreditCards"
+				{
+					PositionTop	"714"
+					ZOrder	"163"
+				}
+				= WindowControl	"(L) Total Distributed"
+				{
+					PositionTop	"420"
+					ZOrder	"41"
+				}
+				= ScrollingWindow	"0022-Payments_Scroll"
+				{
+					LastTag	"10035"
+					PositionTop	"343"
+					ZOrder	"40"
+				}
+				= WindowPrompt	"10"
+				{
+					PositionTop	"167"
+					ZOrder	"51"
+				}
+				= WindowPrompt	"12"
+				{
+					PositionTop	"243"
+					ZOrder	"52"
+				}
+				= WindowPrompt	"13"
+				{
+					PositionTop	"224"
+					ZOrder	"53"
+				}
+				= WindowPrompt	"14"
+				{
+					ZOrder	"54"
+				}
+				= WindowPrompt	"15"
+				{
+					ZOrder	"55"
+				}
+				= WindowPrompt	"156"
+				{
+					PositionTop	"205"
+				}
+				= WindowPrompt	"157"
+				{
+					PositionTop	"243"
+				}
+				= WindowPrompt	"158"
+				{
+					PositionTop	"262"
+					ZOrder	"116"
+				}
+				= WindowPrompt	"159"
+				{
+					PositionTop	"224"
+					ZOrder	"117"
+				}
+				= WindowPrompt	"16"
+				{
+					ZOrder	"56"
+				}
+				= WindowPrompt	"17"
+				{
+					ZOrder	"57"
+				}
+				= WindowPrompt	"190"
+				{
+					PositionTop	"186"
+					ZOrder	"120"
+				}
+				= WindowShape	"23"
+				{
+					PositionTop	"305"
+				}
+				= WindowPrompt	"24"
+				{
+					PositionTop	"305"
+					ZOrder	"58"
+				}
+				= WindowLine	"247"
+				{
+					PositionTop	"305"
+					ZOrder	"138"
+				}
+				= WindowLine	"248"
+				{
+					PositionTop	"305"
+					ZOrder	"139"
+				}
+				= WindowPrompt	"249"
+				{
+					PositionTop	"305"
+					ZOrder	"140"
+				}
+				= WindowPrompt	"25"
+				{
+					PositionTop	"305"
+					ZOrder	"59"
+				}
+				= WindowPrompt	"251"
+				{
+					PositionTop	"305"
+					ZOrder	"141"
+				}
+				= WindowShape	"257"
+				{
+					PositionTop	"194"
+					ZOrder	"144"
+				}
+				= WindowPrompt	"258"
+				{
+					PositionTop	"186"
+					ZOrder	"145"
+				}
+				= WindowPrompt	"26"
+				{
+					PositionTop	"324"
+					ZOrder	"60"
+				}
+				= WindowShape	"260"
+				{
+					SizeHeight	"133"
+					ZOrder	"146"
+				}
+				= WindowPrompt	"261"
+				{
+					ZOrder	"147"
+				}
+				= WindowShape	"262"
+				{
+					SizeHeight	"221"
+					ZOrder	"148"
+				}
+				= WindowPrompt	"263"
+				{
+					ZOrder	"149"
+				}
+				= WindowLine	"267"
+				{
+					PositionTop	"446"
+					ZOrder	"151"
+				}
+				= WindowPrompt	"279"
+				{
+					PositionTop	"205"
+					ZOrder	"153"
+				}
+				= WindowPrompt	"28"
+				{
+					PositionTop	"324"
+					ZOrder	"61"
+				}
+				= WindowPrompt	"281"
+				{
+					PositionTop	"205"
+					ZOrder	"154"
+				}
+				= WindowShape	"285"
+				{
+					PositionTop	"752"
+					ZOrder	"156"
+				}
+				= WindowPrompt	"286"
+				{
+					PositionTop	"752"
+					ZOrder	"157"
+				}
+				= WindowPrompt	"29"
+				{
+					PositionTop	"324"
+					ZOrder	"62"
+				}
+				= WindowPrompt	"30"
+				{
+					PositionTop	"305"
+					ZOrder	"63"
+				}
+				= WindowPrompt	"34"
+				{
+					PositionTop	"420"
+					ZOrder	"64"
+				}
+				= WindowPrompt	"5"
+				{
+					ZOrder	"46"
+				}
+				WindowPrompt	"5330"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"347"
+					PositionTop	"139"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					Text	"PayWay Customer Ref. No."
+					Visible	"true"
+					ZOrder	"186"
+					Zoom	"false"
+				}
+				WindowPrompt	"5338"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"42"
+					PositionTop	"140"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"108"
+					Text	"Pre-paid Order No."
+					Visible	"true"
+					ZOrder	"189"
+					Zoom	"false"
+				}
+				= WindowPrompt	"6"
+				{
+					ZOrder	"47"
+				}
+				= WindowLine	"61"
+				{
+					PositionTop	"324"
+					ZOrder	"65"
+				}
+				= WindowLine	"62"
+				{
+					PositionTop	"324"
+					ZOrder	"66"
+				}
+				= WindowLine	"63"
+				{
+					PositionTop	"305"
+					ZOrder	"67"
+				}
+				= WindowLine	"64"
+				{
+					PositionTop	"305"
+					ZOrder	"68"
+				}
+				= WindowLine	"66"
+				{
+					PositionTop	"324"
+					ZOrder	"69"
+				}
+				= WindowPrompt	"7"
+				{
+					ZOrder	"48"
+				}
+				= WindowPrompt	"8"
+				{
+					ZOrder	"49"
+				}
+				= WindowPrompt	"9"
+				{
+					ZOrder	"50"
+				}
+				WindowControl	"Address Code"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Address Code"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5333"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"188"
+					Zoom	"false"
+				}
+				= WindowControl	"Amount Paid"
+				{
+					PositionTop	"224"
+					ZOrder	"20"
+				}
+				= WindowControl	"Authorization Code"
+				{
+					ZOrder	"29"
+				}
+				= WindowControl	"Caller ID"
+				{
+					PositionTop	"547"
+					ZOrder	"165"
+				}
+				= WindowControl	"Card Name"
+				{
+					ZOrder	"23"
+				}
+				= WindowControl	"Cash Index"
+				{
+					PositionTop	"697"
+					ZOrder	"106"
+				}
+				= WindowControl	"Changed"
+				{
+					PositionTop	"528"
+					ZOrder	"123"
+				}
+				= WindowControl	"Clear Button"
+				{
+					PositionTop	"456"
+					ZOrder	"39"
+				}
+				= WindowControl	"Credit Card Number"
+				{
+					ZOrder	"25"
+				}
+				= WindowControl	"Currency ID"
+				{
+					PositionTop	"243"
+					ZOrder	"22"
+				}
+				= WindowControl	"Currency Index"
+				{
+					PositionTop	"641"
+					ZOrder	"132"
+				}
+				= WindowControl	"CustomLinks Zoom Button[1]"
+				{
+					ZOrder	"87"
+				}
+				= WindowControl	"Customer Name"
+				{
+					PositionTop	"584"
+					ZOrder	"127"
+				}
+				= WindowControl	"Customer Number"
+				{
+					PositionTop	"509"
+					ZOrder	"91"
+				}
+				= WindowControl	"Deposit Received"
+				{
+					PositionTop	"641"
+					ZOrder	"129"
+				}
+				= WindowControl	"Deposits Index"
+				{
+					PositionTop	"716"
+					ZOrder	"107"
+				}
+				= WindowControl	"Display Existing Record"
+				{
+					PositionTop	"528"
+					ZOrder	"108"
+				}
+				= WindowControl	"Document Date"
+				{
+					PositionTop	"167"
+					ZOrder	"16"
+				}
+				= WindowControl	"Document Number"
+				{
+					PositionTop	"205"
+					ZOrder	"18"
+				}
+				= WindowControl	"Dummy Note Show Hide"
+				{
+					PositionTop	"546"
+					ZOrder	"43"
+				}
+				= WindowControl	"Expansion Button 4"
+				{
+					ZOrder	"171"
+				}
+				= WindowControl	"Expansion Button 6"
+				{
+					ZOrder	"168"
+				}
+				= WindowControl	"Expansion Buttons[4]"
+				{
+					PositionTop	"205"
+					ZOrder	"81"
+				}
+				= WindowControl	"Expansion Buttons[5]"
+				{
+					PositionTop	"243"
+					ZOrder	"85"
+				}
+				= WindowControl	"Expiration Date"
+				{
+					PositionTop	"509"
+					ZOrder	"28"
+				}
+				= WindowControl	"Functional Currency Index"
+				{
+					PositionTop	"660"
+					ZOrder	"133"
+				}
+				= WindowControl	"GL Batch Number"
+				{
+					PositionTop	"546"
+					ZOrder	"125"
+				}
+				= WindowControl	"GL Posting Date"
+				{
+					PositionTop	"186"
+					ZOrder	"17"
+				}
+				WindowControl	"HS PayWay Customer Reference Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS PayWay Customer Reference Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"5330"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"483"
+					PositionTop	"139"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"159"
+					TabStop	"true"
+					Tag	"5331"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"187"
+					Zoom	"false"
+				}
+				= WindowControl	"Insert>> Button I"
+				{
+					ZOrder	"36"
+				}
+				= WindowControl	"Line Item Sequence"
+				{
+					PositionTop	"565"
+					ZOrder	"92"
+				}
+				= WindowControl	"Lookup Buttons[1]"
+				{
+					ZOrder	"72"
+				}
+				= WindowControl	"Lookup Buttons[3]"
+				{
+					ZOrder	"77"
+				}
+				= WindowControl	"Lookup Buttons[4]"
+				{
+					PositionTop	"205"
+					ZOrder	"80"
+				}
+				= WindowControl	"Lookup Buttons[5]"
+				{
+					PositionTop	"243"
+					ZOrder	"84"
+				}
+				= WindowControl	"MC Def Structure"
+				{
+					PositionTop	"679"
+					ZOrder	"134"
+				}
+				= WindowControl	"Note Absent Button - Toolbar"
+				{
+					PositionTop	"456"
+					ZOrder	"44"
+				}
+				= WindowControl	"Note Array Absent - Window Area[1]"
+				{
+					ZOrder	"70"
+				}
+				= WindowControl	"Note Array Absent - Window Area[2]"
+				{
+					PositionTop	"243"
+					ZOrder	"73"
+				}
+				= WindowControl	"Note Array Absent - Window Area[3]"
+				{
+					ZOrder	"75"
+				}
+				= WindowControl	"Note Array Absent - Window Area[4]"
+				{
+					PositionTop	"205"
+					ZOrder	"79"
+				}
+				= WindowControl	"Note Array Absent - Window Area[5]"
+				{
+					PositionTop	"243"
+					ZOrder	"82"
+				}
+				= WindowControl	"Note Array Present - Window Area[1]"
+				{
+					ZOrder	"71"
+				}
+				= WindowControl	"Note Array Present - Window Area[2]"
+				{
+					PositionTop	"243"
+					ZOrder	"74"
+				}
+				= WindowControl	"Note Array Present - Window Area[3]"
+				{
+					ZOrder	"76"
+				}
+				= WindowControl	"Note Array Present - Window Area[4]"
+				{
+					PositionTop	"205"
+					ZOrder	"78"
+				}
+				= WindowControl	"Note Array Present - Window Area[5]"
+				{
+					PositionTop	"243"
+					ZOrder	"83"
+				}
+				= WindowControl	"Note Present Button - Toolbar"
+				{
+					PositionTop	"456"
+					ZOrder	"45"
+				}
+				= WindowControl	"OK Button K"
+				{
+					PositionTop	"456"
+					ZOrder	"38"
+				}
+				= WindowControl	"Originating Amount Paid"
+				{
+					PositionTop	"224"
+					ZOrder	"21"
+				}
+				= WindowControl	"Originating Deposit Received"
+				{
+					PositionTop	"660"
+					ZOrder	"136"
+				}
+				= WindowControl	"Originating Payment Received"
+				{
+					PositionTop	"660"
+				}
+				= WindowControl	"Payment Received"
+				{
+					PositionTop	"641"
+				}
+				= WindowControl	"Process Electronically"
+				{
+					PositionTop	"162"
+					Visible	"false"
+					ZOrder	"30"
+				}
+				= WindowControl	"SOP Number"
+				{
+					PositionTop	"584"
+					ZOrder	"93"
+				}
+				= WindowControl	"SOP Type"
+				{
+					PositionTop	"509"
+					ZOrder	"121"
+				}
+				= WindowControl	"SOP Type Database"
+				{
+					PositionTop	"566"
+					ZOrder	"166"
+				}
+				= WindowControl	"Scroll Expand Switch"
+				{
+					PositionTop	"324"
+					ZOrder	"113"
+				}
+				= WindowControl	"Scroll Shrink Switch"
+				{
+					PositionTop	"305"
+					ZOrder	"112"
+				}
+				= WindowControl	"Scrolling Window Expand Button"
+				{
+					PositionTop	"324"
+					ZOrder	"114"
+				}
+				= WindowControl	"Scrolling Window Shrink"
+				{
+					PositionTop	"305"
+					ZOrder	"115"
+				}
+				= WindowControl	"View Mode"
+				{
+					PositionTop	"697"
+					ZOrder	"137"
+				}
+				= WindowControl	"WindowHelp"
+				{
+					PositionTop	"456"
+					ZOrder	"152"
+				}
+				= WindowControl	"Zoom Buttons[1]"
+				{
+					ZOrder	"86"
+				}
+				= WindowControl	"Zoom Buttons[3]"
+				{
+					ZOrder	"88"
+				}
+				= WindowControl	"Zoom Buttons[4]"
+				{
+					PositionTop	"205"
+					ZOrder	"89"
+				}
+				= WindowControl	"Zoom Buttons[5]"
+				{
+					PositionTop	"243"
+					ZOrder	"90"
+				}
+			}
+			LastTag	"5346"
+			SizeHeight	"482"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"SOP_Payment_Entry l_PayWay Payment Button_CHG"		
+		{
+			Documentation	""
+			Script	"clear '(L) PayWay Make Payment';
+
+
+if empty('Amount Paid') then
+	warning getmsg(22015);   {Please enter an amount for the payment.}
+	abort script;
+end if;
+
+
+{ Set Card Name }
+Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);
+
+'Dummy Record' of table HS_PayWay_SETP = false;
+get table HS_PayWay_SETP;
+if err() <> OKAY then
+	clear table HS_PayWay_SETP;
+end if;
+
+'Card Name' = 'Card Name' of table HS_PayWay_SETP;
+run script 'Card Name';
+
+Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);
+
+
+{ Check Required Fields }
+if not required(window SOP_Payment_Entry) then
+	call Warning_Dialog, 2351, \"\", \"\", \"\";
+	abort script;
+end if;
+
+
+{ Confirm with User }
+if ask(getmsg(22019), getmsg(YES), getmsg(CANCEL), \"\") <> ASKBUTTON1 then   {Are you sure you wish to make a PayWay payment?}
+	clear 'Card Name';
+	run script 'Card Name';
+	abort script;
+end if;
+
+
+'(L) PayWay Make Payment' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay Payment Summary Code_CHG"		
+		{
+			Documentation	""
+			Script	"if  '(L) PayWay Payment Summary Code' = CH_0 then
+	warning getmsg(22016);   {Payment has been successfully made in PayWay.}
+	
+	'HS SOP Type Credit To Return' of globals = false;
+	
+	clear table HS_PayWay_Payments_WORK_HIST;
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number';
+	'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PAYMENT;
+	'SOP Type' of table HS_PayWay_Payments_WORK_HIST = SOPTypeToInt('SOP Type');
+	'SOP Number' of table HS_PayWay_Payments_WORK_HIST = 'SOP Number';
+	if empty('Line Item Sequence') then
+		'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = '(L) Next Sequence Number';
+	else
+		'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = 'Line Item Sequence';
+	end if;
+	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
+	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
+	clear 'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST;
+	'HS PayWay Receipt Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay Payment Receipt Number';
+	save table HS_PayWay_Payments_WORK_HIST;
+	
+	'HS SOP Type Credit To Return' of globals = true;
+	
+	run script 'Insert>> Button I';
+	
+	abort script;
+else
+	warning getmsg(22018) + '(L) PayWay Payment Response Text';   {PayWay payment unsuccessful - }
+	
+	{ Burn the Cash Receipt Number }
+	clear '(L) Default Document Number';
+	run script '(L) Get Next Receipt Number';
+	
+	{ Clear the Card Name }
+	clear 'Card Name';
+	
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay PrePaid CB_CHG"		
+		{
+			Documentation	""
+			Script	"if '(L) PayWay PrePaid CB' then
+	show '(L) PayWay PrePaid Order Number';
+	hide '(L) PayWay Payment Button';
+	hide '(L) PayWay Refund Button';
+	
+	'Dummy Record' of table HS_PayWay_SETP = false;
+	get table HS_PayWay_SETP;
+	if err() <> OKAY then
+		clear table HS_PayWay_SETP;
+	end if;
+	
+	'Card Name' = 'Card Name' of table HS_PayWay_SETP;
+	run script 'Card Name';
+else
+	hide '(L) PayWay PrePaid Order Number';
+	if Field_GetBooleanProperty('HS PayWay Customer Reference Number', FIELD_PROP_VISIBLE) then
+		case SOPTypeToInt('SOP Type')
+			in [SOP_TYPE_RENTAL_CREDIT, SOP_RETURN]
+				show '(L) PayWay Refund Button';
+				hide '(L) PayWay Payment Button';
+			else
+				show '(L) PayWay Payment Button';
+				hide '(L) PayWay Refund Button';
+		end case;
+	else
+		hide '(L) PayWay Payment Button';
+		hide '(L) PayWay Refund Button';
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay PrePaid Make Refund Button_CHG"		
+		{
+			Documentation	""
+			Script	"clear '(L) PayWay PrePaid Make Refund';
+
+{ Check Refund fields are OK }
+if empty('(L) PayWay PrePaid Order Number') then
+	abort script;
+end if;
+
+if empty('Amount Paid') then
+	abort script;
+end if;
+
+'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number' + CH_R;
+get table HS_PayWay_Payments_WORK_HIST;
+if err() = OKAY then
+	abort script;
+end if;
+
+
+if ask(getmsg(22036), getmsg(YES), getmsg(NO), \"\") <> ASKBUTTON1 then   {Do you want to create a PayWay Pre-paid Refund?}
+	abort script;
+end if;
+
+
+'(L) PayWay PrePaid Make Refund' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay PrePaid Refund Summary Code_CHG"		
+		{
+			Documentation	""
+			Script	"if  '(L) PayWay PrePaid Refund Summary Code' = CH_0 then
+	warning getmsg(22023);   {Refund has been successfully made in PayWay.}
+	
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PREPAYMENT_REFUNDED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+	
+	
+	'HS SOP Type Credit To Return' of globals = false;
+	
+	clear table HS_PayWay_Payments_WORK_HIST;
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number' + CH_R;
+	'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_REFUND;
+	'SOP Type' of table HS_PayWay_Payments_WORK_HIST = SOPTypeToInt('SOP Type');
+	'SOP Number' of table HS_PayWay_Payments_WORK_HIST = 'SOP Number';
+	'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = 'Line Item Sequence';
+	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
+	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
+	'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number';
+	'HS PayWay Receipt Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Refund Receipt Number';
+	save table HS_PayWay_Payments_WORK_HIST;
+	
+	'HS SOP Type Credit To Return' of globals = true;
+	
+	abort script;
+else
+	warning getmsg(22024) + '(L) PayWay PrePaid Refund Response Text';   {PayWay refund unsuccessful - }
+	
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PREPAYMENT_REFUND_FAILED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay Refund Button_CHG"		
+		{
+			Documentation	""
+			Script	"call OPEN of form HS_PayWay_Refund_Entry,
+	'SOP Type',
+	'SOP Number',
+	'Customer Number',
+	'HS PayWay Customer Reference Number';
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay Refund Single Button_CHG"		
+		{
+			Documentation	""
+			Script	"clear '(L) PayWay Make Refund';
+
+{ Check Refund fields are OK }
+if empty('Amount Paid') then
+	abort script;
+end if;
+
+'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number' + CH_R;
+get table HS_PayWay_Payments_WORK_HIST;
+if err() = OKAY then
+	abort script;
+end if;
+
+
+if ask(getmsg(22022), getmsg(YES), getmsg(NO), \"\") <> ASKBUTTON1 then   {Do you want to create a PayWay Refund?}
+	abort script;
+end if;
+
+
+'(L) PayWay Make Refund' = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"SOP_Payment_Entry l_PayWay Refund Summary Code_CHG"		
+		{
+			Documentation	""
+			Script	"if  '(L) PayWay Refund Summary Code' = CH_0 then
+	warning getmsg(22023);   {Refund has been successfully made in PayWay.}
+	
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PAYMENT_REFUNDED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+	
+	
+	'HS SOP Type Credit To Return' of globals = false;
+	
+	clear table HS_PayWay_Payments_WORK_HIST;
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number' + CH_R;
+	'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_REFUND;
+	'SOP Type' of table HS_PayWay_Payments_WORK_HIST = SOPTypeToInt('SOP Type');
+	'SOP Number' of table HS_PayWay_Payments_WORK_HIST = 'SOP Number';
+	'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = 'Line Item Sequence';
+	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
+	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
+	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
+	'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number';
+	'HS PayWay Receipt Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay Refund Receipt Number';
+	save table HS_PayWay_Payments_WORK_HIST;
+	
+	'HS SOP Type Credit To Return' of globals = true;
+	
+	abort script;
+else
+	warning getmsg(22024) + '(L) PayWay Refund Response Text';   {PayWay refund unsuccessful - }
+	
+	'HS PayWay Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number';
+	change table HS_PayWay_Payments_WORK_HIST;
+	if err() = OKAY then
+		'HS PayWay Payment Refund' of table HS_PayWay_Payments_WORK_HIST = HS_PAYWAY_PAYMENT_REFUND_FAILED;
+		save table HS_PayWay_Payments_WORK_HIST;
+	else
+		release table HS_PayWay_Payments_WORK_HIST;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+		Function	"HS_SOPTypeToInt"		
+		{
+			Documentation	""
+			Script	"function returns integer OUT_SOPTypeToInt;
+
+
+OUT_SOPTypeToInt = integer(itemdata('SOP Type' of window SOP_Payment_Entry of form SOP_Payment_Entry, 'SOP Type' of window SOP_Payment_Entry of form SOP_Payment_Entry));
+"
+			UserProperties	""
+		}
+	}
+}

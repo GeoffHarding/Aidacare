@@ -125,6 +125,12 @@ Form	"HS_PayWay_Address_Maintenance"
 				}
 			}
 		}
+		Datatype	"Lock Customer Reference"		
+		{
+			Control	"Integer"
+			Format	""
+			KeyableLength	"0"
+		}
 		Datatype	"PayWay Register Customer"		
 		{
 			Control	"Integer"
@@ -220,6 +226,13 @@ Form	"HS_PayWay_Address_Maintenance"
 		{
 			ArraySize	"0"
 			Datatype	"(L) Generate Customer Reference"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Lock Customer Reference"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Lock Customer Reference"
 			LookupForm	""
 			PhysicalName	""
 		}
@@ -627,6 +640,51 @@ Form	"HS_PayWay_Address_Maintenance"
 					UseUniqueHelp	"true"
 					Visible	"true"
 					ZOrder	"32"
+					Zoom	"false"
+				}
+				WindowControl	"(L) Lock Customer Reference"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"PayWay_Address_Maintenance l_Lock Customer Reference_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Lock Customer Reference"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"416"
+					PositionTop	"338"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"47"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"33"
 					Zoom	"false"
 				}
 				WindowControl	"(L) PayWay Register Customer"				
@@ -1494,7 +1552,7 @@ Form	"HS_PayWay_Address_Maintenance"
 					Zoom	"false"
 				}
 			}
-			LastTag	"45"
+			LastTag	"47"
 			Position	"1"
 			PositionLeft	"1"
 			PositionTop	"1"
@@ -1529,6 +1587,7 @@ else
 	clear 'HS PayWay Customer Reference Number';
 end if;
 
+
 run script 'HS PayWay Customer CB';
 "
 			UserProperties	""
@@ -1550,6 +1609,8 @@ run script 'HS PayWay Customer CB';
 	unlock '(L) Expiry Month DDL';
 	unlock '(L) Expiry Year DDL';
 	unlock '(L) Update Credit Card';
+	enable '(L) Generate Customer Reference';
+	run script '(L) Lock Customer Reference';
 else
 	lock 'HS PayWay Customer Reference Number';
 	lock '(L) Card Holder Name';
@@ -1557,6 +1618,9 @@ else
 	lock '(L) Expiry Month DDL';
 	lock '(L) Expiry Year DDL';
 	lock '(L) Update Credit Card';
+	disable '(L) Generate Customer Reference';
+	
+	clear 'HS PayWay Customer Reference Number';
 end if;
 "
 			UserProperties	""
@@ -1653,6 +1717,14 @@ call hsPayWayGenerateCustomerReference,
 if not empty(sCustomerReferenceNumber) then
 	'HS PayWay Customer Reference Number' = sCustomerReferenceNumber;
 end if;
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Address_Maintenance l_Lock Customer Reference_CHG"		
+		{
+			Documentation	""
+			Script	"{ This is a code stub so that Aidacare can trigger off of to lock/unlock the
+ Customer Reference and Auto-Generate button depending on User/Class }
 "
 			UserProperties	""
 		}

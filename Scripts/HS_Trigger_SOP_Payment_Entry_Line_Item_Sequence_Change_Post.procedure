@@ -41,6 +41,12 @@ if Is_PayWay_Prepayment(integer(itemdata('SOP Type', 'SOP Type')), 'SOP Number',
 	show '(L) PayWay PrePaid Order Number';
 	lock '(L) PayWay PrePaid CB';
 	lock '(L) PayWay PrePaid Order Number';
+else
+	'(L) PayWay PrePaid CB' = false;
+	clear '(L) PayWay PrePaid Order Number';
+	hide '(L) PayWay PrePaid Order Number';
+	lock '(L) PayWay PrePaid CB';
+	lock '(L) PayWay PrePaid Order Number';
 end if;
 "
 	ServiceAction	""
