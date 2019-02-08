@@ -2,6 +2,26 @@ Form	"HS_Command_Form"
 {
 	Commands
 	{
+		Command	"HS_PayWay_Login_Setup"		
+		{
+			CheckedImage	""
+			CheckedImageType	"NativePicture"
+			CommandForm	"HS_PayWay_Login_Setup"
+			CommandType	"Form"
+			DisplayName	"PayWay Login Setup"
+			MenuShowImage	"false"
+			RibbonButtonSize	"Large"
+			RibbonButtonType	"ActionButton"
+			RibbonLayoutPriority	"Primary"
+			SecurityForm	""
+			ShortcutChar	""
+			ShortcutModKeys	""
+			StandardImage	""
+			StandardImageType	"NativePicture"
+			ToolbarButtonStyle	"ImageOnly"
+			Tooltip	""
+			Unfocus	"false"
+		}
 		Command	"HS_PayWay_Setup"		
 		{
 			CheckedImage	""
@@ -87,8 +107,10 @@ Form	"HS_Command_Form"
 			Documentation	""
 			Script	"if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
 	call Command_ShowAndEnable, command HS_PayWay_Setup;
+	call Command_ShowAndEnable, command HS_PayWay_Login_Setup;
 else
 	call Command_HideAndDisable, command HS_PayWay_Setup;
+	call Command_HideAndDisable, command HS_PayWay_Login_Setup;
 end if;
 "
 			UserProperties	""

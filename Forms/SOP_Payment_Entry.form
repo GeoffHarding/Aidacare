@@ -2269,6 +2269,54 @@
 				{
 					PositionTop	"660"
 				}
+				WindowControl	"PayWay Login ID"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Login ID"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"739"
+					PositionTop	"91"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"5347"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"197"
+					Zoom	"false"
+				}
 				= WindowControl	"Payment Received"
 				{
 					PositionTop	"641"
@@ -2343,7 +2391,7 @@
 					ZOrder	"90"
 				}
 			}
-			LastTag	"5346"
+			LastTag	"5347"
 			SizeHeight	"482"
 		}
 	}
@@ -2415,6 +2463,7 @@ end if;
 	end if;
 	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'PayWay Login ID' of table HS_PayWay_Payments_WORK_HIST = 'PayWay Login ID';
 	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
 	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
 	clear 'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST;
@@ -2532,6 +2581,7 @@ end if;
 	'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = 'Line Item Sequence';
 	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'PayWay Login ID' of table HS_PayWay_Payments_WORK_HIST = 'PayWay Login ID';
 	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
 	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
 	'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST = '(L) PayWay PrePaid Order Number';
@@ -2619,6 +2669,7 @@ end if;
 	'Sequence Number' of table HS_PayWay_Payments_WORK_HIST = 'Line Item Sequence';
 	'Customer Number' of table HS_PayWay_Payments_WORK_HIST = 'Customer Number';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Payments_WORK_HIST = 'HS PayWay Customer Reference Number';
+	'PayWay Login ID' of table HS_PayWay_Payments_WORK_HIST = 'PayWay Login ID';
 	'HS PayWay Date' of table HS_PayWay_Payments_WORK_HIST = sysdate();
 	'Amount Paid' of table HS_PayWay_Payments_WORK_HIST = 'Amount Paid';
 	'HS PayWay Original Order Number' of table HS_PayWay_Payments_WORK_HIST = 'Document Number';

@@ -1,0 +1,1660 @@
+Form	"HS_PayWay_Login_Lookup"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+		Constant	"~SHORTCUT~"		
+		{
+			Value	"0"
+		}
+	}
+	Datatypes
+	{
+	}
+	EventPost	""
+	EventPre	"HS_PayWay_Login_Lookup_FORM_PRE"
+	Fields
+	{
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+		FormTable	"HS_PayWay_Logins_SETP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"1"
+			Table	"HS_PayWay_Logins_SETP"
+		}
+	}
+	Windows
+	{
+		Window	"Lookup"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"false"
+			DisplayName	"PayWay Logins"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	""
+			EventPre	"Lookup_WIN_PRE"
+			EventPrint	""
+			Fields
+			{
+				ScrollingWindow	"0002-Lookup_Scroll"				
+				{
+					AltLineColor	"true"
+					Appearance	"2D Border"
+					BackColor	"System - List Line2"
+					BigLineItem	"19"
+					DefaultDblClick	"true"
+					EventLineChange	""
+					EventLineContextMenu	""
+					EventLineDelete	""
+					EventLineFill	""
+					EventLineInsert	""
+					EventLinePost	""
+					EventLinePre	""
+					Fields
+					{
+						WindowControl	"PayWay Login ID"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoComplete	"false"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"String"
+							DisableLookup	"false"
+							Editable	"true"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"PayWay Login ID"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Password	"false"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"0"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"Grow"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"true"
+							SizeHeight	"20"
+							SizeWidth	"187"
+							TabStop	"true"
+							Tag	"16"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"1"
+							Zoom	"false"
+						}
+						WindowControl	"PayWay User Name"						
+						{
+							Alignment	"left"
+							Appearance	"2D Border"
+							AutoComplete	"false"
+							AutoCopy	"true"
+							BackColor	"System - Window Background"
+							Border	"false"
+							ControlType	"String"
+							DisableLookup	"false"
+							Editable	"true"
+							EventChange	""
+							EventContextMenu	""
+							EventMouseEnter	""
+							EventMouseExit	""
+							EventOther	""
+							EventPost	""
+							EventPre	""
+							Field	"PayWay User Name"
+							Font	"System (generic)"
+							FontBold	"false"
+							FontColor	"System - Window Text"
+							FontItalic	"false"
+							FontUnderline	"false"
+							LinkedFormat	"0"
+							LinkedLookup	"0"
+							LinkedPrompt	"0"
+							Password	"false"
+							Pattern	"(none)"
+							PatternColor	"White"
+							PositionLeft	"187"
+							PositionTop	"0"
+							ReadingOrder	"LeftToRight"
+							Required	"false"
+							ResizeHoriz	"StayLeft"
+							ResizeVert	"StayTop"
+							SavedOnRestart	"false"
+							SetChangeFlag	"true"
+							SizeHeight	"20"
+							SizeWidth	"251"
+							TabStop	"true"
+							Tag	"14"
+							Tooltip	""
+							UseUniqueHelp	"true"
+							Visible	"true"
+							ZOrder	"0"
+							Zoom	"false"
+						}
+					}
+					FontColor	"System - List Line2 Text"
+					IgnoreActiveLine	"true"
+					LastTag	"16"
+					LinkTable	"HS_PayWay_Logins_SETP"
+					LinkTableKey	"0"
+					Name	"Lookup_Scroll"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"80"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayCentered"
+					ScrollToBottom	"false"
+					SizeHeight	"211"
+					SizeWidth	"439"
+					SmallLineItem	"19"
+					WindowType	"BrowseOnly"
+					ZOrder	"4"
+				}
+				WindowShape	"11"				
+				{
+					Appearance	"2D Border"
+					BackColor	"System - List Header1"
+					LineColor	"System"
+					LineSize	"1"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"39"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayTop"
+					Shape	"Rectangle"
+					SizeHeight	"22"
+					SizeWidth	"455"
+					ZOrder	"9"
+				}
+				WindowLine	"16"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"391"
+					PositionTop	"13"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"16"
+					SizeWidth	"0"
+					ZOrder	"10"
+				}
+				WindowLine	"28"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"317"
+					PositionTop	"13"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"16"
+					SizeWidth	"0"
+					ZOrder	"13"
+				}
+				WindowLine	"32"				
+				{
+					Appearance	"2D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"8"
+					PositionTop	"61"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"14"
+				}
+				WindowLine	"33"				
+				{
+					Appearance	"2D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"196"
+					PositionTop	"60"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"15"
+				}
+				WindowLine	"34"				
+				{
+					Appearance	"2D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"462"
+					PositionTop	"61"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"16"
+				}
+				WindowLine	"66"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"307"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayBottom"
+					SizeHeight	"0"
+					SizeWidth	"476"
+					ZOrder	"27"
+				}
+				WindowControl	"Cancel Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup Cancel Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Cancel Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"391"
+					PositionTop	"314"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayBottom"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"9"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"6"
+					Zoom	"false"
+				}
+				WindowControl	"Dummy Note Show Hide"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Blue"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"Lookup Dummy Note Show Hide_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Dummy Note Show Hide"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"353"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"true"
+					Tag	"26"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"11"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Column_Array[1]"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - List Header2"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup HS_LU_Column_Array[1]_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Column_Array[1]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"9"
+					PositionTop	"61"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"19"
+					SizeWidth	"187"
+					TabStop	"true"
+					Tag	"39"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"2"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Column_Array[2]"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - List Header2"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup HS_LU_Column_Array[2]_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Column_Array[2]"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header2 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"197"
+					PositionTop	"61"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayTop"
+					SizeHeight	"19"
+					SizeWidth	"265"
+					TabStop	"true"
+					Tag	"40"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"3"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Current_Sort_String"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Current_Sort_String"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"372"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"51"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"19"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Current_View"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Current_View"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"353"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"52"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"20"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Find_Prompt"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Find_Prompt"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"11"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"122"
+					TabStop	"false"
+					Tag	"43"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"18"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Find_String"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Lookup HS_LU_Find_String_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Find_String"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"129"
+					PositionTop	"11"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"188"
+					TabStop	"true"
+					Tag	"56"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"23"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_Set_View_Prompt"				
+				{
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"Integer"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"Lookup HS_LU_Set_View_Prompt_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_Set_View_Prompt"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"391"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"53"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"21"
+					Zoom	"false"
+				}
+				WindowControl	"HS_LU_View_Button"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					AutoCopy	"true"
+					BackColor	"System - List Header1"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"ButtonList"
+					Default	"false"
+					DisableLookup	"false"
+					DropIndicator	"false"
+					DropPosX	"5"
+					DropPosY	"5"
+					Editable	"true"
+					EventChange	"Lookup HS_LU_View_Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"HS_LU_View_Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - List Header1 Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"9"
+					PositionTop	"40"
+					Required	"false"
+					ResizeHoriz	"Grow"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"436"
+					TabStop	"false"
+					Tag	"42"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"22"
+					Zoom	"false"
+				}
+				WindowControl	"Note Absent Button - Toolbar "				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup Note Absent Button - Toolbar _CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Note Absent Button - Toolbar "
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"316"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayBottom"
+					SizeHeight	"24"
+					SizeWidth	"24"
+					TabStop	"true"
+					Tag	"27"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"12"
+					Zoom	"false"
+				}
+				WindowControl	"Note Present Button - Toolbar"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup Note Present Button - Toolbar_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Note Present Button - Toolbar"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"316"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayBottom"
+					SizeHeight	"24"
+					SizeWidth	"24"
+					TabStop	"true"
+					Tag	"22"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"7"
+					Zoom	"false"
+				}
+				WindowControl	"PB_New_Record"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup PB_New_Record_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PB_New_Record"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"318"
+					PositionTop	"9"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"17"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"0"
+					Zoom	"false"
+				}
+				WindowControl	"PB_OpenRecord"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup PB_OpenRecord_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PB_OpenRecord"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"393"
+					PositionTop	"9"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"18"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"1"
+					Zoom	"false"
+				}
+				WindowControl	"PB_Refresh_Scrolling_Window"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - List Header1"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup PB_Refresh_Scrolling_Window_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PB_Refresh_Scrolling_Window"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"444"
+					PositionTop	"41"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayTop"
+					SizeHeight	"18"
+					SizeWidth	"18"
+					TabStop	"true"
+					Tag	"12"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"24"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Login ID"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"Lookup PayWay Login ID_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Login ID"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"391"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"61"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"25"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay User Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"Lookup PayWay User Name_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay User Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"410"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"62"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"26"
+					Zoom	"false"
+				}
+				WindowControl	"Select Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"TextOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"true"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup Select Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Select Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"311"
+					PositionTop	"314"
+					ResizeHoriz	"StayRight"
+					ResizeVert	"StayBottom"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"8"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"5"
+					Zoom	"false"
+				}
+				WindowControl	"Sort By"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"Yellow"
+					ControlType	"DropDownList"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Lookup Sort By_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Sort By"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"372"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"170"
+					TabStop	"false"
+					Tag	"36"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					VisibleItems	"8"
+					ZOrder	"17"
+				}
+				WindowControl	"WindowHelp"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Lookup WindowHelp_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"WindowHelp"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"32"
+					PositionTop	"316"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayBottom"
+					SizeHeight	"24"
+					SizeWidth	"24"
+					TabStop	"true"
+					Tag	"19"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"8"
+					Zoom	"false"
+				}
+			}
+			LastTag	"68"
+			Position	"1"
+			PositionLeft	"1"
+			PositionTop	"1"
+			Resizable	"True-Per Field"
+			SizeHeight	"345"
+			SizeWidth	"472"
+			WindowType	"Lookup"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"HS_PayWay_Login_Lookup_FORM_PRE"		
+		{
+			Documentation	""
+			Script	"add item getmsg(22043) to 'Sort By' of window Lookup;   { by Login ID }
+add item getmsg(22044) to 'Sort By' of window Lookup;   { by User Name } 
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Cancel Button_CHG"		
+		{
+			Documentation	""
+			Script	"close form HS_PayWay_Login_Lookup;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Dummy Note Show Hide_CHG"		
+		{
+			Documentation	""
+			Script	"call Check_For_Note, substring(Window_GetTitle(window Lookup), 1, 30), 'Dummy Note Show Hide';
+
+if 'Dummy Note Show Hide'  = 1 then
+	hide 'Note Absent Button - Toolbar ';
+	show 'Note Present Button - Toolbar';
+else
+	hide 'Note Present Button - Toolbar';
+	show 'Note Absent Button - Toolbar ';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup HS_LU_Column_Array[1]_CHG"		
+		{
+			Documentation	""
+			Script	"'PayWay Login ID' = 'PayWay Login ID' of window Lookup_Scroll;
+'Sort By' = 1;
+
+run script 'Sort By';
+
+HS_LU_Current_Sort_String of window Lookup = getmsg(22043); { by Login ID }
+run script HS_LU_Set_View_Prompt;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup HS_LU_Column_Array[2]_CHG"		
+		{
+			Documentation	""
+			Script	"'PayWay User Name' = 'PayWay User Name' of window Lookup_Scroll;
+'Sort By' = 2;
+
+run script 'Sort By';
+
+HS_LU_Current_Sort_String of window Lookup = getmsg(22044); { by User Name }
+run script HS_LU_Set_View_Prompt;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup HS_LU_Find_String_CHG"		
+		{
+			Documentation	""
+			Script	"case 'Sort By'
+	in [1]
+		'PayWay Login ID' = substring(HS_LU_Find_String, 1, 15);
+		run script 'PayWay Login ID';
+	else
+		'PayWay User Name' = substring(upper(HS_LU_Find_String), 1, 32);
+		run script 'PayWay User Name';
+end case;
+
+if not empty(HS_LU_Find_String) then
+	clear HS_LU_Find_String;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup HS_LU_Set_View_Prompt_CHG"		
+		{
+			Documentation	""
+			Script	"local	string		sPrompt;
+local	boolean		bCaptionset;
+{local	integer		nDatatype;
+local	integer		nCount, i;}
+
+
+sPrompt = getmsg(22045); { &View: %1; %2 }
+substitute sPrompt, HS_LU_Current_View, HS_LU_Current_Sort_String;
+bCaptionset = Field_SetCaption(HS_LU_View_Button, sPrompt);
+HS_LU_Find_Prompt = getmsg(22046); { Find %1 }
+substitute HS_LU_Find_Prompt, HS_LU_Current_Sort_String;
+redraw HS_LU_Find_Prompt;
+
+{case 'Sort By'
+	in [1]
+		nDatatype = HS_DT_STRING;
+	in [2]
+		nDatatype = HS_DT_STRING;
+end case;
+
+case nDatatype
+	in [HS_DT_DATE]
+		clear HS_LU_Find_DDL;
+		disable HS_LU_Find_DDL;
+		hide HS_LU_Find_DDL;
+		clear HS_LU_Find_Account_Number;
+		disable HS_LU_Find_Account_Number;
+		hide HS_LU_Find_Account_Number;
+		clear HS_LU_Find_String;
+		disable HS_LU_Find_String;
+		hide HS_LU_Find_String;
+
+		clear HS_LU_Find_Date;
+		enable HS_LU_Find_Date;
+		show HS_LU_Find_Date;
+	in [HS_DT_ACCOUNTINDEX, HS_DT_ACCOUNTNUMBER]
+		clear HS_LU_Find_DDL;
+		disable HS_LU_Find_DDL;
+		hide HS_LU_Find_DDL;
+		clear HS_LU_Find_String;
+		disable HS_LU_Find_String;
+		hide HS_LU_Find_String;
+		clear HS_LU_Find_Date;
+		disable HS_LU_Find_Date;
+		hide HS_LU_Find_Date;
+
+		clear HS_LU_Find_Account_Number;
+		enable HS_LU_Find_Account_Number;
+		show HS_LU_Find_Account_Number;
+	in [HS_DT_BOOLEAN, HS_DT_DROPDOWNLIST]
+		clear HS_LU_Find_String;
+		disable HS_LU_Find_String;
+		hide HS_LU_Find_String;
+		clear HS_LU_Find_Date;
+		disable HS_LU_Find_Date;
+		hide HS_LU_Find_Date;
+		clear HS_LU_Find_Account_Number;
+		disable HS_LU_Find_Account_Number;
+		hide HS_LU_Find_Account_Number;
+		
+		enable HS_LU_Find_DDL;
+		show HS_LU_Find_DDL;
+		
+		if nDatatype = HS_DT_DROPDOWNLIST then
+			clear field HS_LU_Find_DDL;
+			nCount = countitems(field 'EQS Equipment Category Type');
+			for i = 1 to nCount do
+				add item itemname('EQS Equipment Category Type', i), i to field HS_LU_Find_DDL;
+			end for;
+			
+		end if;
+	else
+		clear HS_LU_Find_Date;
+		disable HS_LU_Find_Date;
+		hide HS_LU_Find_Date;
+		clear HS_LU_Find_Account_Number;
+		disable HS_LU_Find_Account_Number;
+		hide HS_LU_Find_Account_Number;
+		clear HS_LU_Find_DDL;
+		disable HS_LU_Find_DDL;
+		hide HS_LU_Find_DDL;}
+
+		clear HS_LU_Find_String;
+		enable HS_LU_Find_String;
+		show HS_LU_Find_String;
+{end case;}
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup HS_LU_View_Button_CHG"		
+		{
+			Documentation	""
+			Script	"case HS_LU_View_Button
+	in [3] { Refresh }
+		run script 'Sort By';
+		abort script;
+end case;
+
+HS_LU_Current_View = itemname(HS_LU_View_Button, HS_LU_View_Button);
+run script HS_LU_Set_View_Prompt;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Note Absent Button - Toolbar _CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	Open the note for the window if possible.
+--------------------------------------------------------------------------------}
+local string l_Note_ID,l_Display_Name;
+local boolean isthere;
+local integer form_number;
+local integer l_exists;
+
+{-------------------------------------------------------------------------------
+	Initialize local variables before calling global script
+--------------------------------------------------------------------------------}
+{get the current display name to display}
+set l_Display_Name to Window_GetTitle(window Lookup);
+
+{get the original display name as the key into the notes table. This should be the
+ same name as in the 'Dummy Record Show Hide' script.}
+set l_Note_ID to substring(Window_GetTitle(window Lookup), 1, 30);
+
+{check to see if someone created or deleted a note since entering the window}
+call Check_For_Note,l_Note_ID,l_exists;
+if 'Dummy Note Show Hide'=1 and l_exists=0 then
+	call Warning_Dialog, 30118, \"\", \"\", \"\"; { Are you sure you want to delete this manufacturer? }
+elseif 'Dummy Note Show Hide'=0 and l_exists=1 then
+	call Warning_Dialog, 5500, \"\", \"\", \"\"; { Deleting the control line item will delete the blanket line items. Do you want to delete the control line item? }
+end if;
+
+set isthere to false;
+set form_number to 0;
+
+{--------------------------------------------------------------------------------
+	Check if a note form for this window is already open.  If one isn't, then
+	get the number of an unused note form.  If all of the note forms are being
+	used, then give a warning and abort the script.  Otherwise, open the note
+	form for this window.
+--------------------------------------------------------------------------------}
+call Check_Note_ID_String,l_Note_ID,isthere,form_number;
+if isthere=false then
+	call Get_Next_Form_Note_To_Open,form_number;
+	if form_number = 0 then
+		abort script;
+	end if;
+end if;
+if form_number = 1 then
+	open form Form_Note_1 return to 'Dummy Note Show Hide',nofocus;
+	set 'Note ID' of window Form_Note_1 of form Form_Note_1 to l_Note_ID;
+	set 'Display Name' of window Form_Note_1 of form Form_Note_1 to l_Display_Name;
+	if not isthere then
+		run script '(L) Dummy WIN PRE' of window Form_Note_1 of form Form_Note_1;
+	end if;
+elseif form_number = 2 then
+	open form Form_Note_2 return to 'Dummy Note Show Hide',nofocus;
+	set 'Note ID' of window Form_Note_2 of form Form_Note_2 to l_Note_ID;
+	set 'Display Name' of window Form_Note_2 of form Form_Note_2 to l_Display_Name;
+	if not isthere then
+		run script '(L) Dummy WIN PRE' of window Form_Note_2 of form Form_Note_2;
+	end if;
+elseif form_number = 3 then
+	open form Form_Note_3 return to 'Dummy Note Show Hide',nofocus;
+	set 'Note ID' of window Form_Note_3 of form Form_Note_3 to l_Note_ID;
+	set 'Display Name' of window Form_Note_3 of form Form_Note_3 to l_Display_Name;
+	if not isthere then
+		run script '(L) Dummy WIN PRE' of window Form_Note_3 of form Form_Note_3;
+	end if;
+elseif form_number = 4 then
+	open form Form_Note_4 return to 'Dummy Note Show Hide',nofocus;
+	set 'Note ID' of window Form_Note_4 of form Form_Note_4 to l_Note_ID;
+	set 'Display Name' of window Form_Note_4 of form Form_Note_4 to l_Display_Name;
+	if not isthere then
+		run script '(L) Dummy WIN PRE' of window Form_Note_4 of form Form_Note_4;
+	end if;
+else {form_number = 5}
+	open form Form_Note_5 return to 'Dummy Note Show Hide',nofocus;
+	set 'Note ID' of window Form_Note_5 of form Form_Note_5 to l_Note_ID;
+	set 'Display Name' of window Form_Note_5 of form Form_Note_5 to l_Display_Name;
+	if not isthere then
+		run script '(L) Dummy WIN PRE' of window Form_Note_5 of form Form_Note_5;
+	end if;
+end if;
+
+
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Note Present Button - Toolbar_CHG"		
+		{
+			Documentation	""
+			Script	"run script 'Note Absent Button - Toolbar ';
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup PB_New_Record_CHG"		
+		{
+			Documentation	""
+			Script	"if isopen(window Login_Setup of form HS_PayWay_Login_Setup) then
+	run script 'Clear Button' of window Login_Setup of form HS_PayWay_Login_Setup;
+else
+	open form HS_PayWay_Login_Setup;
+end if;
+
+close form HS_PayWay_Login_Lookup;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup PB_OpenRecord_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay Login ID' of window Lookup_Scroll) then 
+	warning getmsg(2154);   {Please select a record first.}
+	abort script;
+end if;
+
+
+open form HS_PayWay_Login_Setup;
+call INITIALIZE of form HS_PayWay_Login_Setup, 'PayWay Login ID' of window Lookup_Scroll;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup PB_Refresh_Scrolling_Window_CHG"		
+		{
+			Documentation	""
+			Script	"run script 'Sort By';
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup PayWay Login ID_CHG"		
+		{
+			Documentation	""
+			Script	"if 'Sort By' <> 1 then
+  'Sort By' = 1;
+end if;
+
+'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID';
+get table HS_PayWay_Logins_SETP by number 'Sort By';
+
+fill window Lookup_Scroll from current by number 'Sort By';
+focus 'PayWay Login ID' of window Lookup_Scroll;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup PayWay User Name_CHG"		
+		{
+			Documentation	""
+			Script	"if 'Sort By' <> 2 then
+  'Sort By' = 2;
+end if;
+
+'PayWay User Name' of table HS_PayWay_Logins_SETP = 'PayWay User Name';
+get table HS_PayWay_Logins_SETP by number 'Sort By';
+
+fill window Lookup_Scroll from current by number 'Sort By';
+focus 'PayWay Login ID' of window Lookup_Scroll;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Select Button_CHG"		
+		{
+			Documentation	""
+			Script	"if empty ('PayWay Login ID' of window Lookup_Scroll) then 
+	warning getmsg(2154);   {Please select a record first.}
+	abort script;
+end if;
+
+return 'PayWay Login ID' of window Lookup_Scroll;
+
+close window Lookup;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup Sort By_CHG"		
+		{
+			Documentation	""
+			Script	"case 'Sort By'
+	in [1]
+		clear table HS_PayWay_Logins_SETP;
+		if not empty('PayWay Login ID') then
+			'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID';
+			fill window Lookup_Scroll by number 'Sort By';
+			clear field 'PayWay Login ID';
+		else
+			fill window Lookup_Scroll by number 'Sort By';
+		end if;
+	else  {'Sort By' = 2}
+		if not empty('PayWay User Name') then
+			clear table HS_PayWay_Logins_SETP;
+			'PayWay User Name' of table HS_PayWay_Logins_SETP = 'PayWay User Name';
+			fill window Lookup_Scroll by number 'Sort By';
+			clear 'PayWay User Name';
+		else
+			fill window Lookup_Scroll by number 'Sort By';
+		end if;
+end case;
+
+focus 'PayWay Login ID' of window Lookup_Scroll;
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup WindowHelp_CHG"		
+		{
+			Documentation	""
+			Script	"local boolean result;
+
+result=Menu_Invoke(MENU_ACTION_HELPWINDOW);
+"
+			UserProperties	""
+		}
+		EventScript	"Lookup_WIN_PRE"		
+		{
+			Documentation	""
+			Script	"local	boolean		bCaptionSet;
+
+
+run script 'Dummy Note Show Hide';
+
+{ Initialize View DDL }
+clear field HS_LU_View_Button of window Lookup;
+add item getmsg(22040), 1 to field HS_LU_View_Button of window Lookup;   { All Logins }
+add item getmsg(12000), 2 to field HS_LU_View_Button of window Lookup;   { - }
+add item getmsg(3297), 3 to field HS_LU_View_Button of window Lookup;   { Refresh }
+
+HS_LU_View_Button of window Lookup = 1;
+check field HS_LU_View_Button of window Lookup, 1;
+HS_LU_Current_View of window Lookup = itemname(HS_LU_View_Button of window Lookup, HS_LU_View_Button of window Lookup);
+
+
+bCaptionSet = Field_SetToolTip(WindowHelp of window Lookup, getmsg(14071)); { Help }
+
+{ Initialize Column Sort Button Prompts }
+bCaptionSet = Field_SetCaption(HS_LU_Column_Array[1] of window Lookup, getmsg(22041)); { Login ID }
+bCaptionSet = Field_SetCaption(HS_LU_Column_Array[2] of window Lookup, getmsg(22042)); { User Name }
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+	}
+	~Procedures
+	{
+		Procedure	"INITIALIZE"		
+		{
+			Documentation	""
+			Script	"in		'Sort By'				IN_Sort_By;
+in		'PayWay Login ID'		IN_Login_ID;
+in		'PayWay User Name'		IN_User_Name;
+
+
+'Sort By' of window Lookup = IN_Sort_By;
+
+'PayWay Login ID' of window Lookup = IN_Login_ID;
+'PayWay User Name' of window Lookup = IN_User_Name;
+
+case 'Sort By' of window Lookup
+	in [1]
+		'PayWay Login ID' of window Lookup = IN_Login_ID;
+		run script 'PayWay Login ID' of window Lookup;
+		HS_LU_Current_Sort_String of window Lookup = getmsg(22043); { by Login ID }
+	in [2]
+		'PayWay User Name' of window Lookup = IN_User_Name;
+		run script 'PayWay User Name' of window Lookup;
+		HS_LU_Current_Sort_String of window Lookup = getmsg(22044); { by User Name }
+	else
+		'Sort By' of window Lookup = 1;
+		run script 'Sort By' of window Lookup;
+		HS_LU_Current_Sort_String of window Lookup = getmsg(22043); { by Login ID }
+end case;
+
+run script HS_LU_Set_View_Prompt of window Lookup;
+"
+			UserProperties	""
+		}
+	}
+}

@@ -28,7 +28,7 @@ if IsPayment(integer(itemdata('Payment Type', 'Payment Type'))) and (SOPTypeToIn
 	abort script;
 end if;
 
-if not Is_PayWay_Customer('Customer Number', 'Address Code', 'HS PayWay Customer Reference Number', bAllowChanges) then
+if not Is_PayWay_Customer('Customer Number', 'Address Code', 'HS PayWay Customer Reference Number', 'PayWay Login ID', bAllowChanges) then
 	abort script;
 end if;
 

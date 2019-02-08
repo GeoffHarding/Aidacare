@@ -1,0 +1,1803 @@
+Form	"HS_PayWay_Login_Setup"
+{
+	Commands
+	{
+	}
+	ConfigurableMenus	"false"
+	Constants
+	{
+	}
+	Datatypes
+	{
+		Datatype	"Login Information"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00000"
+			Prompt	"Login Information"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+			}
+		}
+	}
+	EventPost	""
+	EventPre	"HS_PayWay_Login_Setup_FORM_PRE"
+	Fields
+	{
+		Field	"Login Information"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Login Information"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Temp Control Number"		
+		{
+			ArraySize	"0"
+			Datatype	"STR15"
+			LookupForm	""
+			PhysicalName	""
+		}
+	}
+	Menus
+	{
+	}
+	Series	"3rdParty"
+	Tables
+	{
+		FormTable	"HS_PayWay_Logins_SETP"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"1"
+			Table	"HS_PayWay_Logins_SETP"
+		}
+	}
+	Windows
+	{
+		Window	"Login_Setup"		
+		{
+			AutoLinkTable	""
+			AutoOpen	"true"
+			BackGround	"true"
+			CloseBox	"true"
+			ControlArea	"true"
+			DisplayName	"PayWay Login Setup"
+			EventActivate	""
+			EventContextMenu	""
+			EventPost	"Login_Setup_WIN_POST"
+			EventPre	""
+			EventPrint	""
+			Fields
+			{
+				WindowControl	"(L) Temp Control Number"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"false"
+					BackColor	"Yellow"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	"Login_Setup l_Temp Control Number_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Temp Control Number"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"224"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"140"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"24"
+					Zoom	"false"
+				}
+				WindowPrompt	"102"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"User Name"
+					Visible	"true"
+					ZOrder	"9"
+					Zoom	"false"
+				}
+				WindowPrompt	"103"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Password"
+					Visible	"true"
+					ZOrder	"10"
+					Zoom	"false"
+				}
+				WindowPrompt	"104"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"91"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Merchant ID"
+					Visible	"true"
+					ZOrder	"11"
+					Zoom	"false"
+				}
+				WindowPrompt	"105"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Credentials File"
+					Visible	"true"
+					ZOrder	"12"
+					Zoom	"false"
+				}
+				WindowPrompt	"106"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"148"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Log Directory"
+					Visible	"true"
+					ZOrder	"13"
+					Zoom	"false"
+				}
+				WindowLine	"130"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"186"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"0"
+					SizeWidth	"800"
+					ZOrder	"16"
+				}
+				WindowPrompt	"131"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"154"
+					Text	"Login ID"
+					Visible	"true"
+					ZOrder	"17"
+					Zoom	"false"
+				}
+				WindowLine	"138"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"218"
+					PositionTop	"3"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"19"
+					SizeWidth	"0"
+					ZOrder	"22"
+				}
+				WindowLine	"41"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"0"
+					PositionTop	"24"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"0"
+					SizeWidth	"800"
+					ZOrder	"8"
+				}
+				WindowLine	"5"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"73"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"0"
+				}
+				WindowLine	"6"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"148"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"1"
+				}
+				WindowControl	"BrowseBox"				
+				{
+					Alignment	"left"
+					Appearance	"3D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"BrowseBox"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"7"
+					PositionTop	"191"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"71"
+					TabStop	"false"
+					Tag	"141"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"25"
+					Zoom	"false"
+				}
+				WindowControl	"Clear Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Clear Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Clear Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"75"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"136"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"20"
+					Zoom	"false"
+				}
+				WindowControl	"Delete Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"true"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Delete Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Delete Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"150"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"67"
+					TabStop	"true"
+					Tag	"137"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"21"
+					Zoom	"false"
+				}
+				WindowControl	"Display Existing Record"				
+				{
+					Alignment	"left"
+					Appearance	"3D Border"
+					AutoCopy	"true"
+					BackColor	"Pink"
+					Border	"true"
+					ButtonStyle	"Standard"
+					ControlType	"CheckBox"
+					Editable	"false"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Display Existing Record"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PatternSelect	"50% Shading"
+					PositionLeft	"8"
+					PositionTop	"243"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"139"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"false"
+					ZOrder	"23"
+				}
+				WindowControl	"End of File Button - Toolbar"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup End of File Button - Toolbar_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"End of File Button - Toolbar"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"59"
+					PositionTop	"192"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"18"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"145"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"29"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 1"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Lookup Button 1_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 1"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"297"
+					PositionTop	"34"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"114"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"14"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 2"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Lookup Button 2_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 2"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"773"
+					PositionTop	"129"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"115"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
+				WindowControl	"Lookup Button 3"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Lookup Button 3_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 3"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"773"
+					PositionTop	"148"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"133"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"18"
+					Zoom	"false"
+				}
+				WindowControl	"Next Button - Toolbar"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Next Button - Toolbar_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Next Button - Toolbar"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"42"
+					PositionTop	"192"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"18"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"144"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"28"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Credentials File"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Login_Setup PayWay Credentials File_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Credentials File"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"115"
+					LinkedPrompt	"105"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"129"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"613"
+					TabStop	"true"
+					Tag	"111"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"6"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Log Directory"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Login_Setup PayWay Log Directory_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Log Directory"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"133"
+					LinkedPrompt	"106"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"148"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"613"
+					TabStop	"true"
+					Tag	"112"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"7"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Login ID"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Login_Setup PayWay Login ID_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Login ID"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"114"
+					LinkedPrompt	"131"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"34"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"137"
+					TabStop	"true"
+					Tag	"132"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"2"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Merchant"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Merchant"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"104"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"91"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"110"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"5"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Password"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Password"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"103"
+					Password	"true"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"72"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"109"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"4"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay User Name"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"Login_Setup PayWay User Name_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay User Name"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"0"
+					LinkedPrompt	"102"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"161"
+					PositionTop	"53"
+					ReadingOrder	"LeftToRight"
+					Required	"true"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"221"
+					TabStop	"true"
+					Tag	"108"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"3"
+					Zoom	"false"
+				}
+				WindowControl	"Previous Button - Toolbar"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Previous Button - Toolbar_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Previous Button - Toolbar"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"192"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"18"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"143"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"27"
+					Zoom	"false"
+				}
+				WindowControl	"Save Button"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"true"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Save Button_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Save Button"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"0"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"72"
+					TabStop	"true"
+					Tag	"134"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"19"
+					Zoom	"false"
+				}
+				WindowControl	"Sort By"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					ControlType	"DropDownList"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	""
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Sort By"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"93"
+					PositionTop	"191"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"true"
+					SetChangeFlag	"false"
+					SizeHeight	"20"
+					SizeWidth	"153"
+					TabStop	"false"
+					Tag	"147"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					VisibleItems	"8"
+					ZOrder	"30"
+				}
+				WindowControl	"Top of File Button - Toolbar"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Login_Setup Top of File Button - Toolbar_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Top of File Button - Toolbar"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"8"
+					PositionTop	"192"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"18"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"142"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"26"
+					Zoom	"false"
+				}
+			}
+			LastTag	"147"
+			Position	"1"
+			PositionLeft	"224"
+			PositionTop	"393"
+			Resizable	"false"
+			SizeHeight	"216"
+			SizeWidth	"800"
+			WindowType	"Primary"
+		}
+	}
+	~EventScripts
+	{
+		EventScript	"HS_PayWay_Login_Setup_FORM_PRE"		
+		{
+			Documentation	""
+			Script	"add item getmsg(22038), 1 to 'Sort By' of window Login_Setup;   {by PayWay Login ID}
+add item getmsg(22039), 2 to 'Sort By' of window Login_Setup;   {by PayWay User Name}
+
+'Sort By' of window Login_Setup = 1;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Clear Button_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script will clear the window.
+--------------------------------------------------------------------------------}
+release table HS_PayWay_Logins_SETP;
+
+if not empty('PayWay Login ID') and not 'Display Existing Record' then
+	remove range table HS_PayWay_Logins_SETP;
+end if;
+
+restart window;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Delete Button_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script will delete the record after asking if the user is sure.
+--------------------------------------------------------------------------------}
+
+{--------------------------------------------------------------------------------
+	Abort if there is no record or changes to delete.
+--------------------------------------------------------------------------------}
+if empty('PayWay Login ID') and not changed(window Login_Setup) then
+	abort script;
+end if;
+
+{--------------------------------------------------------------------------------
+	Ask if the user is sure about deleting the record.
+--------------------------------------------------------------------------------}
+if ask(getmsg(1300){Are you sure you want to delete?}, getmsg(3){&Delete}, getmsg(1){&Cancel}, \"\") = ASKBUTTON1 then
+	{----------------------------------------------------------------------------
+		The user is sure about deleting the record.
+	----------------------------------------------------------------------------}
+	{----------------------------------------------------------------------------
+		If there is a locked record, remove it.
+	----------------------------------------------------------------------------}
+	if not empty('PayWay Login ID') and 'Display Existing Record' then
+		remove table HS_PayWay_Logins_SETP;
+	end if;
+
+	{----------------------------------------------------------------------------
+		Restart the form.
+	----------------------------------------------------------------------------}
+	restart form;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup End of File Button - Toolbar_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script gets the last record in the table and displays it.
+--------------------------------------------------------------------------------}
+local		integer		nSort;
+
+{--------------------------------------------------------------------------------
+	Get the last record in the table by the key specified in the 'Sort By' list.
+--------------------------------------------------------------------------------}
+nSort = integer(itemdata('Sort By','Sort By'));
+get last table HS_PayWay_Logins_SETP by number nSort;
+if err() = EOF then
+	abort script;
+end if;
+'(L) Temp Control Number' = 'PayWay Login ID' of table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	Switch the control number to the one selected.
+--------------------------------------------------------------------------------}
+run script '(L) Temp Control Number';
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Lookup Button 1_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script will open the lookup window.
+--------------------------------------------------------------------------------}
+open form HS_PayWay_Login_Lookup return to '(L) Temp Control Number', nofocus;
+call INITIALIZE of form HS_PayWay_Login_Lookup, 1, 'PayWay Login ID', \"\";
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Lookup Button 2_CHG"		
+		{
+			Documentation	""
+			Script	"local		string		sPath;
+
+
+pragma (disable warning LiteralStringUsed);
+
+getfile(getmsg(22012), 1, sPath, \"Credentials File (*.q0)|*.q0|\");   {Select a credentials file.}
+'PayWay Credentials File' = Path_MakeNative(sPath);
+
+pragma (enable warning LiteralStringUsed);
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Lookup Button 3_CHG"		
+		{
+			Documentation	""
+			Script	"local	string		sPath;
+
+
+if Path_SelectPathname(sPath) then
+	'PayWay Log Directory' = Path_MakeNative(sPath);
+	run script 'PayWay Log Directory';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Next Button - Toolbar_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script gets the next record in the table and displays it.
+--------------------------------------------------------------------------------}
+local		integer		nSort;
+
+{--------------------------------------------------------------------------------
+	Get the next record in the table by the key specified in the 'Sort By' list.
+--------------------------------------------------------------------------------}
+nSort = integer(itemdata('Sort By','Sort By'));
+get next table HS_PayWay_Logins_SETP by number nSort;
+if err() = EOF then
+	beep INFOSOUND;
+	abort script;
+end if;
+'(L) Temp Control Number' = 'PayWay Login ID' of table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	Switch the control number to the one selected.
+--------------------------------------------------------------------------------}
+run script '(L) Temp Control Number';
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup PayWay Credentials File_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay Credentials File') then
+	abort script;
+end if;
+
+
+if not File_Probe(Path_MakeGeneric('PayWay Credentials File')) then
+	warning getmsg(22010);   {Please enter a valid file.}
+	restart field;
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup PayWay Log Directory_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay Log Directory') then
+	abort script;
+end if;
+
+
+if substring('PayWay Log Directory', length('PayWay Log Directory'), 1) = CH_BACKSLASH then
+	'PayWay Log Directory' = substring('PayWay Log Directory', 1, length('PayWay Log Directory') - 1);
+end if;
+
+
+if not Path_DoesExist('PayWay Log Directory') then
+	warning getmsg(22011);   {Please enter a valid path.}
+	restart field;
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup PayWay Login ID_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script will update the window to display the selected record if the
+	control number exists.
+--------------------------------------------------------------------------------}
+
+{--------------------------------------------------------------------------------
+	If changes have been made, verify that the control number isn't already used.
+--------------------------------------------------------------------------------}
+if changed(window Login_Setup) then
+	'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID';
+	get table HS_PayWay_Logins_SETP;
+	if err() <> MISSING then
+		warning getmsg(2427);   {This control number already exists. Please enter a new control number}
+		restart field;
+		abort script;
+	end if;
+end if;
+
+{--------------------------------------------------------------------------------
+	Update the window to display the selected record.
+--------------------------------------------------------------------------------}
+call Display_Existing_Record of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, 'Display Existing Record';
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup PayWay User Name_CHG"		
+		{
+			Documentation	""
+			Script	"if empty('PayWay User Name') then
+	abort script;
+end if;
+
+
+if not Is_Unique_User_Name('PayWay User Name', 'PayWay Login ID') of form HS_PayWay_Login_Setup then
+	restart field;
+	warning getmsg(22049);   {This User Name has already been used.}
+	abort script;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Previous Button - Toolbar_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script gets the previous record in the table and displays it.
+--------------------------------------------------------------------------------}
+local		integer		nSort;
+
+{--------------------------------------------------------------------------------
+	Get the previous record in the table by the key specified in the 'Sort By' list.
+--------------------------------------------------------------------------------}
+nSort = integer(itemdata('Sort By','Sort By'));
+get prev table HS_PayWay_Logins_SETP by number nSort;
+if err() = EOF then
+	beep INFOSOUND;
+	abort script;
+end if;
+'(L) Temp Control Number' = 'PayWay Login ID' of table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	Switch the control number to the one selected.
+--------------------------------------------------------------------------------}
+run script '(L) Temp Control Number';
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Save Button_CHG"		
+		{
+			Documentation	""
+			Script	"local	boolean		bSaved;
+
+{--------------------------------------------------------------------------------
+	Try to save the record.  The record will not be saved if a required field is
+	empty or if there is a collision.
+--------------------------------------------------------------------------------}
+call Save_Record of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, bSaved;
+if bSaved then
+	restart window;
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup Top of File Button - Toolbar_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script gets the first record in the table and displays it.
+--------------------------------------------------------------------------------}
+local		integer		nSort;
+
+{--------------------------------------------------------------------------------
+	Get the first record in the table by the key specified in the 'Sort By' list.
+--------------------------------------------------------------------------------}
+nSort = integer(itemdata('Sort By', 'Sort By'));
+get first table HS_PayWay_Logins_SETP by number nSort;
+if err() = EOF then
+	abort script;
+end if;
+'(L) Temp Control Number' = 'PayWay Login ID' of table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	Switch the control number to the one selected.
+--------------------------------------------------------------------------------}
+run script '(L) Temp Control Number';
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup l_Temp Control Number_CHG"		
+		{
+			Documentation	""
+			Script	"{--------------------------------------------------------------------------------
+	This script will display the selected record after handling changes to the
+	record currently being displayed.
+
+	This script is called or run from five different locations:
+		(1-4)	Called from the browse button change scripts.
+		(5)	Run by the return command on the 'Select Button' change script
+			on the lookup window.
+--------------------------------------------------------------------------------}
+
+local		boolean		bHandled;
+
+
+{--------------------------------------------------------------------------------
+	Re-open the window in case it is behind a lookup.
+--------------------------------------------------------------------------------}
+open window Login_Setup;
+
+{--------------------------------------------------------------------------------
+	Abort if the selected record is the record currently displayed.
+--------------------------------------------------------------------------------}
+if '(L) Temp Control Number' = 'PayWay Login ID' or empty('(L) Temp Control Number') then
+	focus 'PayWay Login ID';
+	abort script;
+end if;
+
+{--------------------------------------------------------------------------------
+	Handle changes, if any, to the present record.
+--------------------------------------------------------------------------------}
+if changed(window Login_Setup) then
+	call Handle_Changes of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, bHandled;
+	if not bHandled then
+		'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID';
+		abort script;
+	end if;
+else
+	release table HS_PayWay_Logins_SETP;
+end if;
+
+{--------------------------------------------------------------------------------
+	Display the selected record.
+--------------------------------------------------------------------------------}
+'PayWay Login ID' = '(L) Temp Control Number';
+call Display_Existing_Record of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, 'Display Existing Record';
+if empty('PayWay Login ID') then
+	focus 'PayWay Login ID';
+else
+	focus 'PayWay User Name';
+end if;
+"
+			UserProperties	""
+		}
+		EventScript	"Login_Setup_WIN_POST"		
+		{
+			Documentation	""
+			Script	"local		boolean		bHandled;
+
+
+{--------------------------------------------------------------------------------
+	Handle changes, if any, to the present record.
+--------------------------------------------------------------------------------}
+if changed(window Login_Setup) then
+	call Handle_Changes of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, bHandled;
+	if not bHandled then
+		abort close;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+	}
+	~Functions
+	{
+		Function	"Is_Unique_User_Name"		
+		{
+			Documentation	""
+			Script	"function returns boolean OUT_Unique;
+in		string		IN_PayWay_User_Name;
+in		string		IN_PayWay_Login_ID;
+
+
+OUT_Unique = true;
+
+'PayWay User Name' of table HS_PayWay_Logins_SETP = IN_PayWay_User_Name;
+get table HS_PayWay_Logins_SETP by number 2;
+if err() = OKAY then
+	if 'PayWay Login ID' of table HS_PayWay_Logins_SETP <> IN_PayWay_Login_ID then
+		OUT_Unique = false;
+	end if;
+end if;
+"
+			UserProperties	""
+		}
+	}
+	~Procedures
+	{
+		Procedure	"Display_Existing_Record"		
+		{
+			Documentation	""
+			Script	"inout	table		HS_PayWay_Logins_SETP;
+out		boolean		OUT_Existing;
+
+
+{--------------------------------------------------------------------------------
+	This script reads and displays the newly selected record.
+
+	This script is called from two different locations:
+		(1)	The '(L) Temp Control Number' change script.
+		(2)	The control number change script.
+
+	This script sets itself as a flag indicating whether or not
+	an existing record is being edited.
+--------------------------------------------------------------------------------}
+
+{--------------------------------------------------------------------------------
+	Read the newly selected record.
+--------------------------------------------------------------------------------}
+'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID' of window Login_Setup;
+change table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	Display the information for the record if it already exists.
+--------------------------------------------------------------------------------}
+if err() <> MISSING then
+	copy from table HS_PayWay_Logins_SETP;
+	clear changes window Login_Setup;
+	OUT_Existing = true;
+else
+	OUT_Existing = false;
+end if;
+
+
+{--------------------------------------------------------------------------------
+	Lock the control number field.
+--------------------------------------------------------------------------------}
+lock 'PayWay Login ID' of window Login_Setup;
+"
+			UserProperties	""
+		}
+		Procedure	"Handle_Changes"		
+		{
+			Documentation	""
+			Script	"inout	table		HS_PayWay_Logins_SETP;
+out		boolean		OUT_Handled;
+
+local	boolean		bSaved;
+local	integer		nAsk;
+
+
+{--------------------------------------------------------------------------------
+	This script will handle changes to the record presently being displayed.
+
+	This script is called from two different locations:
+		(1)	The '(L) Temp Control Number' change script.
+		(2)	The window post script.
+
+	This script sets itself as a flag which indicates whether or not
+	the calling script should continue after running this script.
+--------------------------------------------------------------------------------}
+
+{--------------------------------------------------------------------------------
+	Ask the if the user wishes to save the changes or cancel whatever action is
+	being taken.
+--------------------------------------------------------------------------------}
+nAsk = ask(getmsg(1000){Do you want to save changes?}, getmsg(2){&Save}, getmsg(4) {&Discard}, getmsg(1){&Cancel});
+
+if nAsk = ASKBUTTON1 then
+	{----------------------------------------------------------------------------
+		The user has chosen to save the changes to the record.
+	----------------------------------------------------------------------------}
+	{----------------------------------------------------------------------------
+		Try to save the record.  The record will not be saved if a required field
+		is empty or if there is a collision.
+	----------------------------------------------------------------------------}
+	call Save_Record of form HS_PayWay_Login_Setup, table HS_PayWay_Logins_SETP, bSaved;
+	if bSaved then
+		OUT_Handled = true;
+	else
+		focus 'Save Button' of window Login_Setup;
+		OUT_Handled = false;
+	end if;
+
+elseif nAsk = ASKBUTTON2 then
+	{----------------------------------------------------------------------------
+		The user has chosen not to save the record.
+	----------------------------------------------------------------------------}
+	release table HS_PayWay_Logins_SETP;
+	OUT_Handled = true;
+
+else
+	{----------------------------------------------------------------------------
+		The user has chosen to cancel the action being taken.
+	----------------------------------------------------------------------------}
+	focus 'Save Button' of window Login_Setup;
+	OUT_Handled = false;
+end if;
+"
+			UserProperties	""
+		}
+		Procedure	"INITIALIZE"		
+		{
+			Documentation	""
+			Script	"in		'PayWay Login ID'			IN_Login_ID;
+
+
+open window Login_Setup;
+
+set '(L) Temp Control Number' of window Login_Setup to IN_Login_ID;
+run script delayed '(L) Temp Control Number' of window Login_Setup;
+"
+			UserProperties	""
+		}
+		Procedure	"Save_Record"		
+		{
+			Documentation	""
+			Script	"inout	table		HS_PayWay_Logins_SETP;
+out		boolean		OUT_Saved;
+
+{--------------------------------------------------------------------------------
+	This script will save the record if all required fields have been entered.
+
+	This script is called from two different locations:
+		(1)	The 'Save Button' change script.
+		(2)	The 'Handle Changes' change script.
+
+	This script sets itself as a flag which indicates whether or not
+	the record was successfully saved.
+--------------------------------------------------------------------------------}
+
+{--------------------------------------------------------------------------------
+	Verify that all required fields have been entered.
+--------------------------------------------------------------------------------}
+if not required(window Login_Setup) then
+	call Warning_Dialog,2351,\"\",\"\",\"\";
+	focus 'Save Button' of window Login_Setup;
+	OUT_Saved = false;
+	abort script;
+end if;
+
+{--------------------------------------------------------------------------------
+	Try to save the record to the table.
+--------------------------------------------------------------------------------}
+if day('Created Date' of table HS_PayWay_Logins_SETP) = 0 then
+	'Created Date' of table HS_PayWay_Logins_SETP = sysdate();
+end if;
+'Modified User ID' of table HS_PayWay_Logins_SETP = 'User ID' of globals;
+'Modified Date' of table HS_PayWay_Logins_SETP = sysdate();
+
+copy from window Login_Setup to table HS_PayWay_Logins_SETP;
+save table HS_PayWay_Logins_SETP;
+
+{--------------------------------------------------------------------------------
+	If the record was not saved due to a collision, then re-read the record.
+--------------------------------------------------------------------------------}
+if err() = RECORDCHANGED then
+	call Warning_Dialog,5202,\"\",\"\",\"\";
+	clear changes window Login_Setup;
+	run script 'PayWay Login ID' of window Login_Setup;
+	focus 'Save Button' of window Login_Setup;
+	OUT_Saved = false;
+	abort script;
+end if;
+
+{--------------------------------------------------------------------------------
+	Check if another user has created a record with the same control number.
+--------------------------------------------------------------------------------}
+if err() = DUPLICATE then
+	call Warning_Dialog,5283,\"\",\"\",\"\";
+	unlock 'PayWay Login ID' of window Login_Setup;
+	focus 'PayWay Login ID' of window Login_Setup;
+	OUT_Saved = false;
+	abort script;
+end if;
+
+{--------------------------------------------------------------------------------
+	 The record has been successfully saved.
+--------------------------------------------------------------------------------}
+OUT_Saved = true;
+"
+			UserProperties	""
+		}
+	}
+}

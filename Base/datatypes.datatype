@@ -16,3 +16,39 @@ Datatype	"PB_Create_Refunds"
 		}
 	}
 }
+Datatype	"HS_LU_Column_Button"
+{
+	Control	"PushButton"
+	DefaultDown	"00000"
+	DefaultMouseOver	"00000"
+	DefaultUp	"00000"
+	Prompt	"a"
+	PromptDown	""
+	PromptMouseOver	""
+	StaticType	"Picture"
+	~ItemImages
+	{
+	}
+}
+Datatype	"HS_LU_View_Button"
+{
+	Control	"ButtonList"
+	DefaultDown	"00001"
+	DefaultMouseOver	"00001"
+	DefaultUp	"00001"
+	PromptDown	""
+	PromptMouseOver	""
+	PromptUp	""
+	Sort	"true"
+	StaticType	"Picture"
+	~ItemImages
+	{
+		PictItem	"00001"		
+		{
+			Item	"SortBy_DownArrow"
+		}
+	}
+	~StaticItems
+	{
+	}
+}

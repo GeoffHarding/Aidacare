@@ -56,6 +56,18 @@ nStatus = AddCommandToMenu(
 	true,
 	LoadMode);
 
+nSequence = nSequence + 1;
+nStatus = AddCommandToMenu(
+	DYNAMICS,
+	resourceid(form Command_Sales),
+	resourceid(command CL_Sales_Setup of form Command_Sales),
+	nSequence,
+	Runtime_GetCurrentProductID(),
+	resourceid(form HS_Command_Form),
+	resourceid(command HS_PayWay_Login_Setup of form HS_Command_Form),
+	true,
+	LoadMode);
+
 
 pragma (enable warning LiteralStringUsed);
 "

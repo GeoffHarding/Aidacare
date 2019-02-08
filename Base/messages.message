@@ -150,3 +150,51 @@ Message	"22037"
 {
 	MessageString	"A Customer Reference Number is already being used."
 }
+Message	"22038"
+{
+	MessageString	"by PayWay Login ID"
+}
+Message	"22039"
+{
+	MessageString	"by PayWay User Name"
+}
+Message	"22040"
+{
+	MessageString	"All Logins"
+}
+Message	"22041"
+{
+	MessageString	"Login ID"
+}
+Message	"22042"
+{
+	MessageString	"User Name"
+}
+Message	"22043"
+{
+	MessageString	"by Login ID"
+}
+Message	"22044"
+{
+	MessageString	"by User Name"
+}
+Message	"22045"
+{
+	MessageString	"&View: %1; %2"
+}
+Message	"22046"
+{
+	MessageString	"Find %1"
+}
+Message	"22047"
+{
+	MessageString	"Do you want to add this %1?"
+}
+Message	"22048"
+{
+	MessageString	"SQL Server returned the following error number:  %1.  %2."
+}
+Message	"22049"
+{
+	MessageString	"This User Name has already been used."
+}

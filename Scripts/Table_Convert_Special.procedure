@@ -14,17 +14,20 @@ clear IO_SQLCode[1];
 
 case IN_Table_Name
 	in [technicalname(table HS_PayWay_Customer_Address_MSTR)]
-		IO_SQLCode[1] = IO_SQLCode[1] + \"INSERT INTO HSPayWayCustAddresses\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"	(CUSTNMBR, ADRSCODE, Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs)\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"SELECT\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"	CUSTNMBR, '', Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"FROM HSPayWayCustomers\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"IF NOT EXISTS(SELECT * FROM HSPayWayCustAddresses)\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	BEGIN\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	INSERT INTO HSPayWayCustAddresses\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"		(CUSTNMBR, ADRSCODE, Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs)\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	SELECT\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"		CUSTNMBR, '', Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	FROM HSPayWayCustomers\" + char(13);
 		IO_SQLCode[1] = IO_SQLCode[1] + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"INSERT INTO HSPayWayCustAddresses\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"	(CUSTNMBR, ADRSCODE, Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs)\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"SELECT\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"	CUSTNMBR, ADRSCODE, 0, HS_PW_Cust_Reference_No, 0\" + char(13);
-		IO_SQLCode[1] = IO_SQLCode[1] + \"FROM HSPayWayAddresses\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	INSERT INTO HSPayWayCustAddresses\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"		(CUSTNMBR, ADRSCODE, Force_PayWay_Details_Fro, HS_PW_Cust_Reference_No, Allow_Customer_Ref_Chngs)\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	SELECT\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"		CUSTNMBR, ADRSCODE, 0, HS_PW_Cust_Reference_No, 0\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	FROM HSPayWayAddresses\" + char(13);
+		IO_SQLCode[1] = IO_SQLCode[1] + \"	END\" + char(13);
 
 	else
 		

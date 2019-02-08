@@ -131,6 +131,20 @@ Form	"HS_PayWay_Customer_Maintenance"
 			Format	""
 			KeyableLength	"0"
 		}
+		Datatype	"Login Default"		
+		{
+			Control	"RadioButton"
+			Prompt	"Default"
+		}
+		Datatype	"Login From"		
+		{
+			Control	"RadioGroup"
+		}
+		Datatype	"Login ID"		
+		{
+			Control	"RadioButton"
+			Prompt	"Login ID"
+		}
 		Datatype	"PayWay Register Customer"		
 		{
 			Control	"Integer"
@@ -236,6 +250,27 @@ Form	"HS_PayWay_Customer_Maintenance"
 			LookupForm	""
 			PhysicalName	""
 		}
+		Field	"Login Default"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Login Default"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Login From"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Login From"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Login ID"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Login ID"
+			LookupForm	""
+			PhysicalName	""
+		}
 		Field	"PayWay Register Customer"		
 		{
 			ArraySize	"0"
@@ -286,12 +321,20 @@ Form	"HS_PayWay_Customer_Maintenance"
 			Position	"1"
 			Table	"HS_PayWay_Customer_Address_MSTR"
 		}
-		FormTable	"RM_Customer_MSTR"		
+		FormTable	"HS_PayWay_Logins_SETP"		
 		{
 			AutoOpen	"false"
 			CursorBlockSize	"0"
 			OpenMode	"ReadWrite"
 			Position	"2"
+			Table	"HS_PayWay_Logins_SETP"
+		}
+		FormTable	"RM_Customer_MSTR"		
+		{
+			AutoOpen	"false"
+			CursorBlockSize	"0"
+			OpenMode	"ReadWrite"
+			Position	"3"
 			Table	"RM_Customer_MSTR"
 		}
 	}
@@ -343,7 +386,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"127"
-					PositionTop	"262"
+					PositionTop	"281"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -357,7 +400,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"11"
+					ZOrder	"16"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Card Number"				
@@ -391,7 +434,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"127"
-					PositionTop	"281"
+					PositionTop	"300"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -405,7 +448,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"12"
+					ZOrder	"17"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Expiry Month"				
@@ -439,7 +482,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"8"
-					PositionTop	"376"
+					PositionTop	"395"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -453,7 +496,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"30"
+					ZOrder	"35"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Expiry Month DDL"				
@@ -483,7 +526,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"127"
-					PositionTop	"300"
+					PositionTop	"319"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -497,7 +540,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					UseUniqueHelp	"true"
 					Visible	"true"
 					VisibleItems	"8"
-					ZOrder	"13"
+					ZOrder	"18"
 				}
 				WindowControl	"(L) Expiry Year"				
 				{
@@ -530,7 +573,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"8"
-					PositionTop	"395"
+					PositionTop	"414"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -544,7 +587,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"29"
+					ZOrder	"34"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Expiry Year DDL"				
@@ -574,7 +617,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"186"
-					PositionTop	"300"
+					PositionTop	"319"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -588,7 +631,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					UseUniqueHelp	"true"
 					Visible	"true"
 					VisibleItems	"8"
-					ZOrder	"14"
+					ZOrder	"19"
 				}
 				WindowControl	"(L) Generate Customer Reference"				
 				{
@@ -631,7 +674,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"34"
+					ZOrder	"10"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Lock Customer Reference"				
@@ -662,7 +705,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"416"
-					PositionTop	"376"
+					PositionTop	"395"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -676,8 +719,104 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"35"
+					ZOrder	"39"
 					Zoom	"false"
+				}
+				WindowControl	"(L) Login Default"				
+				{
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					ControlType	"RadioButton"
+					Field	"(L) Login Default"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"132"
+					PositionTop	"214"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"68"
+					TabStop	"true"
+					Tag	"45"
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"13"
+				}
+				WindowControl	"(L) Login From"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoCopy	"false"
+					BackColor	"Transparent"
+					Border	"true"
+					ControlType	"RadioGroup"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance l_Login From_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Login From"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LineColor	"System"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"127"
+					PositionTop	"214"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"155"
+					TabStop	"true"
+					Tag	"44"
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"12"
+				}
+				WindowControl	"(L) Login ID"				
+				{
+					Appearance	"3D Border"
+					BackColor	"System - Button Face"
+					ControlType	"RadioButton"
+					Field	"(L) Login ID"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"212"
+					PositionTop	"214"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"68"
+					TabStop	"true"
+					Tag	"46"
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"14"
 				}
 				WindowControl	"(L) PayWay Register Customer"				
 				{
@@ -707,7 +846,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"212"
-					PositionTop	"376"
+					PositionTop	"395"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -721,7 +860,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"26"
+					ZOrder	"31"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Response Code"				
@@ -755,7 +894,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"212"
-					PositionTop	"414"
+					PositionTop	"433"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -769,7 +908,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"27"
+					ZOrder	"32"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Response Text"				
@@ -803,7 +942,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"212"
-					PositionTop	"433"
+					PositionTop	"452"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -817,7 +956,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"28"
+					ZOrder	"33"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Summary Code"				
@@ -851,7 +990,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"212"
-					PositionTop	"395"
+					PositionTop	"414"
 					ReadingOrder	"LeftToRight"
 					Required	"false"
 					ResizeHoriz	"StayLeft"
@@ -865,7 +1004,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"31"
+					ZOrder	"36"
 					Zoom	"false"
 				}
 				WindowControl	"(L) Update Credit Card"				
@@ -899,7 +1038,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"348"
-					PositionTop	"300"
+					PositionTop	"319"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
 					SizeHeight	"24"
@@ -909,7 +1048,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"15"
+					ZOrder	"20"
 					Zoom	"false"
 				}
 				WindowLine	"1"				
@@ -961,7 +1100,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					ResizeVert	"StayTop"
 					SizeHeight	"16"
 					SizeWidth	"0"
-					ZOrder	"18"
+					ZOrder	"23"
 				}
 				WindowLine	"14"				
 				{
@@ -974,7 +1113,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					ResizeVert	"StayTop"
 					SizeHeight	"16"
 					SizeWidth	"0"
-					ZOrder	"19"
+					ZOrder	"24"
 				}
 				WindowPrompt	"15"				
 				{
@@ -990,7 +1129,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"12"
-					PositionTop	"233"
+					PositionTop	"252"
 					ReadingOrder	"LeftToRight"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -998,7 +1137,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					SizeWidth	"95"
 					Text	"Credit Card Details"
 					Visible	"true"
-					ZOrder	"21"
+					ZOrder	"26"
 					Zoom	"false"
 				}
 				WindowShape	"16"				
@@ -1010,40 +1149,15 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"8"
-					PositionTop	"243"
+					PositionTop	"262"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
 					Shape	"Rectangle"
 					SizeHeight	"96"
 					SizeWidth	"477"
-					ZOrder	"20"
+					ZOrder	"25"
 				}
 				WindowPrompt	"17"				
-				{
-					Alignment	"left"
-					Appearance	"3D Highlight"
-					BackColor	"System - Button Face"
-					Border	"true"
-					Font	"System (generic)"
-					FontBold	"false"
-					FontColor	"System - Button Text"
-					FontItalic	"false"
-					FontUnderline	"false"
-					Pattern	"(none)"
-					PatternColor	"White"
-					PositionLeft	"25"
-					PositionTop	"262"
-					ReadingOrder	"LeftToRight"
-					ResizeHoriz	"StayLeft"
-					ResizeVert	"StayTop"
-					SizeHeight	"20"
-					SizeWidth	"103"
-					Text	"Card Holder Name"
-					Visible	"true"
-					ZOrder	"22"
-					Zoom	"false"
-				}
-				WindowPrompt	"18"				
 				{
 					Alignment	"left"
 					Appearance	"3D Highlight"
@@ -1063,12 +1177,12 @@ Form	"HS_PayWay_Customer_Maintenance"
 					ResizeVert	"StayTop"
 					SizeHeight	"20"
 					SizeWidth	"103"
-					Text	"Card Number"
+					Text	"Card Holder Name"
 					Visible	"true"
-					ZOrder	"23"
+					ZOrder	"27"
 					Zoom	"false"
 				}
-				WindowPrompt	"19"				
+				WindowPrompt	"18"				
 				{
 					Alignment	"left"
 					Appearance	"3D Highlight"
@@ -1088,9 +1202,34 @@ Form	"HS_PayWay_Customer_Maintenance"
 					ResizeVert	"StayTop"
 					SizeHeight	"20"
 					SizeWidth	"103"
+					Text	"Card Number"
+					Visible	"true"
+					ZOrder	"28"
+					Zoom	"false"
+				}
+				WindowPrompt	"19"				
+				{
+					Alignment	"left"
+					Appearance	"3D Highlight"
+					BackColor	"System - Button Face"
+					Border	"true"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"25"
+					PositionTop	"319"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"103"
 					Text	"Expiry"
 					Visible	"true"
-					ZOrder	"24"
+					ZOrder	"29"
 					Zoom	"false"
 				}
 				WindowPrompt	"2"				
@@ -1132,7 +1271,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Pattern	"(none)"
 					PatternColor	"White"
 					PositionLeft	"169"
-					PositionTop	"300"
+					PositionTop	"319"
 					ReadingOrder	"LeftToRight"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -1140,7 +1279,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					SizeWidth	"17"
 					Text	"/"
 					Visible	"true"
-					ZOrder	"25"
+					ZOrder	"30"
 					Zoom	"false"
 				}
 				WindowPrompt	"39"				
@@ -1165,7 +1304,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					SizeWidth	"289"
 					Text	"Allow Customer Reference to be changed on Transactions"
 					Visible	"true"
-					ZOrder	"32"
+					ZOrder	"37"
 					Zoom	"false"
 				}
 				WindowPrompt	"41"				
@@ -1190,7 +1329,32 @@ Form	"HS_PayWay_Customer_Maintenance"
 					SizeWidth	"187"
 					Text	"Force PayWay Details from Address"
 					Visible	"true"
-					ZOrder	"33"
+					ZOrder	"38"
+					Zoom	"false"
+				}
+				WindowPrompt	"47"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"false"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"42"
+					PositionTop	"214"
+					ReadingOrder	"LeftToRight"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"85"
+					Text	"Payway Login:"
+					Visible	"true"
+					ZOrder	"40"
 					Zoom	"false"
 				}
 				WindowPrompt	"5"				
@@ -1286,7 +1450,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"10"
+					ZOrder	"11"
 				}
 				WindowControl	"Cancel Button"				
 				{
@@ -1329,7 +1493,7 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"17"
+					ZOrder	"22"
 					Zoom	"false"
 				}
 				WindowControl	"Customer Name"				
@@ -1566,6 +1730,98 @@ Form	"HS_PayWay_Customer_Maintenance"
 					ZOrder	"7"
 					Zoom	"false"
 				}
+				WindowControl	"Lookup Button 1"				
+				{
+					Alignment	"center"
+					Appearance	"2D Border"
+					BackColor	"System - Button Face"
+					Border	"true"
+					ButtonStyle	"GraphicOnly"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"PayWay_Customer_Maintenance Lookup Button 1_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"Lookup Button 1"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"true"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"416"
+					PositionTop	"214"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"18"
+					TabStop	"false"
+					Tag	"49"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"41"
+					Zoom	"false"
+				}
+				WindowControl	"PayWay Login ID"				
+				{
+					Alignment	"left"
+					Appearance	"2D Border"
+					AutoComplete	"false"
+					AutoCopy	"true"
+					BackColor	"System - Window Background"
+					Border	"true"
+					ControlType	"String"
+					DisableLookup	"false"
+					Editable	"true"
+					EventChange	"PayWay_Customer_Maintenance PayWay Login ID_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"PayWay Login ID"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Window Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					LinkedFormat	"0"
+					LinkedLookup	"49"
+					LinkedPrompt	"0"
+					Password	"false"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"297"
+					PositionTop	"214"
+					ReadingOrder	"LeftToRight"
+					Required	"false"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SavedOnRestart	"false"
+					SetChangeFlag	"true"
+					SizeHeight	"20"
+					SizeWidth	"120"
+					TabStop	"true"
+					Tag	"48"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"15"
+					Zoom	"false"
+				}
 				WindowControl	"Save Button"				
 				{
 					Alignment	"center"
@@ -1607,16 +1863,16 @@ Form	"HS_PayWay_Customer_Maintenance"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"16"
+					ZOrder	"21"
 					Zoom	"false"
 				}
 			}
-			LastTag	"43"
+			LastTag	"49"
 			Position	"1"
 			PositionLeft	"1"
 			PositionTop	"1"
 			Resizable	"false"
-			SizeHeight	"349"
+			SizeHeight	"368"
 			SizeWidth	"494"
 			WindowType	"Primary"
 		}
@@ -1650,11 +1906,19 @@ if err() = OKAY then
 	'Force PayWay Details From Address' = 'Force PayWay Details From Address' of table HS_PayWay_Customer_Address_MSTR;
 	'HS PayWay Customer Reference Number' = 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR;
 	'Allow Customer Reference Changes' = 'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR;
+	'PayWay Login ID' = 'PayWay Login ID' of table HS_PayWay_Customer_Address_MSTR;
+	if empty('PayWay Login ID') then
+		'(L) Login From' = 0;
+	else
+		'(L) Login From' = 1;
+	end if;
 else
 	'HS PayWay Customer CB' = false;
 	clear 'Force PayWay Details From Address';
 	clear 'HS PayWay Customer Reference Number';
 	clear 'Allow Customer Reference Changes';
+	clear 'PayWay Login ID';
+	'(L) Login From' = 0;
 end if;
 
 
@@ -1668,6 +1932,9 @@ run script 'HS PayWay Customer CB';
 			Script	"if 'Force PayWay Details From Address' then
 	lock 'HS PayWay Customer Reference Number';
 	lock 'Allow Customer Reference Changes';
+	lock '(L) Login From';
+	hide 'PayWay Login ID';
+	hide 'Lookup Button 1';
 	lock '(L) Card Holder Name';
 	lock '(L) Card Number';
 	lock '(L) Expiry Month DDL';
@@ -1680,12 +1947,15 @@ run script 'HS PayWay Customer CB';
 else
 	unlock 'HS PayWay Customer Reference Number';
 	unlock 'Allow Customer Reference Changes';
+	unlock '(L) Login From';
 	unlock '(L) Card Holder Name';
 	unlock '(L) Card Number';
 	unlock '(L) Expiry Month DDL';
 	unlock '(L) Expiry Year DDL';
 	unlock '(L) Update Credit Card';
 	enable '(L) Generate Customer Reference';
+	
+	run script '(L) Login From';
 	run script '(L) Lock Customer Reference';
 end if;
 "
@@ -1702,6 +1972,7 @@ else
 	lock 'Force PayWay Details From Address';
 	lock 'HS PayWay Customer Reference Number';
 	lock 'Allow Customer Reference Changes';
+	lock '(L) Login From';
 	lock '(L) Card Holder Name';
 	lock '(L) Card Number';
 	lock '(L) Expiry Month DDL';
@@ -1712,6 +1983,8 @@ else
 	clear 'Force PayWay Details From Address';
 	clear 'HS PayWay Customer Reference Number';
 	clear 'Allow Customer Reference Changes';
+	'(L) Login From' = 0;
+	run script '(L) Login From';
 end if;
 "
 			UserProperties	""
@@ -1731,6 +2004,40 @@ end if;
 "
 			UserProperties	""
 		}
+		EventScript	"PayWay_Customer_Maintenance Lookup Button 1_CHG"		
+		{
+			Documentation	""
+			Script	"open form HS_PayWay_Login_Lookup return to 'PayWay Login ID';
+call INITIALIZE of form HS_PayWay_Login_Lookup, 1, 'PayWay Login ID', \"\";
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance PayWay Login ID_CHG"		
+		{
+			Documentation	""
+			Script	"local	string		sMsg;
+
+
+if empty('PayWay Login ID') then	
+	abort script;
+end if;
+
+'PayWay Login ID' of table HS_PayWay_Logins_SETP = 'PayWay Login ID';
+get table HS_PayWay_Logins_SETP;
+if err() <> OKAY then
+	restart field;
+	
+	sMsg = getmsg(22047);   {Do you want to add this %1?}
+	substitute sMsg, getmsg(22041);   {Login ID}
+	if ask(sMsg, getmsg(YES), getmsg(NO), \"\") = ASKBUTTON1 then
+		open form HS_PayWay_Login_Setup;
+		call INITIALIZE of form HS_PayWay_Login_Setup, 'PayWay Login ID';
+	end if;
+	abort script;
+end if; 
+"
+			UserProperties	""
+		}
 		EventScript	"PayWay_Customer_Maintenance Save Button_CHG"		
 		{
 			Documentation	""
@@ -1746,6 +2053,8 @@ if 'HS PayWay Customer CB' then
 	'Force PayWay Details From Address' of table HS_PayWay_Customer_Address_MSTR = 'Force PayWay Details From Address';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR = 'HS PayWay Customer Reference Number';
 	'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR = 'Allow Customer Reference Changes';
+	'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR = 'Allow Customer Reference Changes';
+	'PayWay Login ID' of table HS_PayWay_Customer_Address_MSTR = 'PayWay Login ID';
 	save table HS_PayWay_Customer_Address_MSTR;
 	if err() = DUPLICATE then
 		warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
@@ -1818,6 +2127,23 @@ end if;
 			Documentation	""
 			Script	"{ This is a code stub so that Aidacare can trigger off of to lock/unlock the
  Customer Reference and Auto-Generate button depending on User/Class }
+
+
+pragma (disable warning NoExecutableCode);
+"
+			UserProperties	""
+		}
+		EventScript	"PayWay_Customer_Maintenance l_Login From_CHG"		
+		{
+			Documentation	""
+			Script	"if '(L) Login From' = 0 then
+	clear 'PayWay Login ID';
+	hide 'PayWay Login ID';
+	hide 'Lookup Button 1';
+else
+	show 'PayWay Login ID';
+	show 'Lookup Button 1';
+end if;
 "
 			UserProperties	""
 		}

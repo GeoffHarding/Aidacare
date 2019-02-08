@@ -5,7 +5,7 @@ Function	"Tables_Check"
 	Script	"function returns integer OUT_Result;
 
 local	boolean				bUpdateNeeded;
-local	integer				nNumberOfTables = 5;
+local	integer				nNumberOfTables = 6;
 local	integer				nLoop;
 local	reference			rTable;
 local	anonymous table		aTable;

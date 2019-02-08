@@ -278,3 +278,59 @@ Field	"Force PayWay Details From Address"
 	LookupForm	""
 	PhysicalName	"Force_PayWay_Details_Fro"
 }
+Field	"PayWay Login ID"
+{
+	ArraySize	"0"
+	Datatype	"STR15"
+	LookupForm	""
+	PhysicalName	"PayWay_Login_ID"
+}
+Field	"HS_LU_Column_Array"
+{
+	ArraySize	"10"
+	Datatype	"HS_LU_Column_Button"
+	LookupForm	""
+	PhysicalName	"HS_LU_Column_Array"
+}
+Field	"HS_LU_Current_Sort_String"
+{
+	ArraySize	"0"
+	Datatype	"STR50"
+	LookupForm	""
+	PhysicalName	"HS_LU_Current_Sort_Stri"
+}
+Field	"HS_LU_Current_View"
+{
+	ArraySize	"0"
+	Datatype	"STR60"
+	LookupForm	""
+	PhysicalName	"HS_LU_Current_View"
+}
+Field	"HS_LU_Find_Prompt"
+{
+	ArraySize	"0"
+	Datatype	"STR50"
+	LookupForm	""
+	PhysicalName	"HS_LU_Find_Prompt"
+}
+Field	"HS_LU_Find_String"
+{
+	ArraySize	"0"
+	Datatype	"STR50"
+	LookupForm	""
+	PhysicalName	"HS_LU_Find_String"
+}
+Field	"HS_LU_Set_View_Prompt"
+{
+	ArraySize	"0"
+	Datatype	"INT"
+	LookupForm	""
+	PhysicalName	"HS_LU_Set_View_Prompt"
+}
+Field	"HS_LU_View_Button"
+{
+	ArraySize	"0"
+	Datatype	"HS_LU_View_Button"
+	LookupForm	""
+	PhysicalName	"HS_LU_View_Button"
+}

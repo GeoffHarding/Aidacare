@@ -15,7 +15,7 @@ Table	"HS_PayWay_Payments_WORK_HIST"
 		{
 			Encrypt	"false"
 			Field	"Amount Paid"
-			Position	"8"
+			Position	"9"
 		}
 		TableField	"Customer Number"		
 		{
@@ -33,7 +33,7 @@ Table	"HS_PayWay_Payments_WORK_HIST"
 		{
 			Encrypt	"false"
 			Field	"HS PayWay Date"
-			Position	"7"
+			Position	"8"
 		}
 		TableField	"HS PayWay Order Number"		
 		{
@@ -45,7 +45,7 @@ Table	"HS_PayWay_Payments_WORK_HIST"
 		{
 			Encrypt	"false"
 			Field	"HS PayWay Original Order Number"
-			Position	"9"
+			Position	"10"
 		}
 		TableField	"HS PayWay Payment Refund"		
 		{
@@ -57,7 +57,13 @@ Table	"HS_PayWay_Payments_WORK_HIST"
 		{
 			Encrypt	"false"
 			Field	"HS PayWay Receipt Number"
-			Position	"10"
+			Position	"11"
+		}
+		TableField	"PayWay Login ID"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Login ID"
+			Position	"7"
 		}
 		TableField	"SOP Number"		
 		{

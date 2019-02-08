@@ -1,56 +1,74 @@
-Table	"HS_PayWay_Customer_Address_MSTR"
+Table	"HS_PayWay_Logins_SETP"
 {
 	AllowActiveLocking	"false"
 	DatabaseType	"SQL"
 	DexRowTimestamp	"false"
-	DisplayName	"PayWay Customer Address Master"
+	DisplayName	"HS PayWay Logins Setup"
 	FourByteHeader	"true"
-	PhysicalName	"HSPayWayCustAddresses"
+	PhysicalName	"HSPayWayLogins"
 	Restriction	""
-	Series	"Sales"
+	Series	"Financial"
 	TableType	"Standard"
 	~Fields
 	{
-		TableField	"Address Code"		
+		TableField	"Created Date"		
 		{
 			Encrypt	"false"
-			Field	"Address Code"
-			Position	"1"
+			Field	"Created Date"
+			Position	"6"
 		}
-		TableField	"Allow Customer Reference Changes"		
+		TableField	"Modified Date"		
 		{
 			Encrypt	"false"
-			Field	"Allow Customer Reference Changes"
+			Field	"Modified Date"
+			Position	"7"
+		}
+		TableField	"Modified User ID"		
+		{
+			Encrypt	"false"
+			Field	"Modified User ID"
+			Position	"8"
+		}
+		TableField	"PayWay Credentials File"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Credentials File"
 			Position	"4"
 		}
-		TableField	"Customer Number"		
+		TableField	"PayWay Log Directory"		
 		{
 			Encrypt	"false"
-			Field	"Customer Number"
-			Position	"0"
-		}
-		TableField	"Force PayWay Details From Address"		
-		{
-			Encrypt	"false"
-			Field	"Force PayWay Details From Address"
-			Position	"2"
-		}
-		TableField	"HS PayWay Customer Reference Number"		
-		{
-			Encrypt	"false"
-			Field	"HS PayWay Customer Reference Number"
-			Position	"3"
+			Field	"PayWay Log Directory"
+			Position	"5"
 		}
 		TableField	"PayWay Login ID"		
 		{
 			Encrypt	"false"
 			Field	"PayWay Login ID"
-			Position	"5"
+			Position	"0"
+		}
+		TableField	"PayWay Merchant"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Merchant"
+			Position	"3"
+		}
+		TableField	"PayWay Password"		
+		{
+			Encrypt	"false"
+			Field	"PayWay Password"
+			Position	"2"
+		}
+		TableField	"PayWay User Name"		
+		{
+			Encrypt	"false"
+			Field	"PayWay User Name"
+			Position	"1"
 		}
 	}
 	~Keys
 	{
-		Key	"HS_PayWay_Customer_Address_MSTR_Key1"		
+		Key	"HS_PayWay_Logins_SETP_Key1"		
 		{
 			Clustered	"false"
 			Compress	"false"
@@ -67,16 +85,7 @@ Table	"HS_PayWay_Customer_Address_MSTR"
 			Primary	"true"
 			Segments
 			{
-				KeySegment	"Address Code"				
-				{
-					Component	""
-					Descending	"false"
-					IgnoreCase	"true"
-					NoCombining	"false"
-					NoLengthByte	"false"
-					Position	"1"
-				}
-				KeySegment	"Customer Number"				
+				KeySegment	"PayWay Login ID"				
 				{
 					Component	""
 					Descending	"false"
@@ -87,7 +96,7 @@ Table	"HS_PayWay_Customer_Address_MSTR"
 				}
 			}
 		}
-		Key	"HS_PayWay_Customer_Address_MSTR_Key2"		
+		Key	"HS_PayWay_Logins_SETP_Key2"		
 		{
 			Clustered	"false"
 			Compress	"false"
@@ -104,7 +113,7 @@ Table	"HS_PayWay_Customer_Address_MSTR"
 			Primary	"false"
 			Segments
 			{
-				KeySegment	"HS PayWay Customer Reference Number"				
+				KeySegment	"PayWay User Name"				
 				{
 					Component	""
 					Descending	"false"
