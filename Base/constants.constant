@@ -1,6 +1,6 @@
 Constant	"HS_VERSION"
 {
-	Value	"Version 2015 - Build 26"
+	Value	"Version 2015 - Build 28"
 }
 Constant	"HS_VIEW_EXECUTE_CODE"
 {
@@ -369,4 +369,12 @@ Constant	"HS_PAYWAY_PREPAYMENT_REFUNDED"
 Constant	"HS_PAYWAY_PREPAYMENT_REFUND_FAILED"
 {
 	Value	"7"
+}
+Constant	"TAG_RM_CUSTOMER_MSTR_DELETE"
+{
+	Value	"69"
+}
+Constant	"TAG_RM_CUSTOMER_MSTR_ADDR_DELETE"
+{
+	Value	"70"
 }

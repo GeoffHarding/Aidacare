@@ -1,0 +1,36 @@
+Procedure	"HS_Trigger_RM_Customer_MSTR_Delete"
+{
+	Core	"System"
+	Documentation	""
+	Script	"inout	table		RM_Customer_MSTR;
+
+
+{ Remove Customer }
+'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number' of table RM_Customer_MSTR;
+clear 'Address Code' of table HS_PayWay_Customer_Address_MSTR;
+change table HS_PayWay_Customer_Address_MSTR;
+if err() = OKAY then
+	remove table HS_PayWay_Customer_Address_MSTR;
+else
+	release table HS_PayWay_Customer_Address_MSTR;
+end if;
+
+
+{ Also Remove all Customer's Addresses }
+range clear table HS_PayWay_Customer_Address_MSTR;
+clear table HS_PayWay_Customer_Address_MSTR;
+'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number' of table RM_Customer_MSTR;
+range start table HS_PayWay_Customer_Address_MSTR;
+fill table HS_PayWay_Customer_Address_MSTR;
+'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number' of table RM_Customer_MSTR;
+range end table HS_PayWay_Customer_Address_MSTR;
+
+remove range table HS_PayWay_Customer_Address_MSTR;
+"
+	ServiceAction	""
+	ServiceCustomAciton	""
+	ServiceEnabled	"FALSE"
+	ServiceRawRequest	"FALSE"
+	ServiceUriTemplate	""
+	UserProperties	""
+}

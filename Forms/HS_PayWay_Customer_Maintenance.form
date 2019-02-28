@@ -2050,6 +2050,8 @@ if 'HS PayWay Customer CB' then
 		abort script;
 	end if;
 	
+	'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
+	clear 'Address Code' of table HS_PayWay_Customer_Address_MSTR;
 	'Force PayWay Details From Address' of table HS_PayWay_Customer_Address_MSTR = 'Force PayWay Details From Address';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR = 'HS PayWay Customer Reference Number';
 	'Allow Customer Reference Changes' of table HS_PayWay_Customer_Address_MSTR = 'Allow Customer Reference Changes';
@@ -2060,7 +2062,7 @@ if 'HS PayWay Customer CB' then
 		warning getmsg(22009);   {Please enter a unique Customer Reference Number.}
 		
 		'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
-		clear 'Customer Number' of table HS_PayWay_Customer_Address_MSTR;
+		clear 'Address Code' of table HS_PayWay_Customer_Address_MSTR;
 		change table HS_PayWay_Customer_Address_MSTR;
 		abort script;
 	end if;

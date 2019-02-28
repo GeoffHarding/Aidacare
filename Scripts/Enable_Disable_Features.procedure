@@ -169,6 +169,8 @@ end if;
 if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
 	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_PAYWAY_SETUP_MENU] of globals);
 	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_ADDRESS_PAYWAY_SETUP_MENU] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_DELETE] of globals);
+	Trigger_EnableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_ADDR_DELETE] of globals);
 	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals);
 	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_PAYMENT_TYPE_POST] of globals);
 	Trigger_EnableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);
@@ -180,6 +182,8 @@ if 'HS Feature'[FEATURE_PAYWAY_INTEGRATION] of globals then
 else
 	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MAINTENANCE_PAYWAY_SETUP_MENU] of globals);
 	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_ADDRESS_PAYWAY_SETUP_MENU] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_DELETE] of globals);
+	Trigger_DisableSingle('HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_ADDR_DELETE] of globals);
 	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals);
 	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_PAYMENT_TYPE_POST] of globals);
 	Trigger_DisableSingle('HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_CARD_NAME_CHANGE_POST_PAYWAY] of globals);

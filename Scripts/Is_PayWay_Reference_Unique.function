@@ -10,8 +10,14 @@ in		string			IN_Address_Code;
 
 OUT_Unique = true;
 
+if empty(IN_Reference_Number) then
+	abort script;
+end if;
+
+
 { Check Customer Address records }
 range clear table HS_PayWay_Customer_Address_MSTR;
+clear table HS_PayWay_Customer_Address_MSTR;
 'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR = IN_Reference_Number;
 range start table HS_PayWay_Customer_Address_MSTR by number 2;
 range end table HS_PayWay_Customer_Address_MSTR by number 2;

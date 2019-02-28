@@ -2,14 +2,19 @@ Procedure	"HS_Trigger_EQS_Rental_Invoice_Entry_Void_Button_Change_Pre"
 {
 	Core	"System"
 	Documentation	""
-	Script	"if not Is_SOP_Payments_Open_From_Rental() then
+	Script	"if Does_SOP_Payment_Exist_For_Rental_Invoice() then
+	warning getmsg(22051);   {Please remove all payments before voiding the invoice.}
+	reject script;
 	abort script;
 end if;
 
 
-warning getmsg(22002);   {Please close the Sales Payment Entry window first.}
-open window SOP_Payment_Entry of form SOP_Payment_Entry;
-reject script;
+if Is_SOP_Payments_Open_From_Rental() then
+	warning getmsg(22002);   {Please close the Sales Payment Entry window first.}
+	open window SOP_Payment_Entry of form SOP_Payment_Entry;
+	reject script;
+	abort script;
+end if;
 "
 	ServiceAction	""
 	ServiceCustomAciton	""

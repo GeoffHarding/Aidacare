@@ -15,6 +15,16 @@ if Trigger_RegisterForm(form RM_Customer_Address, \"Debtor Address PayWay Setup\
 	warning \"Failed registering 'Debtor Address PayWay Setup' of form RM_Customer_Address menu trigger.\";
 end if;
 
+if Trigger_RegisterDatabase(anonymous(table RM_Customer_MSTR), 0, TRIGGER_ON_DB_DELETE,
+ script HS_Trigger_RM_Customer_MSTR_Delete, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_DELETE] of globals) <> SY_NOERR then
+	warning \"Failed registering table RM_Customer_MSTR delete database trigger.\";
+end if;
+
+if Trigger_RegisterDatabase(anonymous(table RM_Customer_MSTR_ADDR), 0, TRIGGER_ON_DB_DELETE,
+ script HS_Trigger_RM_Customer_MSTR_ADDR_Delete, 'HS Trigger Tag'[TAG_RM_CUSTOMER_MSTR_ADDR_DELETE] of globals) <> SY_NOERR then
+	warning \"Failed registering table RM_Customer_MSTR_ADDR delete database trigger.\";
+end if;
+
 if Trigger_RegisterFocus(anonymous (window SOP_Payment_Entry of form SOP_Payment_Entry), TRIGGER_FOCUS_ACTIVATE, TRIGGER_AFTER_ORIGINAL,
  script HS_Trigger_SOP_Payment_Entry_Activate_Post, 'HS Trigger Tag'[TAG_SOP_PAYMENT_ENTRY_ACTIVATE_POST] of globals) <> SY_NOERR then
 	warning \"Failed registering window SOP_Payment_Entry of form SOP_Payment_Entry activate focus post trigger.\";

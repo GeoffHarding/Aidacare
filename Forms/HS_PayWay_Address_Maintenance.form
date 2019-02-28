@@ -1955,6 +1955,8 @@ if 'HS PayWay Customer CB' then
 		abort script;
 	end if;
 	
+	'Customer Number' of table HS_PayWay_Customer_Address_MSTR = 'Customer Number';
+	'Address Code' of table HS_PayWay_Customer_Address_MSTR = 'Address Code';
 	'HS PayWay Customer Reference Number' of table HS_PayWay_Customer_Address_MSTR = 'HS PayWay Customer Reference Number';
 	'PayWay Login ID' of table HS_PayWay_Customer_Address_MSTR = 'PayWay Login ID';
 	save table HS_PayWay_Customer_Address_MSTR;

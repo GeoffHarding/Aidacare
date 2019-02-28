@@ -1,0 +1,47 @@
+Function	"Does_SOP_Payment_Exist_For_Rental_Invoice"
+{
+	Core	"System"
+	Documentation	""
+	Script	"function returns boolean OUT_Payment_Exists;
+
+local		string			sInvoiceNumber;
+local		boolean			bCredit;
+local		integer			nSOPType;
+
+
+OUT_Payment_Exists = false;
+
+pragma (disable warning LiteralStringUsed);
+call Misc_Get_Window_Value, PRODID_EQUIPMENT_MANAGEMENT, \"EQS_Rental_Invoice_Entry\", \"Entry\", \"EQS Rental Invoice Number\", sInvoiceNumber;
+pragma (enable warning LiteralStringUsed);
+
+if empty(sInvoiceNumber) then
+	abort script;
+end if;
+
+bCredit = Rental_Is_Invoice_Credit(sInvoiceNumber);
+if bCredit then
+	nSOPType = SOP_TYPE_RENTAL_CREDIT;
+else
+	nSOPType = SOP_TYPE_RENTAL_INVOICE;
+end if;
+
+
+range clear table SOP_Payment_WORK_HIST;
+clear table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = nSOPType;
+'SOP Number' of table SOP_Payment_WORK_HIST = sInvoiceNumber;
+range start table SOP_Payment_WORK_HIST;
+fill table SOP_Payment_WORK_HIST;
+'SOP Type' of table SOP_Payment_WORK_HIST = nSOPType;
+'SOP Number' of table SOP_Payment_WORK_HIST = sInvoiceNumber;
+range end table SOP_Payment_WORK_HIST;
+
+get first table SOP_Payment_WORK_HIST;
+if err() = OKAY then
+	OUT_Payment_Exists = true;
+end if;
+
+"
+	UserProperties	""
+}

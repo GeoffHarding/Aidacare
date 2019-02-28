@@ -198,3 +198,11 @@ Message	"22049"
 {
 	MessageString	"This User Name has already been used."
 }
+Message	"22050"
+{
+	MessageString	"Please remove all payments before deleting the invoice."
+}
+Message	"22051"
+{
+	MessageString	"Please remove all payments before voiding the invoice."
+}

@@ -17,6 +17,24 @@ Form	"HS_Feature_Setup"
 			{
 			}
 		}
+		Datatype	"Table Upgrade"		
+		{
+			Control	"PushButton"
+			DefaultDown	"00000"
+			DefaultMouseOver	"00000"
+			DefaultUp	"00001"
+			Prompt	"Table Upgrade"
+			PromptDown	""
+			PromptMouseOver	""
+			StaticType	"Picture"
+			~ItemImages
+			{
+				PictItem	"00001"				
+				{
+					Item	"WindowToolbar_Process_PB_Up"
+				}
+			}
+		}
 		Datatype	"Version"		
 		{
 			AllowOddLength	"false"
@@ -34,6 +52,13 @@ Form	"HS_Feature_Setup"
 		{
 			ArraySize	"30"
 			Datatype	"(L) Original HS Check Box"
+			LookupForm	""
+			PhysicalName	""
+		}
+		Field	"Table Upgrade"		
+		{
+			ArraySize	"0"
+			Datatype	"(L) Table Upgrade"
 			LookupForm	""
 			PhysicalName	""
 		}
@@ -120,7 +145,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"46"
+					ZOrder	"47"
 				}
 				WindowControl	"(L) Original HS Check Box[11]"				
 				{
@@ -165,7 +190,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"47"
+					ZOrder	"48"
 				}
 				WindowControl	"(L) Original HS Check Box[12]"				
 				{
@@ -210,7 +235,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"48"
+					ZOrder	"49"
 				}
 				WindowControl	"(L) Original HS Check Box[13]"				
 				{
@@ -255,7 +280,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"49"
+					ZOrder	"50"
 				}
 				WindowControl	"(L) Original HS Check Box[14]"				
 				{
@@ -300,7 +325,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"50"
+					ZOrder	"51"
 				}
 				WindowControl	"(L) Original HS Check Box[15]"				
 				{
@@ -345,7 +370,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"51"
+					ZOrder	"52"
 				}
 				WindowControl	"(L) Original HS Check Box[16]"				
 				{
@@ -390,7 +415,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"52"
+					ZOrder	"53"
 				}
 				WindowControl	"(L) Original HS Check Box[17]"				
 				{
@@ -435,7 +460,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"53"
+					ZOrder	"54"
 				}
 				WindowControl	"(L) Original HS Check Box[18]"				
 				{
@@ -480,7 +505,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"54"
+					ZOrder	"55"
 				}
 				WindowControl	"(L) Original HS Check Box[19]"				
 				{
@@ -525,7 +550,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"55"
+					ZOrder	"56"
 				}
 				WindowControl	"(L) Original HS Check Box[1]"				
 				{
@@ -570,7 +595,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"37"
+					ZOrder	"38"
 				}
 				WindowControl	"(L) Original HS Check Box[20]"				
 				{
@@ -615,7 +640,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"56"
+					ZOrder	"57"
 				}
 				WindowControl	"(L) Original HS Check Box[21]"				
 				{
@@ -660,7 +685,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"57"
+					ZOrder	"58"
 				}
 				WindowControl	"(L) Original HS Check Box[22]"				
 				{
@@ -705,7 +730,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"58"
+					ZOrder	"59"
 				}
 				WindowControl	"(L) Original HS Check Box[23]"				
 				{
@@ -750,7 +775,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"59"
+					ZOrder	"60"
 				}
 				WindowControl	"(L) Original HS Check Box[24]"				
 				{
@@ -795,7 +820,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"60"
+					ZOrder	"61"
 				}
 				WindowControl	"(L) Original HS Check Box[25]"				
 				{
@@ -840,7 +865,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"61"
+					ZOrder	"62"
 				}
 				WindowControl	"(L) Original HS Check Box[26]"				
 				{
@@ -885,7 +910,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"62"
+					ZOrder	"63"
 				}
 				WindowControl	"(L) Original HS Check Box[27]"				
 				{
@@ -930,7 +955,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"63"
+					ZOrder	"64"
 				}
 				WindowControl	"(L) Original HS Check Box[28]"				
 				{
@@ -975,7 +1000,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"64"
+					ZOrder	"65"
 				}
 				WindowControl	"(L) Original HS Check Box[29]"				
 				{
@@ -1020,7 +1045,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"65"
+					ZOrder	"66"
 				}
 				WindowControl	"(L) Original HS Check Box[2]"				
 				{
@@ -1065,7 +1090,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"38"
+					ZOrder	"39"
 				}
 				WindowControl	"(L) Original HS Check Box[30]"				
 				{
@@ -1110,7 +1135,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"66"
+					ZOrder	"67"
 				}
 				WindowControl	"(L) Original HS Check Box[3]"				
 				{
@@ -1155,7 +1180,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"39"
+					ZOrder	"40"
 				}
 				WindowControl	"(L) Original HS Check Box[4]"				
 				{
@@ -1200,7 +1225,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"40"
+					ZOrder	"41"
 				}
 				WindowControl	"(L) Original HS Check Box[5]"				
 				{
@@ -1245,7 +1270,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"41"
+					ZOrder	"42"
 				}
 				WindowControl	"(L) Original HS Check Box[6]"				
 				{
@@ -1290,7 +1315,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"42"
+					ZOrder	"43"
 				}
 				WindowControl	"(L) Original HS Check Box[7]"				
 				{
@@ -1335,7 +1360,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"43"
+					ZOrder	"44"
 				}
 				WindowControl	"(L) Original HS Check Box[8]"				
 				{
@@ -1380,7 +1405,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"44"
+					ZOrder	"45"
 				}
 				WindowControl	"(L) Original HS Check Box[9]"				
 				{
@@ -1425,7 +1450,51 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"false"
-					ZOrder	"45"
+					ZOrder	"46"
+				}
+				WindowControl	"(L) Table Upgrade"				
+				{
+					Alignment	"center"
+					Appearance	"3D Highlight"
+					BackColor	"System - Toolbar"
+					Border	"true"
+					ButtonStyle	"TextOnRight"
+					Cancel	"false"
+					ControlType	"PushButton"
+					Default	"false"
+					Editable	"true"
+					EndTransaction	"false"
+					EventChange	"Feature_Setup l_Table Upgrade_CHG"
+					EventContextMenu	""
+					EventMouseEnter	""
+					EventMouseExit	""
+					EventOther	""
+					EventPost	""
+					EventPre	""
+					Field	"(L) Table Upgrade"
+					Font	"System (generic)"
+					FontBold	"false"
+					FontColor	"System - Button Text"
+					FontItalic	"false"
+					FontUnderline	"false"
+					HyperSpace	"false"
+					LinkedLookup	"0"
+					LinkedPrompt	"0"
+					Pattern	"(none)"
+					PatternColor	"White"
+					PositionLeft	"75"
+					PositionTop	"0"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"24"
+					SizeWidth	"119"
+					TabStop	"true"
+					Tag	"103"
+					Tooltip	""
+					UseUniqueHelp	"true"
+					Visible	"true"
+					ZOrder	"33"
+					Zoom	"false"
 				}
 				WindowControl	"(L) Version"				
 				{
@@ -1472,7 +1541,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"36"
+					ZOrder	"37"
 					Zoom	"false"
 				}
 				WindowPrompt	"100"				
@@ -1497,7 +1566,7 @@ Form	"HS_Feature_Setup"
 					SizeWidth	"323"
 					Text	"Extra Fields on Purchasing Navigation List"
 					Visible	"true"
-					ZOrder	"70"
+					ZOrder	"71"
 					Zoom	"false"
 				}
 				WindowPrompt	"101"				
@@ -1522,8 +1591,21 @@ Form	"HS_Feature_Setup"
 					SizeWidth	"323"
 					Text	"PayWay integration"
 					Visible	"true"
-					ZOrder	"71"
+					ZOrder	"72"
 					Zoom	"false"
+				}
+				WindowLine	"102"				
+				{
+					Appearance	"3D Border"
+					LineColor	"System"
+					LineSize	"1"
+					PositionLeft	"270"
+					PositionTop	"2"
+					ResizeHoriz	"StayLeft"
+					ResizeVert	"StayTop"
+					SizeHeight	"20"
+					SizeWidth	"0"
+					ZOrder	"73"
 				}
 				WindowLine	"41"				
 				{
@@ -1536,7 +1618,7 @@ Form	"HS_Feature_Setup"
 					ResizeVert	"StayTop"
 					SizeHeight	"0"
 					SizeWidth	"358"
-					ZOrder	"34"
+					ZOrder	"35"
 				}
 				WindowLine	"44"				
 				{
@@ -1549,7 +1631,7 @@ Form	"HS_Feature_Setup"
 					ResizeVert	"StayTop"
 					SizeHeight	"0"
 					SizeWidth	"357"
-					ZOrder	"35"
+					ZOrder	"36"
 				}
 				WindowLine	"5"				
 				{
@@ -1569,7 +1651,7 @@ Form	"HS_Feature_Setup"
 					Appearance	"3D Border"
 					LineColor	"System"
 					LineSize	"1"
-					PositionLeft	"148"
+					PositionLeft	"195"
 					PositionTop	"2"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -1599,7 +1681,7 @@ Form	"HS_Feature_Setup"
 					SizeWidth	"323"
 					Text	"WennSoft Batch Creation by SOP Type"
 					Visible	"true"
-					ZOrder	"67"
+					ZOrder	"68"
 					Zoom	"false"
 				}
 				WindowPrompt	"98"				
@@ -1624,7 +1706,7 @@ Form	"HS_Feature_Setup"
 					SizeWidth	"323"
 					Text	"National Account and Address integration with Child Debtor"
 					Visible	"true"
-					ZOrder	"68"
+					ZOrder	"69"
 					Zoom	"false"
 				}
 				WindowPrompt	"99"				
@@ -1649,7 +1731,7 @@ Form	"HS_Feature_Setup"
 					SizeWidth	"323"
 					Text	"Payments on Rental Invoices"
 					Visible	"true"
-					ZOrder	"69"
+					ZOrder	"70"
 					Zoom	"false"
 				}
 				WindowControl	"Cancel Button"				
@@ -1682,7 +1764,7 @@ Form	"HS_Feature_Setup"
 					LinkedPrompt	"0"
 					Pattern	"(none)"
 					PatternColor	"White"
-					PositionLeft	"75"
+					PositionLeft	"197"
 					PositionTop	"0"
 					ResizeHoriz	"StayLeft"
 					ResizeVert	"StayTop"
@@ -1693,7 +1775,7 @@ Form	"HS_Feature_Setup"
 					Tooltip	""
 					UseUniqueHelp	"true"
 					Visible	"true"
-					ZOrder	"33"
+					ZOrder	"34"
 					Zoom	"false"
 				}
 				WindowControl	"HS Check Box[10]"				
@@ -3091,7 +3173,7 @@ Form	"HS_Feature_Setup"
 					Zoom	"false"
 				}
 			}
-			LastTag	"101"
+			LastTag	"103"
 			Position	"1"
 			PositionLeft	"203"
 			PositionTop	"152"
@@ -3121,6 +3203,32 @@ save table HS_Features;
 
 clear changes window Feature_Setup;
 close form HS_Feature_Setup;
+"
+			UserProperties	""
+		}
+		EventScript	"Feature_Setup l_Table Upgrade_CHG"		
+		{
+			Documentation	""
+			Script	"local	integer				nNumberOfTables = 6;
+local	integer				nLoop;
+local	reference			rTable;
+
+
+try
+	if 'User ID' of globals <> SA and 'User ID' of globals <> DYNSA then
+		throw;
+	end if;
+	
+	for nLoop = 2 to nNumberOfTables do  { Do not recreate HS Features as it is currently open }
+		rTable = Tables_Check_Get_Reference(nLoop);
+		
+		call Table_Convert, technicalname(table(rTable)) ,'Company ID' of globals;
+	end for;
+	
+	
+	Table_FlushCache();
+else
+end try;
 "
 			UserProperties	""
 		}
